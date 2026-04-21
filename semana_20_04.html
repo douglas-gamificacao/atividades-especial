@@ -6,908 +6,841 @@
 <title>Atividades Adaptadas — Prof. Douglas Sousa</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:Arial,sans-serif;background:#f0f0f0;min-height:100vh;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;background:#f2f3f7;min-height:100vh;}
 .app{max-width:960px;margin:0 auto;padding:1rem;}
 .header{text-align:center;padding:1.5rem 0 1rem;}
-.header h1{font-size:22px;font-weight:600;color:#222;}
-.header p{font-size:14px;color:#666;margin-top:4px;}
-.week-pill{display:inline-block;font-size:12px;background:#EEEDFE;color:#3C3489;padding:3px 14px;border-radius:20px;margin-top:8px;font-weight:500;}
+.header h1{font-size:24px;font-weight:700;color:#1a1a2e;}
+.header p{font-size:14px;color:#888;margin-top:4px;}
+.week-pill{display:inline-block;font-size:12px;background:#EEEDFE;color:#534AB7;padding:4px 16px;border-radius:20px;margin-top:8px;font-weight:600;border:1px solid #AFA9EC;}
 .tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1rem;}
-.tab-btn{padding:8px 14px;border-radius:8px;border:1px solid #ccc;background:#fff;color:#666;font-size:13px;cursor:pointer;transition:all .15s;position:relative;}
+.tab-btn{padding:8px 16px;border-radius:10px;border:1.5px solid #e0e0e0;background:#fff;color:#666;font-size:13px;cursor:pointer;transition:all .15s;position:relative;font-weight:500;}
 .tab-btn:hover{background:#f5f5f5;}
-.tab-btn.active{background:#534AB7;color:#fff;border-color:#534AB7;font-weight:500;}
+.tab-btn.active{background:#534AB7;color:#fff;border-color:#534AB7;font-weight:600;box-shadow:0 2px 8px rgba(83,74,183,.3);}
 .tab-done-dot{position:absolute;top:4px;right:4px;width:8px;height:8px;border-radius:50%;background:#1D9E75;}
+.tab-done-dot.improve{background:#EF9F27;}
 .panel{display:none;}.panel.active{display:block;}
-.card{background:#fff;border:1px solid #e0e0e0;border-radius:12px;padding:1.5rem;margin-bottom:1rem;}
-.student-name{font-size:20px;font-weight:600;color:#222;margin-bottom:2px;}
+.card{background:#fff;border:1px solid #e8e8e8;border-radius:16px;padding:1.5rem;margin-bottom:1rem;box-shadow:0 1px 4px rgba(0,0,0,.05);}
+.student-name{font-size:21px;font-weight:700;color:#1a1a2e;margin-bottom:2px;}
 .student-sub{font-size:13px;color:#666;}
-.theme-pill{display:inline-block;font-size:12px;padding:3px 12px;border-radius:20px;margin-top:8px;background:#E1F5EE;color:#085041;font-weight:500;}
+.theme-pill{display:inline-block;font-size:12px;padding:3px 12px;border-radius:20px;margin-top:8px;background:#E1F5EE;color:#085041;font-weight:600;}
 .progress-row{display:flex;gap:8px;margin-top:12px;align-items:center;flex-wrap:wrap;}
-.prog-dot{width:10px;height:10px;border-radius:50%;background:#ddd;}
-.prog-dot.done{background:#1D9E75;}
+.prog-dot{width:12px;height:12px;border-radius:50%;background:#e0e0e0;border:1.5px solid #ccc;transition:all .2s;}
+.prog-dot.done{background:#1D9E75;border-color:#0F6E56;}
 .prog-label{font-size:12px;color:#666;}
 .acts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:1rem;}
-.act-btn{background:#fff;border:1px solid #ddd;border-radius:12px;padding:1.25rem;cursor:pointer;text-align:left;transition:all .15s;width:100%;position:relative;}
-.act-btn:hover{border-color:#534AB7;background:#EEEDFE;}
-.act-btn.act-done{border-color:#1D9E75;background:#E1F5EE;}
-.act-done-badge{position:absolute;top:10px;right:10px;background:#1D9E75;color:#fff;font-size:11px;padding:2px 8px;border-radius:20px;}
+.act-btn{background:#fff;border:1.5px solid #e8e8e8;border-radius:14px;padding:1.25rem;cursor:pointer;text-align:left;transition:all .18s;width:100%;position:relative;box-shadow:0 1px 3px rgba(0,0,0,.04);}
+.act-btn:hover{border-color:#534AB7;background:#EEEDFE;transform:translateY(-1px);}
+.act-btn.act-success{border-color:#1D9E75;background:#E1F5EE;}
+.act-btn.act-improve{border-color:#EF9F27;background:#FAEEDA;}
+.act-done-badge{position:absolute;top:10px;right:10px;font-size:11px;padding:2px 8px;border-radius:20px;}
+.act-done-badge.success{background:#1D9E75;color:#fff;}
+.act-done-badge.improve{background:#EF9F27;color:#fff;}
 .act-icon{font-size:28px;margin-bottom:8px;}
-.act-title{font-size:14px;font-weight:600;color:#222;}
+.act-title{font-size:14px;font-weight:700;color:#222;text-transform:uppercase;}
 .act-desc{font-size:12px;color:#666;margin-top:2px;}
-.act-badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:20px;margin-top:6px;background:#EEEDFE;color:#3C3489;}
+.act-badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:20px;margin-top:6px;background:#EEEDFE;color:#3C3489;font-weight:600;}
 .act-date{display:block;font-size:11px;color:#1D9E75;margin-top:4px;}
-.game-area{background:#fff;border:1px solid #e0e0e0;border-radius:12px;padding:1.5rem;}
+.disc-lbl{display:inline-block;font-size:10px;padding:1px 7px;border-radius:10px;font-weight:700;margin-bottom:6px;display:block;}
+.disc-hist{background:#E1F5EE;color:#085041;}
+.disc-filo{background:#EEF0FE;color:#3C3489;}
+.disc-socio{background:#FEF3E0;color:#7A4800;}
+.game-area{background:#fff;border:1px solid #e8e8e8;border-radius:16px;padding:1.5rem;box-shadow:0 1px 4px rgba(0,0,0,.05);}
 .game-header{display:flex;align-items:center;gap:12px;margin-bottom:1rem;flex-wrap:wrap;}
-.back-btn{padding:6px 14px;border-radius:8px;border:1px solid #ccc;background:transparent;color:#666;font-size:13px;cursor:pointer;}
+.back-btn{padding:7px 16px;border-radius:8px;border:1.5px solid #ddd;background:#fff;color:#555;font-size:13px;cursor:pointer;font-weight:600;transition:all .15s;text-transform:uppercase;}
 .back-btn:hover{background:#f5f5f5;}
-.game-title{font-size:17px;font-weight:600;color:#222;}
+.game-title{font-size:17px;font-weight:700;color:#222;text-transform:uppercase;}
 .week-tag{font-size:11px;color:#888;background:#f5f5f5;padding:2px 8px;border-radius:20px;border:1px solid #e0e0e0;}
-.how-to{background:#f9f9f9;border-radius:8px;padding:.75rem 1rem;font-size:13px;color:#666;margin-bottom:1rem;display:flex;align-items:flex-start;gap:8px;}
+.how-to{background:#EEEDFE;border-radius:10px;padding:.85rem 1rem;font-size:14px;color:#3C3489;margin-bottom:1rem;display:flex;align-items:flex-start;gap:8px;border:1px solid #AFA9EC;font-weight:600;}
+/* MEMÓRIA */
 .mem-grid{display:grid;gap:8px;max-width:560px;margin:0 auto;}
 .mem-grid-4{grid-template-columns:repeat(4,1fr);}
 .mem-grid-3{grid-template-columns:repeat(3,1fr);}
 .mem-card{aspect-ratio:1;border-radius:8px;border:2px solid #ddd;background:#f5f5f5;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;user-select:none;padding:4px;text-align:center;}
 .mem-card .back-face{font-size:22px;color:#999;}
-.mem-card .front-face{display:none;font-size:12px;font-weight:600;color:#222;line-height:1.3;}
+.mem-card .front-face{display:none;font-size:12px;font-weight:700;color:#222;line-height:1.3;text-transform:uppercase;}
 .mem-card.lg .front-face{font-size:15px;}
 .mem-card.flipped{background:#EEEDFE;border-color:#534AB7;}
 .mem-card.flipped .back-face,.mem-card.matched .back-face{display:none;}
 .mem-card.flipped .front-face,.mem-card.matched .front-face{display:flex;align-items:center;justify-content:center;width:100%;height:100%;}
 .mem-card.matched{background:#E1F5EE;border-color:#1D9E75;cursor:default;animation:pulse-g .4s ease;}
 @keyframes pulse-g{0%{transform:scale(1);}50%{transform:scale(1.08);}100%{transform:scale(1);}}
+@keyframes bounce{0%{transform:translateY(0);}30%{transform:translateY(-12px);}60%{transform:translateY(-5px);}100%{transform:translateY(0);}}
 .score-bar{display:flex;align-items:center;gap:10px;margin-bottom:1rem;flex-wrap:wrap;}
-.score-badge{background:#E1F5EE;color:#085041;padding:4px 12px;border-radius:20px;font-size:13px;font-weight:500;}
-.status-txt{font-size:13px;color:#666;}
-.fill-sentence{font-size:16px;line-height:2.8;color:#222;margin-bottom:1rem;}
-.fill-sentence.lg{font-size:20px;}
-.blank-inp{border:none;border-bottom:2px solid #534AB7;background:transparent;font-size:16px;width:140px;text-align:center;color:#222;outline:none;padding:0 4px;transition:all .3s;}
-.blank-inp.lg{font-size:20px;width:180px;}
+.score-badge{background:#E1F5EE;color:#085041;padding:4px 12px;border-radius:20px;font-size:13px;font-weight:700;}
+.status-txt{font-size:13px;color:#666;font-weight:600;}
+/* LACUNAS */
+.fill-sentence{font-size:18px;line-height:3.2;color:#222;margin-bottom:.25rem;font-weight:700;text-transform:uppercase;}
+.fill-sentence.lg{font-size:22px;}
+.blank-inp{border:none;border-bottom:3px solid #534AB7;background:transparent;font-size:18px;width:160px;text-align:center;color:#222;outline:none;padding:0 4px;font-weight:700;text-transform:uppercase;}
+.blank-inp.lg{font-size:22px;width:200px;}
 .blank-inp.correct{border-color:#1D9E75;color:#1D9E75;animation:pulse-g .4s ease;}
 .blank-inp.wrong{border-color:#E24B4A;color:#E24B4A;}
 .word-bank{display:flex;flex-wrap:wrap;gap:8px;margin:.75rem 0 1.25rem;}
-.word-chip{padding:6px 14px;border-radius:20px;background:#EEEDFE;color:#3C3489;font-size:14px;cursor:pointer;border:1px solid #AFA9EC;transition:all .15s;}
-.word-chip.lg{font-size:17px;padding:8px 18px;}
+.word-chip{padding:8px 16px;border-radius:20px;background:#EEEDFE;color:#3C3489;font-size:15px;cursor:pointer;border:1px solid #AFA9EC;font-weight:700;text-transform:uppercase;}
+.word-chip.lg{font-size:19px;padding:10px 20px;}
 .word-chip:hover{background:#AFA9EC;}
 .word-chip.used{opacity:.4;cursor:default;}
-.match-area{display:grid;grid-template-columns:1fr 1fr;gap:1rem;max-width:560px;}
+/* LIGAR */
+.match-area{display:grid;grid-template-columns:1fr 1fr;gap:1rem;max-width:600px;}
 .match-col{display:flex;flex-direction:column;gap:8px;}
-.match-item{padding:10px 14px;border-radius:8px;border:1px solid #ddd;background:#f5f5f5;cursor:pointer;font-size:14px;color:#222;transition:all .15s;text-align:center;line-height:1.4;}
-.match-item.lg{font-size:17px;padding:12px 16px;}
+.match-item{padding:12px 14px;border-radius:8px;border:1.5px solid #ddd;background:#f5f5f5;cursor:pointer;font-size:14px;font-weight:700;color:#222;transition:all .15s;text-align:center;line-height:1.4;text-transform:uppercase;}
+.match-item.lg{font-size:17px;padding:14px 16px;}
 .match-item.selected{border-color:#534AB7;background:#EEEDFE;color:#3C3489;}
 .match-item.matched-ok{border-color:#1D9E75;background:#E1F5EE;color:#085041;cursor:default;animation:pulse-g .4s ease;}
 .match-item.matched-err{border-color:#E24B4A;background:#FCEBEB;color:#A32D2D;}
+/* BOTÕES */
 .submit-area{margin-top:1.5rem;padding-top:1rem;border-top:1px solid #eee;}
-.submit-btn{padding:10px 28px;border-radius:8px;background:#534AB7;color:#fff;border:none;font-size:15px;font-weight:600;cursor:pointer;transition:all .15s;}
-.submit-btn:hover{background:#3C3489;}
-.retry-btn{padding:10px 28px;border-radius:8px;background:transparent;color:#534AB7;border:1px solid #534AB7;font-size:15px;font-weight:500;cursor:pointer;margin-left:10px;}
+.submit-btn{padding:12px 32px;border-radius:10px;background:#534AB7;color:#fff;border:none;font-size:15px;font-weight:700;cursor:pointer;transition:all .15s;box-shadow:0 2px 6px rgba(83,74,183,.3);text-transform:uppercase;}
+.submit-btn:hover{background:#3C3489;transform:translateY(-1px);}
+.retry-btn{padding:10px 28px;border-radius:8px;background:transparent;color:#534AB7;border:1px solid #534AB7;font-size:14px;font-weight:700;cursor:pointer;margin-left:10px;text-transform:uppercase;}
 .retry-btn:hover{background:#EEEDFE;}
-.success-msg{background:#E1F5EE;border:1px solid #5DCAA5;border-radius:8px;padding:1rem;text-align:center;color:#085041;font-weight:600;margin-bottom:1rem;}
-.hint-box{background:#FAEEDA;border:1px solid #EF9F27;border-radius:8px;padding:.75rem 1rem;font-size:13px;color:#633806;margin-bottom:1rem;}
-.completion-screen{text-align:center;padding:2rem 1rem;}
-.completion-icon{font-size:56px;margin-bottom:1rem;}
-.completion-title{font-size:22px;font-weight:600;color:#222;margin-bottom:.5rem;}
-.completion-sub{font-size:14px;color:#555;margin-bottom:1.5rem;line-height:1.7;}
-.completion-week{font-size:12px;background:#EEEDFE;color:#3C3489;padding:4px 14px;border-radius:20px;display:inline-block;margin-bottom:1.5rem;}
+.success-msg{background:#E1F5EE;border:1px solid #5DCAA5;border-radius:8px;padding:1rem;text-align:center;color:#085041;font-weight:700;margin-bottom:1rem;font-size:15px;text-transform:uppercase;}
+.hint-box{background:#FAEEDA;border:1px solid #EF9F27;border-radius:8px;padding:.75rem 1rem;font-size:14px;color:#633806;margin-bottom:1rem;font-weight:700;}
+/* GOLS */
 .goal-board{background:#0F6E56;border-radius:12px;padding:1rem;text-align:center;margin-bottom:1.25rem;color:#fff;}
-.goal-score{font-size:42px;font-weight:600;}
-.goal-label{font-size:13px;opacity:.8;margin-top:2px;}
+.goal-score{font-size:42px;font-weight:700;}
+.goal-label{font-size:13px;opacity:.8;margin-top:2px;font-weight:700;}
 .goal-bar{display:flex;gap:6px;justify-content:center;margin-top:8px;flex-wrap:wrap;}
 .goal-icon{font-size:20px;}
-.ans-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:1rem;}
-.ans-btn{background:#f5f5f5;border:1px solid #ddd;border-radius:8px;padding:1rem;cursor:pointer;font-size:15px;font-weight:500;color:#222;text-align:center;transition:all .15s;}
+.ans-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:1rem;}
+.ans-btn{background:#f5f5f5;border:1.5px solid #ddd;border-radius:8px;padding:1rem;cursor:pointer;font-size:15px;font-weight:700;color:#222;text-align:center;transition:all .15s;text-transform:uppercase;}
 .ans-btn:hover:not(:disabled){border-color:#0F6E56;background:#E1F5EE;}
 .ans-btn.correct-ans{background:#E1F5EE;border-color:#1D9E75;color:#085041;animation:pulse-g .4s ease;}
 .ans-btn.wrong-ans{background:#FCEBEB;border-color:#E24B4A;color:#A32D2D;}
+/* MJ */
 .mj-game{background:#111;border-radius:12px;padding:1.5rem;}
-.mj-score-lbl{background:#1a1a1a;border:1px solid #FFD700;border-radius:8px;padding:.5rem 1rem;display:inline-block;color:#FFD700;font-size:13px;font-weight:500;margin-bottom:1rem;}
+.mj-score-lbl{background:#1a1a1a;border:1px solid #FFD700;border-radius:8px;padding:.5rem 1rem;display:inline-block;color:#FFD700;font-size:13px;font-weight:700;margin-bottom:1rem;}
 .mj-mem-card{aspect-ratio:1;border-radius:8px;border:2px solid #333;background:#222;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;user-select:none;padding:4px;text-align:center;}
 .mj-mem-card .back-face{font-size:24px;}
-.mj-mem-card .front-face{display:none;font-size:12px;font-weight:600;color:#fff;line-height:1.3;}
+.mj-mem-card .front-face{display:none;font-size:12px;font-weight:700;color:#fff;line-height:1.3;text-transform:uppercase;}
 .mj-mem-card.flipped{background:#b8860b;border-color:#FFD700;}
 .mj-mem-card.flipped .back-face,.mj-mem-card.matched .back-face{display:none;}
 .mj-mem-card.flipped .front-face,.mj-mem-card.matched .front-face{display:flex;align-items:center;justify-content:center;width:100%;height:100%;}
 .mj-mem-card.matched{background:#1a4a1a;border-color:#39FF14;cursor:default;animation:pulse-g .4s ease;}
-.mj-fill-sentence{font-size:16px;line-height:2.8;color:#fff;margin-bottom:1rem;}
-.mj-blank{border:none;border-bottom:2px solid #FFD700;background:transparent;font-size:16px;width:140px;text-align:center;color:#FFD700;outline:none;padding:0 4px;}
+.mj-fill-sentence{font-size:18px;line-height:3.2;color:#fff;margin-bottom:.25rem;font-weight:700;text-transform:uppercase;}
+.mj-blank{border:none;border-bottom:3px solid #FFD700;background:transparent;font-size:18px;width:160px;text-align:center;color:#FFD700;outline:none;padding:0 4px;font-weight:700;text-transform:uppercase;}
 .mj-blank.correct{border-color:#39FF14;color:#39FF14;animation:pulse-g .4s ease;}
 .mj-blank.wrong{border-color:#FF4444;color:#FF4444;}
-.mj-chip{padding:6px 14px;border-radius:20px;background:#1a1a1a;color:#FFD700;font-size:14px;cursor:pointer;border:1px solid #b8860b;}
+.mj-chip{padding:8px 16px;border-radius:20px;background:#1a1a1a;color:#FFD700;font-size:14px;cursor:pointer;border:1px solid #b8860b;font-weight:700;text-transform:uppercase;}
 .mj-chip:hover{background:#333;}
 .mj-chip.used{opacity:.4;cursor:default;}
-.mj-match{padding:10px 14px;border-radius:8px;border:1px solid #333;background:#1a1a1a;cursor:pointer;font-size:14px;color:#fff;text-align:center;line-height:1.4;}
+.mj-match{padding:12px 14px;border-radius:8px;border:1.5px solid #333;background:#1a1a1a;cursor:pointer;font-size:14px;font-weight:700;color:#fff;text-align:center;line-height:1.4;text-transform:uppercase;}
 .mj-match.selected{border-color:#FFD700;background:#b8860b;}
 .mj-match.matched-ok{border-color:#39FF14;background:#1a4a1a;cursor:default;animation:pulse-g .4s ease;}
 .mj-match.matched-err{border-color:#FF4444;background:#4a1a1a;}
-.mj-submit{padding:10px 28px;border-radius:8px;background:#FFD700;color:#111;border:none;font-size:15px;font-weight:600;cursor:pointer;}
+.mj-submit{padding:12px 28px;border-radius:8px;background:#FFD700;color:#111;border:none;font-size:15px;font-weight:700;cursor:pointer;text-transform:uppercase;}
 .mj-submit:hover{background:#b8860b;color:#fff;}
-.mj-success{background:#1a4a1a;border:1px solid #39FF14;border-radius:8px;padding:1rem;text-align:center;color:#39FF14;font-weight:600;margin-bottom:1rem;}
-.mj-how{background:#1a1a1a;border:1px solid #333;border-radius:8px;padding:.75rem 1rem;font-size:13px;color:#aaa;margin-bottom:1rem;display:flex;gap:8px;}
+.mj-success{background:#1a4a1a;border:1px solid #39FF14;border-radius:8px;padding:1rem;text-align:center;color:#39FF14;font-weight:700;margin-bottom:1rem;text-transform:uppercase;}
+.mj-how{background:#1a1a1a;border:1px solid #333;border-radius:8px;padding:.75rem 1rem;font-size:13px;color:#aaa;margin-bottom:1rem;display:flex;gap:8px;font-weight:600;}
+/* CAÇA-PALAVRAS */
+.ws-wrap{overflow-x:auto;margin-bottom:1rem;}
+.ws-grid{display:inline-grid;gap:3px;background:#ddd;border-radius:8px;padding:8px;}
+.ws-cell{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;color:#333;background:#fff;border-radius:4px;cursor:pointer;border:1.5px solid #e0e0e0;user-select:none;text-transform:uppercase;transition:all .12s;}
+.ws-cell:hover{background:#f0f0ff;border-color:#AFA9EC;}
+.ws-cell.selecting{background:#EEEDFE;color:#534AB7;border-color:#534AB7;transform:scale(1.1);}
+.ws-cell.found{background:#E1F5EE;color:#085041;border-color:#1D9E75;}
+.ws-words{display:flex;flex-wrap:wrap;gap:8px;margin:1rem 0;}
+.ws-word{font-size:14px;font-weight:700;padding:5px 14px;border-radius:20px;background:#f5f5f5;border:1.5px solid #ddd;color:#444;text-transform:uppercase;}
+.ws-word.found{background:#E1F5EE;border-color:#1D9E75;color:#085041;text-decoration:line-through;}
+/* CRUZADINHA */
+.cw-wrap{overflow-x:auto;margin-bottom:1rem;}
+.cw-grid{display:inline-grid;gap:2px;background:#444;border-radius:6px;padding:2px;}
+.cw-cell{width:38px;height:38px;background:#fff;display:flex;align-items:center;justify-content:center;position:relative;}
+.cw-cell.black{background:#333;pointer-events:none;}
+.cw-cell input{width:100%;height:100%;border:none;outline:none;text-align:center;font-size:16px;font-weight:700;background:transparent;text-transform:uppercase;color:#222;padding:0;caret-color:#534AB7;}
+.cw-cell input:focus{background:#EEEDFE;}
+.cw-cell input.correct{color:#1D9E75;background:#E1F5EE;}
+.cw-cell input.wrong{color:#E24B4A;background:#FCEBEB;}
+.cw-num{position:absolute;top:1px;left:2px;font-size:8px;color:#534AB7;font-weight:700;line-height:1;pointer-events:none;}
+.cw-clues{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem;}
+@media(max-width:500px){.cw-clues{grid-template-columns:1fr;}}
+.cw-clue-group h4{font-size:13px;font-weight:700;color:#534AB7;margin-bottom:8px;text-transform:uppercase;}
+.cw-clue{font-size:13px;color:#333;margin-bottom:6px;line-height:1.5;font-weight:600;text-transform:uppercase;}
+.cw-clue span{font-weight:700;color:#534AB7;margin-right:4px;}
 /* HISTÓRICO */
-.hist-btn{padding:6px 16px;border-radius:8px;border:1px solid #534AB7;background:transparent;color:#534AB7;font-size:13px;cursor:pointer;margin-top:12px;}
+.hist-btn{padding:6px 16px;border-radius:8px;border:1px solid #534AB7;background:transparent;color:#534AB7;font-size:13px;cursor:pointer;margin-top:12px;font-weight:700;text-transform:uppercase;}
 .hist-btn:hover{background:#EEEDFE;}
 .hist-screen{background:#fff;border:1px solid #e0e0e0;border-radius:12px;padding:1.5rem;}
-.hist-title{font-size:18px;font-weight:600;color:#222;margin-bottom:1rem;}
+.hist-title{font-size:18px;font-weight:700;color:#222;margin-bottom:1rem;}
 .hist-week{border:1px solid #e0e0e0;border-radius:8px;margin-bottom:10px;overflow:hidden;}
-.hist-week-header{background:#f5f5f5;padding:.6rem 1rem;font-size:13px;font-weight:600;color:#333;display:flex;justify-content:space-between;align-items:center;}
+.hist-week-header{background:#f5f5f5;padding:.75rem 1rem;font-size:13px;font-weight:700;color:#333;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #e8e8e8;}
 .hist-week-body{padding:.75rem 1rem;}
 .hist-act-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #f0f0f0;font-size:13px;}
 .hist-act-row:last-child{border-bottom:none;}
-.hist-act-name{color:#333;}
-.hist-act-done{color:#1D9E75;font-weight:500;}
+.hist-act-name{color:#333;font-weight:600;}
+.hist-act-done{color:#1D9E75;font-weight:700;}
 .hist-act-pend{color:#999;}
 .hist-empty{color:#999;font-size:13px;text-align:center;padding:1rem;}
-.loading-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(255,255,255,.85);display:flex;align-items:center;justify-content:center;z-index:999;font-size:16px;color:#534AB7;font-weight:500;}
+.hist-act-score{font-size:11px;color:#888;margin-left:6px;}
+.attempt-badge{font-size:10px;background:#EEEDFE;color:#3C3489;padding:1px 6px;border-radius:10px;margin-left:4px;}
+.loading-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(255,255,255,.88);display:flex;align-items:center;justify-content:center;z-index:999;font-size:16px;color:#534AB7;font-weight:700;text-transform:uppercase;}
+.completion-screen{text-align:center;padding:2rem 1.5rem;}
+.completion-icon{font-size:64px;margin-bottom:1rem;animation:bounce .6s ease;}
+.completion-title{font-size:22px;font-weight:700;color:#222;margin-bottom:.5rem;text-transform:uppercase;}
+.completion-sub{font-size:14px;color:#555;margin-bottom:1.5rem;line-height:1.7;}
+.completion-week{font-size:12px;background:#EEEDFE;color:#3C3489;padding:4px 14px;border-radius:20px;display:inline-block;margin-bottom:1rem;}
 </style>
 </head>
 <body>
-
-<div id="loading-overlay" class="loading-overlay">Carregando atividades...</div>
-
+<div id="loading-overlay" class="loading-overlay">CARREGANDO ATIVIDADES...</div>
 <div class="app">
   <div class="header">
-    <h1>Atividades adaptadas</h1>
-    <p>Prof. Douglas Sousa</p>
-    <span class="week-pill">Semana de 20 a 24 de abril de 2025</span>
+    <div style="width:60px;height:4px;background:linear-gradient(90deg,#534AB7,#1D9E75);border-radius:2px;margin:0 auto 1rem;"></div>
+    <h1>ATIVIDADES ADAPTADAS</h1>
+    <p>PROF. DOUGLAS SOUSA</p>
+    <span class="week-pill">SEMANA DE 20 A 24 DE ABRIL DE 2026</span>
   </div>
   <div class="tabs" id="tabs"></div>
   <div id="panels"></div>
 </div>
-
-<!-- Firebase SDKs -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore, doc, getDoc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+const fbApp=initializeApp({apiKey:"AIzaSyCQHQVC5dtAqgrrNo19_5JUH7t7dV1qXx0",authDomain:"atividades-douglas.firebaseapp.com",projectId:"atividades-douglas",storageBucket:"atividades-douglas.firebasestorage.app",messagingSenderId:"546897428823",appId:"1:546897428823:web:250438dd79a300b7b4be12"});
+const db=getFirestore(fbApp);
+const EMAIL="douglass@prof.educacao.sp.gov.br";
+const SCRIPT_URL="https://script.google.com/macros/s/AKfycbyR2mVdrQNuCe68p-saDuvw-u8kKWYolEpQh2xrHmtX-NsHyHLV8L5abbzgiN2LVV-Xxg/exec";
+const WEEK_ID="semana_20_04_2025"; // chave do Firebase — mantida para preservar dados já salvos
+const WEEK_LABEL="20 A 24 DE ABRIL DE 2026";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyCQHQVC5dtAqgrrNo19_5JUH7t7dV1qXx0",
-  authDomain: "atividades-douglas.firebaseapp.com",
-  projectId: "atividades-douglas",
-  storageBucket: "atividades-douglas.firebasestorage.app",
-  messagingSenderId: "546897428823",
-  appId: "1:546897428823:web:250438dd79a300b7b4be12"
-};
-
-const firebaseApp = initializeApp(firebaseConfig);
-const db = getFirestore(firebaseApp);
-
-window.DB = db;
-window.dbDoc = doc;
-window.dbGet = getDoc;
-window.dbSet = setDoc;
-window.dbUpdate = updateDoc;
-
-const EMAIL = "douglass@prof.educacao.sp.gov.br";
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyR2mVdrQNuCe68p-saDuvw-u8kKWYolEpQh2xrHmtX-NsHyHLV8L5abbzgiN2LVV-Xxg/exec";
-const WEEK_ID = "semana_20_04_2025";
-const WEEK_LABEL = "20 a 24 de abril de 2025";
-
-const STUDENTS = [
-  {id:"pierre",name:"Pierre",full:"Pierre de Almeida Assunção",year:"7º ano",theme:"Reformas Protestantes",
-   congrats:"Você é um verdadeiro explorador da história, Pierre! Missão cumprida! 🚀"},
-  {id:"ruan",name:"Ruan",full:"Ruan Ribeiro da Silva",year:"7º ano",theme:"Reformas Protestantes",
-   congrats:"Parabéns, Ruan! Você completou todas as atividades da semana! Muito bem! ⭐"},
-  {id:"marcelo",name:"Marcelo",full:"Marcelo Giovanini Silva",year:"8º ano",theme:"Revolução Francesa",
-   congrats:"Incrível, Marcelo! Show de bola! Você arrasou nas atividades! 🎤"},
-  {id:"henrique",name:"Henrique",full:"Henrique de Souza Aguiar",year:"8º ano",theme:"Revolução Francesa",
-   congrats:"Sistema completo, Henrique! Todas as atividades processadas com sucesso! 💻"},
-  {id:"maxmiliano",name:"Maxmiliano",full:"Maxmiliano Mendes da Silva",year:"9º ano",theme:"Cangaço",
-   congrats:"CAMPEÃO! Você marcou seus gols e completou a semana, Maxmiliano! 🏆"},
-  {id:"arthur",name:"Arthur",full:"Arthur Ripari de Andrade",year:"1ª série EM",theme:"Sambaquis e Serra da Capivara",
-   congrats:"Missão arqueológica concluída, Arthur! Você descobriu tudo! 🏺"},
-  {id:"andressa",name:"Andressa",full:"Andressa Vitória Araújo de Lima",year:"2ª série EM",theme:"Independência dos Estados Unidos",
-   congrats:"Muito bem, Andressa! Você é dedicada e arrasou em todas as atividades! 🗽"},
+const STUDENTS=[
+  {id:"pierre",   name:"Pierre",    full:"Pierre de Almeida Assunção",     year:"7º ANO",      theme:"REFORMAS PROTESTANTES",                               congrats:"VOCÊ É UM VERDADEIRO EXPLORADOR DA HISTÓRIA, PIERRE! MISSÃO CUMPRIDA! 🚀"},
+  {id:"ruan",     name:"Ruan",      full:"Ruan Ribeiro da Silva",           year:"7º ANO",      theme:"REFORMAS PROTESTANTES",                               congrats:"PARABÉNS, RUAN! VOCÊ COMPLETOU TODAS AS ATIVIDADES! MUITO BEM! ⭐"},
+  {id:"marcelo",  name:"Marcelo",   full:"Marcelo Giovanini Silva",         year:"8º ANO",      theme:"REVOLUÇÃO FRANCESA",                                  congrats:"INCRÍVEL, MARCELO! SHOW DE BOLA! VOCÊ ARRASOU NAS ATIVIDADES! 🎤"},
+  {id:"henrique", name:"Henrique",  full:"Henrique de Souza Aguiar",        year:"8º ANO",      theme:"REVOLUÇÃO FRANCESA",                                  congrats:"SISTEMA COMPLETO, HENRIQUE! TODAS AS ATIVIDADES PROCESSADAS! 💻"},
+  {id:"maxmiliano",name:"Maxmiliano",full:"Maxmiliano Mendes da Silva",     year:"9º ANO",      theme:"CANGAÇO",                                             congrats:"CAMPEÃO! VOCÊ MARCOU SEUS GOLS E COMPLETOU A SEMANA! 🏆"},
+  {id:"arthur",   name:"Arthur",    full:"Arthur Ripari de Andrade",        year:"1ª SÉRIE EM", theme:"HISTÓRIA: SAMBAQUIS | FILOSOFIA: O QUE É FILOSOFIA?", congrats:"MISSÃO COMPLETA, ARTHUR! VOCÊ CONQUISTOU HISTÓRIA E FILOSOFIA ESTA SEMANA! 🏺🦉"},
+  {id:"andressa", name:"Andressa",  full:"Andressa Vitória Araújo de Lima", year:"2ª SÉRIE EM", theme:"HISTÓRIA: INDEPENDÊNCIA EUA | SOCIOLOGIA: DURKHEIM",  congrats:"PARABÉNS, ANDRESSA! VOCÊ COMPLETOU HISTÓRIA E SOCIOLOGIA! MUITO DEDICADA! 🗽📚"},
 ];
 
-const HOWTO = {
-  memory:"Clique em duas cartas para virar. Se forem um par, ficam abertas! Encontre todos os pares.",
-  fill:"Clique nas palavras do banco abaixo para preencher os espaços. Depois clique em Verificar.",
-  match:"Clique em um item da esquerda, depois no par correto à direita. Acertos ficam em verde!",
-  goal:"Leia a pergunta e clique na resposta certa para marcar um gol! Tente acertar todos!",
+const HOWTO={
+  memory:    "CLIQUE EM DUAS CARTAS PARA VIRAR. SE FOREM UM PAR, FICAM ABERTAS! ENCONTRE TODOS OS PARES.",
+  fill:      "CLIQUE NAS PALAVRAS DA LISTA PARA PREENCHER OS ESPAÇOS. DEPOIS CLIQUE EM VERIFICAR.",
+  match:     "CLIQUE EM UM ITEM DA ESQUERDA, DEPOIS NO PAR CORRETO À DIREITA. ACERTOS FICAM EM VERDE!",
+  goal:      "LEIA A PERGUNTA E CLIQUE NA RESPOSTA CERTA PARA MARCAR UM GOL! TENTE ACERTAR TODOS!",
+  wordsearch:"CLIQUE NA PRIMEIRA LETRA DA PALAVRA E DEPOIS NA ÚLTIMA LETRA. ENCONTRE TODAS AS PALAVRAS DA LISTA!",
+  crossword: "ESCREVA AS LETRAS NAS CÉLULAS BRANCAS. USE AS DICAS HORIZONTAL E VERTICAL PARA DESCOBRIR AS PALAVRAS!",
 };
 
-const DATA = {
+const DATA={
   pierre:{
     acts:[
-      {key:"memory",icon:"🗺️",title:"Jogo da Memória",desc:"Conceito ↔ definição histórica",badge:"Desafio",how:"memory"},
-      {key:"fillblank",icon:"✏️",title:"Complete a missão",desc:"Preencha com o termo correto",badge:"Escrita",how:"fill"},
-      {key:"matching",icon:"⚔️",title:"Liga os líderes",desc:"Ligue o líder ao país ou ideia",badge:"Reforma",how:"match"},
+      {key:"memory",    icon:"🗺️",title:"JOGO DA MEMÓRIA",   desc:"CONCEITO ↔ DEFINIÇÃO HISTÓRICA",   badge:"DESAFIO",  how:"memory"},
+      {key:"fillblank", icon:"✏️", title:"COMPLETE A MISSÃO",desc:"PREENCHA COM O TERMO CORRETO",     badge:"ESCRITA",  how:"fill"},
+      {key:"matching",  icon:"⚔️", title:"LIGA OS LÍDERES",  desc:"LIGUE O LÍDER AO PAÍS OU IDEIA",  badge:"REFORMA",  how:"match"},
     ],
     memory:{pairs:[
-      {a:"Martinho Lutero",b:"Criou a Reforma Protestante"},
-      {a:"Calvino",b:"Liderou a Reforma em Genebra"},
-      {a:"Indulgências",b:"Pagamento para perdoar pecados"},
-      {a:"95 Teses",b:"Documento que criticou a Igreja"},
-      {a:"Protestantismo",b:"Nova religião cristã da Reforma"},
-      {a:"Contrarreforma",b:"Resposta da Igreja Católica"},
+      {a:"MARTINHO LUTERO", b:"CRIOU A REFORMA PROTESTANTE"},
+      {a:"CALVINO",         b:"LIDEROU A REFORMA EM GENEBRA"},
+      {a:"INDULGÊNCIAS",    b:"PAGAMENTO PARA PERDOAR PECADOS"},
+      {a:"95 TESES",        b:"DOCUMENTO QUE CRITICOU A IGREJA"},
+      {a:"PROTESTANTISMO",  b:"NOVA RELIGIÃO CRISTÃ DA REFORMA"},
+      {a:"CONTRARREFORMA",  b:"RESPOSTA DA IGREJA CATÓLICA"},
     ]},
     fillblank:{sentences:[
-      {text:"Em 1517, ___ afixou as 95 Teses na porta de uma igreja na Alemanha.",blank:"Lutero",options:["Lutero","Calvino","Carlos V","Leonardo"]},
-      {text:"As ___ eram documentos vendidos pela Igreja que prometiam perdão dos pecados.",blank:"indulgências",options:["indulgências","bíblias","cartas","teses"]},
-      {text:"A Reforma gerou divisões no Cristianismo, criando igrejas ___ .",blank:"protestantes",options:["protestantes","muçulmanas","judaicas","budistas"]},
-      {text:"A resposta da Igreja Católica à Reforma foi chamada de ___ .",blank:"Contrarreforma",options:["Contrarreforma","Renascimento","Iluminismo","Cruzada"]},
-      {text:"Calvino defendia que o sucesso era sinal de ___ divina.",blank:"aprovação",options:["aprovação","punição","ignorância","heresia"]},
+      {text:"EM 1517, ___ AFIXOU AS 95 TESES NA PORTA DE UMA IGREJA.",   blank:"LUTERO",         options:["LUTERO","CALVINO","CARLOS V","LEONARDO"]},
+      {text:"AS ___ ERAM DOCUMENTOS QUE PROMETIAM PERDÃO DOS PECADOS.",  blank:"INDULGÊNCIAS",   options:["INDULGÊNCIAS","BÍBLIAS","CARTAS","TESES"]},
+      {text:"A REFORMA CRIOU IGREJAS ___ , DIVIDINDO O CRISTIANISMO.",   blank:"PROTESTANTES",   options:["PROTESTANTES","MUÇULMANAS","JUDAICAS","BUDISTAS"]},
+      {text:"A RESPOSTA DA IGREJA À REFORMA FOI CHAMADA DE ___ .",       blank:"CONTRARREFORMA",  options:["CONTRARREFORMA","RENASCIMENTO","ILUMINISMO","CRUZADA"]},
+      {text:"CALVINO DEFENDIA QUE O SUCESSO ERA SINAL DE ___ DIVINA.",   blank:"APROVAÇÃO",      options:["APROVAÇÃO","PUNIÇÃO","IGNORÂNCIA","HERESIA"]},
     ]},
     matching:{pairs:[
-      {left:"Martinho Lutero",right:"Alemanha"},
-      {left:"Calvino",right:"Suíça"},
-      {left:"Henrique VIII",right:"Inglaterra"},
-      {left:"Inácio de Loyola",right:"Companhia de Jesus"},
-      {left:"Concílio de Trento",right:"Contrarreforma católica"},
+      {left:"MARTINHO LUTERO",    right:"ALEMANHA"},
+      {left:"CALVINO",            right:"SUÍÇA"},
+      {left:"HENRIQUE VIII",      right:"INGLATERRA"},
+      {left:"INÁCIO DE LOYOLA",   right:"COMPANHIA DE JESUS"},
+      {left:"CONCÍLIO DE TRENTO", right:"CONTRARREFORMA CATÓLICA"},
     ]}
   },
   ruan:{
     acts:[
-      {key:"memory",icon:"✝️",title:"Jogo da Memória",desc:"Pares com palavras grandes",badge:"Fácil",how:"memory"},
-      {key:"fillblank",icon:"✏️",title:"Complete a frase",desc:"Escolha a palavra certa",badge:"Conceitos",how:"fill"},
-      {key:"matching",icon:"🔗",title:"Liga os pares",desc:"Ligue cada palavra à explicação",badge:"Reforma",how:"match"},
+      {key:"memory",    icon:"✝️",title:"JOGO DA MEMÓRIA",  desc:"PARES COM PALAVRAS GRANDES",     badge:"FÁCIL",    how:"memory"},
+      {key:"fillblank", icon:"✏️",title:"COMPLETE A FRASE", desc:"ESCOLHA A PALAVRA CERTA",        badge:"CONCEITOS",how:"fill"},
+      {key:"matching",  icon:"🔗",title:"LIGA OS PARES",    desc:"LIGUE CADA PALAVRA À EXPLICAÇÃO",badge:"REFORMA",  how:"match"},
     ],
     memory:{lg:true,pairs:[
-      {a:"LUTERO",b:"REFORMADOR"},
-      {a:"BÍBLIA",b:"LIVRO SAGRADO"},
-      {a:"IGREJA",b:"RELIGIÃO"},
-      {a:"TESES",b:"CRÍTICAS"},
+      {a:"LUTERO",  b:"REFORMADOR"},
+      {a:"BÍBLIA",  b:"LIVRO SAGRADO"},
+      {a:"IGREJA",  b:"RELIGIÃO"},
+      {a:"TESES",   b:"CRÍTICAS"},
     ]},
     fillblank:{lg:true,sentences:[
-      {text:"Lutero criticou a ___ Católica.",blank:"Igreja",options:["Igreja","escola","família","cidade"]},
-      {text:"As 95 Teses foram escritas em ___.",blank:"1517",options:["1517","1800","1492","1600"]},
-      {text:"A nova religião criada foi o ___.",blank:"Protestantismo",options:["Protestantismo","Budismo","Islamismo","Hinduísmo"]},
+      {text:"LUTERO CRITICOU A ___ CATÓLICA.",          blank:"IGREJA",         options:["IGREJA","ESCOLA","FAMÍLIA","CIDADE"]},
+      {text:"AS 95 TESES FORAM ESCRITAS EM ___.",       blank:"1517",           options:["1517","1800","1492","1600"]},
+      {text:"A NOVA RELIGIÃO CRIADA FOI O ___.",        blank:"PROTESTANTISMO", options:["PROTESTANTISMO","BUDISMO","ISLAMISMO","HINDUÍSMO"]},
     ]},
     matching:{lg:true,pairs:[
-      {left:"LUTERO",right:"CRIOU A REFORMA"},
-      {left:"CALVINO",right:"SUÍÇA"},
-      {left:"INDULGÊNCIAS",right:"PAGAMENTO DE PERDÃO"},
-      {left:"95 TESES",right:"CRÍTICA À IGREJA"},
+      {left:"LUTERO",       right:"CRIOU A REFORMA"},
+      {left:"CALVINO",      right:"SUÍÇA"},
+      {left:"INDULGÊNCIAS", right:"PAGAMENTO DE PERDÃO"},
+      {left:"95 TESES",     right:"CRÍTICA À IGREJA"},
     ]}
   },
   marcelo:{
     acts:[
-      {key:"mj_memory",icon:"🎤",title:"Jogo da Memória",desc:"Pares sobre a Revolução Francesa",badge:"Show!",how:"memory"},
-      {key:"mj_fill",icon:"🕺",title:"Complete a frase",desc:"Preencha o espaço certo",badge:"Palavras",how:"fill"},
-      {key:"mj_match",icon:"🎶",title:"Liga as ideias",desc:"Conecte cada conceito ao seu par",badge:"História",how:"match"},
+      {key:"mj_memory",icon:"🎤",title:"JOGO DA MEMÓRIA",  desc:"PARES SOBRE A REVOLUÇÃO FRANCESA",badge:"SHOW!",   how:"memory"},
+      {key:"mj_fill",  icon:"🕺",title:"COMPLETE A FRASE", desc:"PREENCHA O ESPAÇO CERTO",         badge:"PALAVRAS",how:"fill"},
+      {key:"mj_match", icon:"🎶",title:"LIGA AS IDEIAS",   desc:"CONECTE CADA CONCEITO AO SEU PAR",badge:"HISTÓRIA",how:"match"},
     ],
     mj_memory:{pairs:[
-      {a:"1789",b:"Ano da Revolução"},
-      {a:"Liberdade",b:"Direito do povo"},
-      {a:"Guilhotina",b:"Punição na Revolução"},
-      {a:"Rei",b:"Luís XVI"},
-      {a:"Bastilha",b:"Prisão destruída"},
-      {a:"Revolução",b:"Mudança no governo"},
+      {a:"1789",      b:"ANO DA REVOLUÇÃO"},
+      {a:"LIBERDADE", b:"DIREITO DO POVO"},
+      {a:"GUILHOTINA",b:"PUNIÇÃO NA REVOLUÇÃO"},
+      {a:"REI",       b:"LUÍS XVI"},
+      {a:"BASTILHA",  b:"PRISÃO DESTRUÍDA"},
+      {a:"REVOLUÇÃO", b:"MUDANÇA NO GOVERNO"},
     ]},
     mj_fill:{sentences:[
-      {text:"A Revolução Francesa aconteceu em ___ .",blank:"1789",options:["1789","1500","2000","1900"]},
-      {text:"O lema era Liberdade, ___ e Fraternidade.",blank:"Igualdade",options:["Igualdade","Tristeza","Guerra","Riqueza"]},
-      {text:"O rei da França era ___ .",blank:"Luís XVI",options:["Luís XVI","Napoleão","Lutero","Carlos"]},
+      {text:"A REVOLUÇÃO FRANCESA ACONTECEU EM ___ .",   blank:"1789",     options:["1789","1500","2000","1900"]},
+      {text:"O LEMA ERA LIBERDADE, ___ E FRATERNIDADE.", blank:"IGUALDADE",options:["IGUALDADE","TRISTEZA","GUERRA","RIQUEZA"]},
+      {text:"O REI DA FRANÇA ERA ___ .",                 blank:"LUÍS XVI", options:["LUÍS XVI","NAPOLEÃO","LUTERO","CARLOS"]},
     ]},
     mj_match:{pairs:[
-      {left:"Liberdade",right:"Direito do povo"},
-      {left:"Guilhotina",right:"Punição na Revolução"},
-      {left:"Rei Luís XVI",right:"Monarca deposto"},
-      {left:"Bastilha",right:"Prisão destruída"},
+      {left:"LIBERDADE",   right:"DIREITO DO POVO"},
+      {left:"GUILHOTINA",  right:"PUNIÇÃO NA REVOLUÇÃO"},
+      {left:"REI LUÍS XVI",right:"MONARCA DEPOSTO"},
+      {left:"BASTILHA",    right:"PRISÃO DESTRUÍDA"},
     ]}
   },
   henrique:{
     acts:[
-      {key:"memory",icon:"💡",title:"Memória Tech",desc:"Conceito ↔ impacto histórico",badge:"Tecnologia",how:"memory"},
-      {key:"fillblank",icon:"✏️",title:"Complete o código",desc:"Preencha com o termo histórico",badge:"Conceitos",how:"fill"},
-      {key:"matching",icon:"🔗",title:"Conecta os dados",desc:"Ligue conceito ao significado",badge:"Análise",how:"match"},
+      {key:"memory",   icon:"💡",title:"MEMÓRIA TECH",     desc:"CONCEITO ↔ IMPACTO HISTÓRICO",   badge:"TECNOLOGIA",how:"memory"},
+      {key:"fillblank",icon:"✏️",title:"COMPLETE O CÓDIGO",desc:"PREENCHA COM O TERMO HISTÓRICO",  badge:"CONCEITOS", how:"fill"},
+      {key:"matching", icon:"🔗",title:"CONECTA OS DADOS", desc:"LIGUE CONCEITO AO SIGNIFICADO",   badge:"ANÁLISE",   how:"match"},
     ],
     memory:{pairs:[
-      {a:"Guilhotina",b:"Execução pública"},
-      {a:"Imprensa",b:"Divulgação de ideias"},
-      {a:"Iluminismo",b:"Razão como guia"},
-      {a:"Declaração dos Direitos",b:"Direitos do cidadão"},
-      {a:"Napoleão",b:"Código Civil francês"},
-      {a:"Bastilha",b:"Símbolo da opressão"},
+      {a:"GUILHOTINA",              b:"EXECUÇÃO PÚBLICA"},
+      {a:"IMPRENSA",                b:"DIVULGAÇÃO DE IDEIAS"},
+      {a:"ILUMINISMO",              b:"RAZÃO COMO GUIA"},
+      {a:"DECLARAÇÃO DOS DIREITOS", b:"DIREITOS DO CIDADÃO"},
+      {a:"NAPOLEÃO",                b:"CÓDIGO CIVIL FRANCÊS"},
+      {a:"BASTILHA",                b:"SÍMBOLO DA OPRESSÃO"},
     ]},
     fillblank:{sentences:[
-      {text:"O Iluminismo defendia o uso da ___ para guiar a sociedade.",blank:"razão",options:["razão","fé","magia","força"]},
-      {text:"A Bastilha era uma ___ que simbolizava a opressão do rei.",blank:"prisão",options:["prisão","escola","fábrica","biblioteca"]},
-      {text:"Napoleão criou o ___ Civil, que influencia leis até hoje.",blank:"Código",options:["Código","Jogo","Programa","Projeto"]},
-      {text:"A Revolução Francesa derrubou a ___ e instalou a República.",blank:"monarquia",options:["monarquia","democracia","ditadura","colônia"]},
+      {text:"O ILUMINISMO DEFENDIA O USO DA ___ PARA GUIAR A SOCIEDADE.",blank:"RAZÃO",    options:["RAZÃO","FÉ","MAGIA","FORÇA"]},
+      {text:"A BASTILHA ERA UMA ___ QUE SIMBOLIZAVA A OPRESSÃO DO REI.", blank:"PRISÃO",   options:["PRISÃO","ESCOLA","FÁBRICA","BIBLIOTECA"]},
+      {text:"NAPOLEÃO CRIOU O ___ CIVIL, QUE INFLUENCIA LEIS ATÉ HOJE.", blank:"CÓDIGO",   options:["CÓDIGO","JOGO","PROGRAMA","PROJETO"]},
+      {text:"A REVOLUÇÃO FRANCESA DERRUBOU A ___ E INSTALOU A REPÚBLICA.",blank:"MONARQUIA",options:["MONARQUIA","DEMOCRACIA","DITADURA","COLÔNIA"]},
     ]},
     matching:{pairs:[
-      {left:"Iluminismo",right:"Filosofia da razão"},
-      {left:"Estado-Nação",right:"País com governo próprio"},
-      {left:"Burguesia",right:"Classe que liderou a Revolução"},
-      {left:"Terror",right:"Fase de execuções em massa"},
-      {left:"Napoleão",right:"General que dominou a Europa"},
+      {left:"ILUMINISMO",  right:"FILOSOFIA DA RAZÃO"},
+      {left:"ESTADO-NAÇÃO",right:"PAÍS COM GOVERNO PRÓPRIO"},
+      {left:"BURGUESIA",   right:"CLASSE QUE LIDEROU A REVOLUÇÃO"},
+      {left:"TERROR",      right:"FASE DE EXECUÇÕES EM MASSA"},
+      {left:"NAPOLEÃO",    right:"GENERAL QUE DOMINOU A EUROPA"},
     ]}
   },
   maxmiliano:{
     acts:[
-      {key:"goal",icon:"⚽",title:"Marque um Gol!",desc:"Acerte para marcar no placar",badge:"Competição",how:"goal"},
-      {key:"fillblank",icon:"✏️",title:"Passe de gol",desc:"Complete com a palavra certa",badge:"Cangaço",how:"fill"},
-      {key:"matching",icon:"🔗",title:"Escalação",desc:"Ligue o cangaceiro à sua característica",badge:"Time",how:"match"},
+      {key:"goal",     icon:"⚽",title:"MARQUE UM GOL!", desc:"ACERTE PARA MARCAR NO PLACAR",            badge:"COMPETIÇÃO",how:"goal"},
+      {key:"fillblank",icon:"✏️",title:"PASSE DE GOL",   desc:"COMPLETE COM A PALAVRA CERTA",            badge:"CANGAÇO",   how:"fill"},
+      {key:"matching", icon:"🔗",title:"ESCALAÇÃO",      desc:"LIGUE O CANGACEIRO À SUA CARACTERÍSTICA", badge:"TIME",      how:"match"},
     ],
     goal:{questions:[
-      {q:"Quem era o líder mais famoso do Cangaço?",options:["Lampião","Pelé","Tiradentes","Vargas"],correct:"Lampião"},
-      {q:"Como se chamava a companheira de Lampião?",options:["Aninha","Rosa","Maria Bonita","Chica"],correct:"Maria Bonita"},
-      {q:"Em qual região do Brasil o Cangaço aconteceu?",options:["Sul","Nordeste","Norte","Centro-Oeste"],correct:"Nordeste"},
-      {q:"O que eram os cangaceiros?",options:["Jogadores de futebol","Dançarinos","Políticos","Homens armados do sertão"],correct:"Homens armados do sertão"},
-      {q:"Como se chamavam os soldados que perseguiam os cangaceiros?",options:["Dragões","Volantes","Lanceiros","Granadeiros"],correct:"Volantes"},
+      {q:"QUEM ERA O LÍDER MAIS FAMOSO DO CANGAÇO?",                   options:["LAMPIÃO","PELÉ","TIRADENTES","VARGAS"],                                       correct:"LAMPIÃO"},
+      {q:"COMO SE CHAMAVA A COMPANHEIRA DE LAMPIÃO?",                  options:["ANINHA","ROSA","MARIA BONITA","CHICA"],                                       correct:"MARIA BONITA"},
+      {q:"EM QUAL REGIÃO DO BRASIL O CANGAÇO ACONTECEU?",              options:["SUL","NORDESTE","NORTE","CENTRO-OESTE"],                                      correct:"NORDESTE"},
+      {q:"O QUE ERAM OS CANGACEIROS?",                                 options:["JOGADORES DE FUTEBOL","DANÇARINOS","POLÍTICOS","HOMENS ARMADOS DO SERTÃO"],    correct:"HOMENS ARMADOS DO SERTÃO"},
+      {q:"COMO SE CHAMAVAM OS SOLDADOS QUE PERSEGUIAM OS CANGACEIROS?",options:["DRAGÕES","VOLANTES","LANCEIROS","GRANADEIROS"],                               correct:"VOLANTES"},
     ]},
     fillblank:{sentences:[
-      {text:"Lampião atuou no ___ do Brasil.",blank:"Nordeste",options:["Nordeste","Sul","Leste","Norte"]},
-      {text:"Os cangaceiros usavam ___ com enfeites característicos.",blank:"chapéus",options:["chapéus","camisas","chuteiras","mochilas"]},
-      {text:"A companheira de Lampião era chamada de Maria ___.",blank:"Bonita",options:["Bonita","Linda","Forte","Brava"]},
-      {text:"Os ___ eram policiais que perseguiam os cangaceiros.",blank:"Volantes",options:["Volantes","Jogadores","Médicos","Padres"]},
+      {text:"LAMPIÃO ATUOU NO ___ DO BRASIL.",                     blank:"NORDESTE",options:["NORDESTE","SUL","LESTE","NORTE"]},
+      {text:"OS CANGACEIROS USAVAM ___ COM ENFEITES CARACTERÍSTICOS.",blank:"CHAPÉUS",options:["CHAPÉUS","CAMISAS","CHUTEIRAS","MOCHILAS"]},
+      {text:"A COMPANHEIRA DE LAMPIÃO ERA CHAMADA DE MARIA ___.",   blank:"BONITA",  options:["BONITA","LINDA","FORTE","BRAVA"]},
+      {text:"OS ___ ERAM POLICIAIS QUE PERSEGUIAM OS CANGACEIROS.", blank:"VOLANTES",options:["VOLANTES","JOGADORES","MÉDICOS","PADRES"]},
     ]},
     matching:{pairs:[
-      {left:"Lampião",right:"Rei do Cangaço"},
-      {left:"Maria Bonita",right:"Companheira de Lampião"},
-      {left:"Sertão",right:"Região do Cangaço"},
-      {left:"Volantes",right:"Polícia do sertão"},
-      {left:"Cangaço",right:"Movimento do Nordeste"},
+      {left:"LAMPIÃO",     right:"REI DO CANGAÇO"},
+      {left:"MARIA BONITA",right:"COMPANHEIRA DE LAMPIÃO"},
+      {left:"SERTÃO",      right:"REGIÃO DO CANGAÇO"},
+      {left:"VOLANTES",    right:"POLÍCIA DO SERTÃO"},
+      {left:"CANGAÇO",     right:"MOVIMENTO DO NORDESTE"},
     ]}
   },
   arthur:{
     acts:[
-      {key:"memory",icon:"🏺",title:"Memória Pré-História",desc:"Vestígio ↔ o que ele revela",badge:"Arqueologia",how:"memory"},
-      {key:"fillblank",icon:"✏️",title:"Complete a descoberta",desc:"Qual palavra completa a frase?",badge:"Sambaquis",how:"fill"},
-      {key:"matching",icon:"🔗",title:"Liga os vestígios",desc:"Ligue o achado ao que representa",badge:"Serra da Capivara",how:"match"},
+      {key:"memory",         icon:"🏺",title:"MEMÓRIA PRÉ-HISTÓRIA",  desc:"VESTÍGIO ↔ O QUE ELE REVELA",       badge:"ARQUEOLOGIA",  how:"memory",     disc:"hist"},
+      {key:"fillblank",      icon:"✏️",title:"COMPLETE A DESCOBERTA", desc:"QUAL PALAVRA COMPLETA A FRASE?",    badge:"SAMBAQUIS",    how:"fill",       disc:"hist"},
+      {key:"matching",       icon:"🔗",title:"LIGA OS VESTÍGIOS",     desc:"LIGUE O ACHADO AO QUE REPRESENTA",  badge:"HISTÓRIA",     how:"match",      disc:"hist"},
+      {key:"filo_wordsearch",icon:"🦉",title:"CAÇA-PALAVRAS",         desc:"ENCONTRE AS PALAVRAS DE FILOSOFIA",  badge:"FILOSOFIA",    how:"wordsearch", disc:"filo"},
+      {key:"filo_crossword", icon:"✏️",title:"CRUZADINHA",            desc:"COMPLETE O CRUCIGRAMA FILOSÓFICO",  badge:"FILOSOFIA",    how:"crossword",  disc:"filo"},
+      {key:"filo_matching",  icon:"🔗",title:"LIGA OS CONCEITOS",     desc:"FILÓSOFO OU IDEIA AO SIGNIFICADO",  badge:"FILOSOFIA",    how:"match",      disc:"filo"},
     ],
     memory:{pairs:[
-      {a:"🐚 Sambaqui",b:"Monte de conchas e ossos"},
-      {a:"🖼️ Pintura rupestre",b:"Arte nas paredes de pedra"},
-      {a:"🦴 Fóssil humano",b:"Resto de ser humano antigo"},
-      {a:"🏹 Ponta de flecha",b:"Ferramenta de caça"},
-      {a:"🔥 Carvão vegetal",b:"Prova de uso do fogo"},
-      {a:"🏕️ Serra da Capivara",b:"Parque no Piauí com pinturas"},
+      {a:"🐚 SAMBAQUI",          b:"MONTE DE CONCHAS E OSSOS"},
+      {a:"🖼️ PINTURA RUPESTRE",  b:"ARTE NAS PAREDES DE PEDRA"},
+      {a:"🦴 FÓSSIL HUMANO",     b:"RESTO DE SER HUMANO ANTIGO"},
+      {a:"🏹 PONTA DE FLECHA",   b:"FERRAMENTA DE CAÇA"},
+      {a:"🔥 CARVÃO VEGETAL",    b:"PROVA DE USO DO FOGO"},
+      {a:"🏕️ SERRA DA CAPIVARA", b:"PARQUE NO PIAUÍ COM PINTURAS"},
     ]},
     fillblank:{sentences:[
-      {text:"Os sambaquis são montes formados por ___ e restos de animais.",blank:"conchas",options:["conchas","pedras","areia","madeira"]},
-      {text:"As pinturas rupestres foram feitas nas paredes de ___ .",blank:"pedra",options:["pedra","papel","madeira","metal"]},
-      {text:"A Serra da Capivara fica no estado do ___ .",blank:"Piauí",options:["Piauí","Pará","Paraná","Pernambuco"]},
-      {text:"Os arqueólogos estudam os ___ para conhecer o passado.",blank:"vestígios",options:["vestígios","filmes","livros","jornais"]},
+      {text:"OS SAMBAQUIS SÃO MONTES FORMADOS POR ___ E RESTOS DE ANIMAIS.",blank:"CONCHAS",  options:["CONCHAS","PEDRAS","AREIA","MADEIRA"]},
+      {text:"AS PINTURAS RUPESTRES FORAM FEITAS NAS PAREDES DE ___ .",       blank:"PEDRA",    options:["PEDRA","PAPEL","MADEIRA","METAL"]},
+      {text:"A SERRA DA CAPIVARA FICA NO ESTADO DO ___ .",                   blank:"PIAUÍ",    options:["PIAUÍ","PARÁ","PARANÁ","PERNAMBUCO"]},
+      {text:"OS ARQUEÓLOGOS ESTUDAM OS ___ PARA CONHECER O PASSADO.",        blank:"VESTÍGIOS",options:["VESTÍGIOS","FILMES","LIVROS","JORNAIS"]},
     ]},
     matching:{pairs:[
-      {left:"Sambaqui",right:"Monte de conchas"},
-      {left:"Pintura rupestre",right:"Arte em rochas"},
-      {left:"Serra da Capivara",right:"Piauí"},
-      {left:"Arqueólogo",right:"Estuda o passado"},
-      {left:"Fóssil",right:"Resto de ser antigo"},
+      {left:"SAMBAQUI",          right:"MONTE DE CONCHAS"},
+      {left:"PINTURA RUPESTRE",  right:"ARTE EM ROCHAS"},
+      {left:"SERRA DA CAPIVARA", right:"PIAUÍ"},
+      {left:"ARQUEÓLOGO",        right:"ESTUDA O PASSADO"},
+      {left:"FÓSSIL",            right:"RESTO DE SER ANTIGO"},
+    ]},
+    filo_wordsearch:{
+      words:["FILOSOFIA","MITO","RAZAO","ESPANTO","SOCRATES","ETICA","ARGUMENTO","LOGICA"],
+      grid:[
+        ["F","I","L","O","S","O","F","I","A","X","B","Q"],
+        ["E","S","P","A","N","T","O","R","K","J","M","W"],
+        ["R","A","Z","A","O","X","L","G","S","O","I","P"],
+        ["A","R","G","U","M","E","N","T","O","V","T","Y"],
+        ["E","T","I","C","A","S","L","O","G","I","C","A"],
+        ["S","O","C","R","A","T","E","S","B","F","K","N"],
+        ["L","O","G","I","C","A","Z","M","I","T","O","R"],
+        ["X","E","T","I","C","A","F","I","L","O","S","H"],
+      ]
+    },
+    filo_crossword:{
+      cols:10,rows:7,
+      words:[
+        {word:"FILOSOFIA",dir:"H",row:0,col:0,num:1,clue:"AMOR AO SABER — BUSCA PELA SABEDORIA"},
+        {word:"MITO",     dir:"V",row:0,col:5,num:2,clue:"HISTÓRIA SAGRADA QUE EXPLICA A ORIGEM DAS COISAS"},
+        {word:"RAZAO",    dir:"H",row:2,col:1,num:3,clue:"CAPACIDADE HUMANA DE PENSAR E ARGUMENTAR"},
+        {word:"SOCRATES", dir:"H",row:4,col:0,num:4,clue:"FILÓSOFO GREGO — SÓ SEI QUE NADA SEI"},
+        {word:"ETICA",    dir:"V",row:2,col:8,num:5,clue:"ESTUDO DO QUE É CERTO E ERRADO"},
+        {word:"ESPANTO",  dir:"H",row:6,col:1,num:6,clue:"SENTIMENTO QUE INICIA O PENSAR FILOSÓFICO"},
+      ]
+    },
+    filo_matching:{pairs:[
+      {left:"FILOSOFIA", right:"AMOR AO SABER"},
+      {left:"MITO",      right:"EXPLICAÇÃO SAGRADA DO MUNDO"},
+      {left:"SÓCRATES",  right:"SÓ SEI QUE NADA SEI"},
+      {left:"RAZÃO",     right:"PENSAR COM LÓGICA"},
+      {left:"ÉTICA",     right:"CERTO E ERRADO"},
     ]}
   },
   andressa:{
     acts:[
-      {key:"memory",icon:"🗽",title:"Memória: EUA Independente",desc:"Pares com ícones visuais",badge:"Fácil",how:"memory"},
-      {key:"fillblank",icon:"✏️",title:"Complete a frase",desc:"Uma palavra para cada espaço",badge:"EUA",how:"fill"},
-      {key:"matching",icon:"🔗",title:"Liga os personagens",desc:"Quem foi quem na Independência?",badge:"História",how:"match"},
+      {key:"memory",          icon:"🗽",title:"MEMÓRIA: EUA INDEPENDENTE", desc:"PARES COM ÍCONES VISUAIS",           badge:"HISTÓRIA",   how:"memory",     disc:"hist"},
+      {key:"fillblank",       icon:"✏️",title:"COMPLETE A FRASE",          desc:"UMA PALAVRA PARA CADA ESPAÇO",       badge:"EUA",        how:"fill",       disc:"hist"},
+      {key:"matching",        icon:"🔗",title:"LIGA OS PERSONAGENS",       desc:"QUEM FOI QUEM NA INDEPENDÊNCIA?",    badge:"HISTÓRIA",   how:"match",      disc:"hist"},
+      {key:"socio_wordsearch",icon:"📚",title:"CAÇA-PALAVRAS",             desc:"ENCONTRE OS TERMOS DE DURKHEIM",     badge:"SOCIOLOGIA", how:"wordsearch", disc:"socio"},
+      {key:"socio_crossword", icon:"✏️",title:"CRUZADINHA",                desc:"COMPLETE COM CONCEITOS SOCIOLÓGICOS",badge:"SOCIOLOGIA", how:"crossword",  disc:"socio"},
+      {key:"socio_matching",  icon:"🔗",title:"LIGA OS CONCEITOS",         desc:"CONECTE CADA IDEIA AO SIGNIFICADO",  badge:"SOCIOLOGIA", how:"match",      disc:"socio"},
     ],
     memory:{pairs:[
-      {a:"🗽 Estátua",b:"Liberdade"},
-      {a:"🇺🇸 Bandeira",b:"Estados Unidos"},
-      {a:"📜 Declaração",b:"Independência"},
-      {a:"👑 Rei Jorge III",b:"Inglaterra"},
-      {a:"⚔️ Guerra",b:"Revolução"},
+      {a:"🗽 ESTÁTUA",     b:"LIBERDADE"},
+      {a:"🇺🇸 BANDEIRA",   b:"ESTADOS UNIDOS"},
+      {a:"📜 DECLARAÇÃO",  b:"INDEPENDÊNCIA"},
+      {a:"👑 REI JORGE III",b:"INGLATERRA"},
+      {a:"⚔️ GUERRA",      b:"REVOLUÇÃO"},
     ]},
     fillblank:{sentences:[
-      {text:"Os EUA se tornaram independentes em ___.",blank:"1776",options:["1776","1500","1900","1822"]},
-      {text:"Os EUA eram colônia da ___.",blank:"Inglaterra",options:["Inglaterra","França","Portugal","Espanha"]},
-      {text:"A Declaração de ___ foi assinada em 1776.",blank:"Independência",options:["Independência","Guerra","Paz","União"]},
+      {text:"OS EUA SE TORNARAM INDEPENDENTES EM ___.",   blank:"1776",          options:["1776","1500","1900","1822"]},
+      {text:"OS EUA ERAM COLÔNIA DA ___.",                blank:"INGLATERRA",    options:["INGLATERRA","FRANÇA","PORTUGAL","ESPANHA"]},
+      {text:"A DECLARAÇÃO DE ___ FOI ASSINADA EM 1776.", blank:"INDEPENDÊNCIA",  options:["INDEPENDÊNCIA","GUERRA","PAZ","UNIÃO"]},
     ]},
     matching:{pairs:[
-      {left:"George Washington",right:"Primeiro presidente dos EUA"},
-      {left:"Rei Jorge III",right:"Rei da Inglaterra"},
-      {left:"1776",right:"Ano da Independência"},
-      {left:"Declaração",right:"Documento da Independência"},
+      {left:"GEORGE WASHINGTON",right:"PRIMEIRO PRESIDENTE DOS EUA"},
+      {left:"REI JORGE III",    right:"REI DA INGLATERRA"},
+      {left:"1776",             right:"ANO DA INDEPENDÊNCIA"},
+      {left:"DECLARAÇÃO",       right:"DOCUMENTO DA INDEPENDÊNCIA"},
+    ]},
+    socio_wordsearch:{
+      words:["DURKHEIM","SOCIEDADE","FATO","NORMA","GRUPO","REGRA","SOCIAL","CULTURA"],
+      grid:[
+        ["D","U","R","K","H","E","I","M","X","Z","B","Q"],
+        ["S","O","C","I","E","D","A","D","E","F","A","T"],
+        ["C","U","L","T","U","R","A","G","R","U","P","O"],
+        ["N","O","R","M","A","X","S","O","C","I","A","L"],
+        ["F","A","T","O","S","O","C","I","A","L","W","P"],
+        ["R","E","G","R","A","N","O","R","M","A","J","F"],
+        ["G","R","U","P","O","D","U","R","K","H","E","I"],
+        ["S","O","C","I","A","L","C","U","L","T","U","R"],
+      ]
+    },
+    socio_crossword:{
+      cols:10,rows:7,
+      words:[
+        {word:"DURKHEIM", dir:"H",row:0,col:0,num:1,clue:"PAI DA SOCIOLOGIA COMO CIÊNCIA"},
+        {word:"FATO",     dir:"V",row:0,col:5,num:2,clue:"FENÔMENO SOCIAL EXTERNO AO INDIVÍDUO"},
+        {word:"NORMA",    dir:"H",row:2,col:2,num:3,clue:"REGRA DE COMPORTAMENTO DA SOCIEDADE"},
+        {word:"GRUPO",    dir:"H",row:4,col:0,num:4,clue:"CONJUNTO DE PESSOAS COM LAÇOS EM COMUM"},
+        {word:"SOCIAL",   dir:"V",row:1,col:9,num:5,clue:"RELATIVO À VIDA EM SOCIEDADE"},
+        {word:"CULTURA",  dir:"H",row:6,col:1,num:6,clue:"CONJUNTO DE VALORES E PRÁTICAS DE UM POVO"},
+      ]
+    },
+    socio_matching:{pairs:[
+      {left:"DURKHEIM",     right:"CRIADOR DA SOCIOLOGIA CIENTÍFICA"},
+      {left:"FATO SOCIAL",  right:"FENÔMENO COLETIVO EXTERNO"},
+      {left:"NORMA",        right:"REGRA DA SOCIEDADE"},
+      {left:"SOLIDARIEDADE",right:"UNIÃO ENTRE AS PESSOAS"},
+      {left:"SOCIEDADE",    right:"GRUPO DE PESSOAS VIVENDO JUNTAS"},
     ]}
   }
 };
 
-// Estado de progresso por aluno
-const studentProgress = {};
-
+// ── UTILS ──────────────────────────────────────────────────
+const studentProgress={};
 function shuffle(a){const r=[...a];for(let i=r.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[r[i],r[j]]=[r[j],r[i]];}return r;}
+function parseScore(s){if(!s)return{ok:0,total:0,pct:0};const m=s.match(/(\d+)\/(\d+)/);if(!m)return{ok:0,total:0,pct:0};const ok=parseInt(m[1]),t=parseInt(m[2]);return{ok,total:t,pct:t>0?Math.round(ok/t*100):0};}
+function inferSuccess(e){if(e.sucesso===true)return true;if(e.sucesso===false)return false;const s=e.pontuacao||'';if(!s)return false;if(s.includes('${')||s.includes('cfg.'))return true;const m=s.match(/^(\d+)\/(\d+)$/);if(m){const ok=parseInt(m[1]),t=parseInt(m[2]);return t>0&&ok===t;}if(e.tentativas)return e.tentativas.some(t=>{if(t.sucesso===true)return true;const ts=t.pontuacao||'';if(ts.includes('${'))return true;const tm=ts.match(/^(\d+)\/(\d+)$/);return tm&&parseInt(tm[1])===parseInt(tm[2])&&parseInt(tm[2])>0;});return false;}
+function getActStatus(sid,wid,k){const e=studentProgress[sid]?.semanas?.[wid]?.[k];if(!e?.feito)return null;return inferSuccess(e)?'success':'improve';}
+function getActDate(sid,wid,k){return studentProgress[sid]?.semanas?.[wid]?.[k]?.data||null;}
+function getActAttempts(sid,wid,k){return studentProgress[sid]?.semanas?.[wid]?.[k]?.tentativas?.length||0;}
+function getDoneThisWeek(sid){if(!studentProgress[sid]?.semanas?.[WEEK_ID])return[];return Object.keys(studentProgress[sid].semanas[WEEK_ID]).filter(k=>studentProgress[sid].semanas[WEEK_ID][k].feito);}
 
-// FIREBASE: carregar progresso do aluno
-async function loadProgress(sid) {
-  try {
-    const ref = doc(db, "alunos", sid);
-    const snap = await getDoc(ref);
-    if (snap.exists()) {
-      studentProgress[sid] = snap.data();
-    } else {
-      studentProgress[sid] = { semanas: {} };
-    }
-  } catch(e) {
-    studentProgress[sid] = { semanas: {} };
+async function loadProgress(sid){try{const sn=await getDoc(doc(db,"alunos",sid));studentProgress[sid]=sn.exists()?sn.data():{semanas:{}};}catch{studentProgress[sid]={semanas:{}};}}
+async function saveActivity(sid,wid,k,result,score,isSuccess){
+  const now=new Date().toLocaleString("pt-BR");
+  if(!studentProgress[sid])studentProgress[sid]={semanas:{}};
+  if(!studentProgress[sid].semanas)studentProgress[sid].semanas={};
+  if(!studentProgress[sid].semanas[wid])studentProgress[sid].semanas[wid]={};
+  const ex=studentProgress[sid].semanas[wid][k]||{};
+  const attempts=[...(ex.tentativas||[]),{data:now,resultado:result,pontuacao:score||"",sucesso:isSuccess}];
+  studentProgress[sid].semanas[wid][k]={feito:true,data:attempts[0].data,dataUltima:now,resultado:result,pontuacao:score||"",sucesso:isSuccess||inferSuccess(ex)||false,tentativas:attempts};
+  try{await setDoc(doc(db,"alunos",sid),studentProgress[sid]);}catch(e){console.error(e);}
+}
+
+function discLabel(disc){if(disc==="filo")return`<span class="disc-lbl disc-filo">🦉 FILOSOFIA</span>`;if(disc==="socio")return`<span class="disc-lbl disc-socio">📖 SOCIOLOGIA</span>`;return`<span class="disc-lbl disc-hist">📜 HISTÓRIA</span>`;}
+
+// ── HOME ───────────────────────────────────────────────────
+function homeHTML(s){
+  const d=DATA[s.id],done=getDoneThisWeek(s.id),total=d.acts.length,allDone=done.length>=total;
+  const actsGrid=`<div class="acts-grid">${d.acts.map(a=>{
+    const isDone=done.includes(a.key),status=getActStatus(s.id,WEEK_ID,a.key),dt=getActDate(s.id,WEEK_ID,a.key),att=getActAttempts(s.id,WEEK_ID,a.key);
+    const btnC=isDone?(status==='success'?' act-success':' act-improve'):'';
+    const bdgC=status==='success'?'success':'improve';
+    const bdgT=status==='success'?'FEITO COM SUCESSO ✓':'FEITO, PODE MELHORAR 🔄';
+    return`<button class="act-btn${btnC}" onclick="openAct('${s.id}','${a.key}')">
+      ${isDone?`<span class="act-done-badge ${bdgC}">${bdgT}</span>`:""}
+      ${a.disc?discLabel(a.disc):""}
+      <div class="act-icon">${a.icon}</div>
+      <div class="act-title">${a.title}</div>
+      <div class="act-desc">${a.desc}</div>
+      <span class="act-badge">${a.badge}</span>
+      ${isDone&&dt?`<span class="act-date">REALIZADO EM: ${dt}${att>1?` <span class="attempt-badge">${att}ª TENTATIVA</span>`:''}</span>`:""}
+    </button>`;
+  }).join("")}</div>`;
+  if(allDone){
+    const sc=d.acts.filter(a=>getActStatus(s.id,WEEK_ID,a.key)==='success').length;
+    return`<div class="card completion-screen">
+      <div class="completion-icon">🎉</div>
+      <div class="completion-title">SEMANA CONCLUÍDA!</div>
+      <div class="completion-sub">${s.congrats}</div>
+      <div class="completion-week">SEMANA DE ${WEEK_LABEL}</div>
+      <div style="font-size:13px;color:#555;margin-top:.5rem;">${sc} DE ${d.acts.length} ATIVIDADES COM SUCESSO COMPLETO ⭐</div>
+      <div style="margin-top:1rem;"><button class="hist-btn" onclick="showHistory('${s.id}')">📋 VER HISTÓRICO COMPLETO</button></div>
+    </div>
+    <div style="margin-top:1rem;"><p style="font-size:13px;color:#666;text-align:center;margin-bottom:.75rem;">VOCÊ PODE REFAZER QUALQUER ATIVIDADE 👇</p>${actsGrid}</div>`;
   }
+  return`<div class="card">
+    <div class="student-name">OLÁ, ${s.name.toUpperCase()}! 👋</div>
+    <div class="student-sub">${s.year} — SUAS ATIVIDADES DESTA SEMANA</div>
+    <span class="theme-pill">TEMA: ${s.theme}</span>
+    <div class="progress-row">
+      ${d.acts.map(a=>{const st=getActStatus(s.id,WEEK_ID,a.key);return`<div class="prog-dot${st?' done':''}"${st==='improve'?' style="background:#EF9F27"':''} title="${a.title}"></div>`;}).join("")}
+      <span class="prog-label">${done.length} DE ${total} ATIVIDADES FEITAS ESTA SEMANA</span>
+    </div>
+  </div>${actsGrid}
+  <button class="hist-btn" onclick="showHistory('${s.id}')">📋 VER HISTÓRICO COMPLETO</button>`;
 }
 
-// FIREBASE: salvar atividade feita
-async function saveActivity(sid, weekId, actKey, result, score) {
-  const now = new Date().toLocaleString("pt-BR");
-  if (!studentProgress[sid]) studentProgress[sid] = { semanas: {} };
-  if (!studentProgress[sid].semanas) studentProgress[sid].semanas = {};
-  if (!studentProgress[sid].semanas[weekId]) studentProgress[sid].semanas[weekId] = {};
-  studentProgress[sid].semanas[weekId][actKey] = { feito: true, data: now, resultado: result, pontuacao: score || "" };
-  try {
-    const ref = doc(db, "alunos", sid);
-    await setDoc(ref, studentProgress[sid]);
-  } catch(e) { console.error("Erro ao salvar:", e); }
-}
-
-function getDoneThisWeek(sid) {
-  if (!studentProgress[sid]?.semanas?.[WEEK_ID]) return [];
-  return Object.keys(studentProgress[sid].semanas[WEEK_ID]).filter(k => studentProgress[sid].semanas[WEEK_ID][k].feito);
-}
-
-function getActDate(sid, weekId, actKey) {
-  return studentProgress[sid]?.semanas?.[weekId]?.[actKey]?.data || null;
-}
-
-async function buildTabs() {
-  // Carregar todos os alunos em paralelo
-  await Promise.all(STUDENTS.map(s => loadProgress(s.id)));
-  document.getElementById("loading-overlay").style.display = "none";
-
-  const te = document.getElementById("tabs"), pe = document.getElementById("panels");
-  STUDENTS.forEach((s, i) => {
-    const b = document.createElement("button");
-    b.className = "tab-btn" + (i === 0 ? " active" : "");
-    b.textContent = s.name; b.id = "tab-" + s.id;
-    b.onclick = () => switchTab(s.id);
-    te.appendChild(b);
-    const p = document.createElement("div");
-    p.className = "panel" + (i === 0 ? " active" : "");
-    p.id = "panel-" + s.id;
-    p.innerHTML = homeHTML(s);
-    pe.appendChild(p);
-    updateTabDot(s.id);
+// ── TABS ───────────────────────────────────────────────────
+async function buildTabs(){
+  await Promise.all(STUDENTS.map(s=>loadProgress(s.id)));
+  document.getElementById("loading-overlay").style.display="none";
+  const te=document.getElementById("tabs"),pe=document.getElementById("panels");
+  STUDENTS.forEach((s,i)=>{
+    const b=document.createElement("button");
+    b.className="tab-btn"+(i===0?" active":"");b.textContent=s.name;b.id="tab-"+s.id;b.onclick=()=>switchTab(s.id);te.appendChild(b);
+    const p=document.createElement("div");p.className="panel"+(i===0?" active":"");p.id="panel-"+s.id;p.innerHTML=homeHTML(s);pe.appendChild(p);updateTabDot(s.id);
   });
 }
-
-function updateTabDot(sid) {
-  const done = getDoneThisWeek(sid);
-  const total = DATA[sid].acts.length;
-  const tab = document.getElementById("tab-" + sid);
-  if (!tab) return;
-  const existing = tab.querySelector(".tab-done-dot");
-  if (existing) existing.remove();
-  if (done.length > 0) {
-    const dot = document.createElement("span");
-    dot.className = "tab-done-dot";
-    dot.title = `${done.length}/${total} atividades feitas`;
-    tab.appendChild(dot);
-  }
+function updateTabDot(sid){
+  const done=getDoneThisWeek(sid),total=DATA[sid].acts.length,tab=document.getElementById("tab-"+sid);if(!tab)return;
+  const ex=tab.querySelector(".tab-done-dot");if(ex)ex.remove();
+  if(done.length>0){const allOk=done.every(k=>getActStatus(sid,WEEK_ID,k)==='success');const d=document.createElement("span");d.className="tab-done-dot"+(allOk?"":" improve");tab.appendChild(d);}
+}
+function switchTab(id){
+  document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
+  document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
+  document.getElementById("tab-"+id).classList.add("active");document.getElementById("panel-"+id).classList.add("active");
+  document.getElementById("panel-"+id).innerHTML=homeHTML(STUDENTS.find(x=>x.id===id));
 }
 
-function homeHTML(s) {
-  const d = DATA[s.id];
-  const done = getDoneThisWeek(s.id);
-  const total = d.acts.length;
-  if (done.length >= total) return completionHTML(s);
-  return `<div class="card">
-    <div class="student-name">Olá, ${s.name}! 👋</div>
-    <div class="student-sub">${s.year} — Suas atividades desta semana</div>
-    <span class="theme-pill">Tema: ${s.theme}</span>
-    <div class="progress-row">
-      ${d.acts.map(a => `<div class="prog-dot${done.includes(a.key) ? " done" : ""}" title="${a.title}"></div>`).join("")}
-      <span class="prog-label">${done.length} de ${total} atividades feitas esta semana</span>
-    </div>
-  </div>
-  <div class="acts-grid">
-    ${d.acts.map(a => {
-      const isDone = done.includes(a.key);
-      const dt = getActDate(s.id, WEEK_ID, a.key);
-      return `<button class="act-btn${isDone ? " act-done" : ""}" onclick="openAct('${s.id}','${a.key}')">
-        ${isDone ? `<span class="act-done-badge">Feito ✓</span>` : ""}
-        <div class="act-icon">${a.icon}</div>
-        <div class="act-title">${a.title}</div>
-        <div class="act-desc">${a.desc}</div>
-        <span class="act-badge">${a.badge}</span>
-        ${isDone && dt ? `<span class="act-date">Realizado em: ${dt}</span>` : ""}
-      </button>`;
-    }).join("")}
-  </div>
-  <button class="hist-btn" onclick="showHistory('${s.id}')">📋 Ver histórico completo</button>`;
+// ── HISTÓRICO ──────────────────────────────────────────────
+function showHistory(sid){
+  const s=STUDENTS.find(x=>x.id===sid),prog=studentProgress[sid]||{semanas:{}},semanas=prog.semanas||{},wids=Object.keys(semanas).sort().reverse();
+  const html=wids.length===0?`<div class="hist-empty">NENHUMA ATIVIDADE REGISTRADA AINDA.</div>`:wids.map(wid=>{
+    const sem=semanas[wid],label=wid.replace("semana_","").replace(/_/g," / "),acts=DATA[sid].acts,total=acts.length,feitas=acts.filter(a=>sem[a.key]?.feito).length;
+    return`<div class="hist-week">
+      <div class="hist-week-header"><span>SEMANA: ${label.toUpperCase()}</span><span style="color:${feitas===total?'#1D9E75':'#666'}">${feitas}/${total} FEITAS</span></div>
+      <div class="hist-week-body">${acts.map(a=>{
+        const e=sem[a.key];if(!e?.feito)return`<div class="hist-act-row"><span class="hist-act-name">${a.icon} ${a.title}</span><span class="hist-act-pend">NÃO REALIZADA</span></div>`;
+        const att=e.tentativas?.length||1;
+        const best=e.tentativas?e.tentativas.reduce((b,t)=>parseScore(t.pontuacao).pct>parseScore(b.pontuacao).pct?t:b,e.tentativas[0]):null;
+        const bs=best?.pontuacao||e.pontuacao;
+        return`<div class="hist-act-row"><span class="hist-act-name">${a.icon} ${a.title}${att>1?`<span class="attempt-badge">${att} TENTATIVAS</span>`:''}</span><span class="${e.sucesso?'hist-act-done':''}" style="${e.sucesso?'':'color:#EF9F27;font-weight:700;'}">${e.sucesso?'✓':'🔄'} ${e.dataUltima||e.data}${bs?`<span class="hist-act-score">(${bs})</span>`:''}</span></div>`;
+      }).join("")}</div>
+    </div>`;
+  }).join("");
+  document.getElementById("panel-"+sid).innerHTML=`<div class="hist-screen"><div class="game-header"><button class="back-btn" onclick="switchTab('${sid}')">← VOLTAR</button><span class="hist-title">📋 HISTÓRICO DE ${s.name.toUpperCase()}</span></div><p style="font-size:13px;color:#666;margin-bottom:1rem;">TODAS AS SEMANAS COM ATIVIDADES DO PROF. DOUGLAS SOUSA.</p>${html}</div>`;
 }
 
-function completionHTML(s) {
-  return `<div class="card completion-screen">
-    <div class="completion-icon">🎉</div>
-    <div class="completion-title">Semana concluída!</div>
-    <div class="completion-sub">${s.congrats}</div>
-    <div class="completion-week">Semana de ${WEEK_LABEL}</div>
-    <div style="margin-top:1rem;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
-      <button class="hist-btn" onclick="showHistory('${s.id}')">📋 Ver histórico completo</button>
-    </div>
-  </div>`;
-}
-
-function showHistory(sid) {
-  const s = STUDENTS.find(x => x.id === sid);
-  const prog = studentProgress[sid] || { semanas: {} };
-  const semanas = prog.semanas || {};
-  const weekIds = Object.keys(semanas).sort().reverse();
-
-  const weeksHTML = weekIds.length === 0
-    ? `<div class="hist-empty">Nenhuma atividade registrada ainda.</div>`
-    : weekIds.map(wid => {
-        const sem = semanas[wid];
-        const label = wid.replace("semana_","").replace(/_/g," / ");
-        const acts = DATA[sid].acts;
-        const total = acts.length;
-        const feitas = acts.filter(a => sem[a.key]?.feito).length;
-        return `<div class="hist-week">
-          <div class="hist-week-header">
-            <span>Semana: ${label}</span>
-            <span style="color:${feitas===total?'#1D9E75':'#666'}">${feitas}/${total} feitas</span>
-          </div>
-          <div class="hist-week-body">
-            ${acts.map(a => {
-              const entry = sem[a.key];
-              return `<div class="hist-act-row">
-                <span class="hist-act-name">${a.icon} ${a.title}</span>
-                ${entry?.feito
-                  ? `<span class="hist-act-done">✓ ${entry.data}</span>`
-                  : `<span class="hist-act-pend">Não realizada</span>`}
-              </div>`;
-            }).join("")}
-          </div>
-        </div>`;
-      }).join("");
-
-  document.getElementById("panel-" + sid).innerHTML = `<div class="hist-screen">
-    <div class="game-header">
-      <button class="back-btn" onclick="switchTab('${sid}')">← Voltar</button>
-      <span class="hist-title">📋 Histórico de ${s.name}</span>
-    </div>
-    <p style="font-size:13px;color:#666;margin-bottom:1rem;">Todas as semanas com atividades disponibilizadas pelo Prof. Douglas Sousa.</p>
-    ${weeksHTML}
-  </div>`;
-}
-
-function switchTab(id) {
-  document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
-  document.querySelectorAll(".panel").forEach(p => p.classList.remove("active"));
-  document.getElementById("tab-" + id).classList.add("active");
-  document.getElementById("panel-" + id).classList.add("active");
-  document.getElementById("panel-" + id).innerHTML = homeHTML(STUDENTS.find(x => x.id === id));
-}
-
-function openAct(sid, key) {
-  const s = STUDENTS.find(x => x.id === sid);
-  const d = DATA[sid];
-  const act = d.acts.find(a => a.key === key);
-  const isMJ = key.startsWith("mj_");
-  let html = "";
-  if (key === "memory") html = buildMemory(sid, d.memory);
-  else if (key === "fillblank") html = buildFill(sid, d.fillblank);
-  else if (key === "matching") html = buildMatch(sid, d.matching, d.matching.lg);
-  else if (key === "goal") html = buildGoal(sid, d.goal);
-  else if (key === "mj_memory") html = buildMJMemory(sid, d.mj_memory);
-  else if (key === "mj_fill") html = buildMJFill(sid, d.mj_fill);
-  else if (key === "mj_match") html = buildMJMatch(sid, d.mj_match);
-
-  const weekTag = `<span class="week-tag" style="${isMJ ? "border-color:#333;color:#aaa;background:#1a1a1a;" : ""}">Semana ${WEEK_LABEL}</span>`;
-  document.getElementById("panel-" + sid).innerHTML = `<div class="game-area${isMJ ? " mj-game" : ""}">
-    <div class="game-header">
-      <button class="back-btn" style="${isMJ ? "background:#222;color:#fff;border-color:#444;" : ""}" onclick="switchTab('${sid}')">← Voltar</button>
-      <span class="game-title" style="${isMJ ? "color:#FFD700;" : ""}">${act.icon} ${act.title}</span>
-      ${weekTag}
-    </div>
-    ${isMJ
-      ? `<div class="mj-how"><span>ℹ️</span><span>${HOWTO[act.how]}</span></div>`
-      : `<div class="how-to"><span>ℹ️</span><span>${HOWTO[act.how]}</span></div>`}
-    ${html}</div>`;
-  setTimeout(() => {
-    if (key === "matching") initMatch(sid);
-    if (key === "mj_match") initMJMatch(sid);
-  }, 50);
-}
-
-async function onSent(sid, key, actName, result, score) {
-  await saveActivity(sid, WEEK_ID, key, result, score);
-  updateTabDot(sid);
-  const s = STUDENTS.find(x => x.id === sid);
-
-  const emailBody = `Aluno: ${s.full}\nTurma: ${s.year}\nTema: ${s.theme}\nAtividade: ${actName}\nSemana: ${WEEK_LABEL}\nPontuação: ${score || "—"}\n\n${result}\n\nData/Hora: ${new Date().toLocaleString("pt-BR")}`;
-  const subject = `[Gamificação Total] ${s.full} — ${actName} — Semana 20/04`;
-
-  // Mostrar feedback imediato ao aluno
-  const panel = document.getElementById("panel-" + sid);
-  const sending = document.createElement("div");
-  sending.style.cssText = "position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(255,255,255,.9);display:flex;align-items:center;justify-content:center;z-index:999;font-size:16px;color:#534AB7;font-weight:600;";
-  sending.textContent = "Enviando para o professor... ✉️";
-  document.body.appendChild(sending);
-
-  try {
-    const formData = new FormData();
-    formData.append("payload", JSON.stringify({
-      to: EMAIL,
-      subject: subject,
-      body: emailBody,
-      studentName: s.full,
-      activity: actName,
-      week: WEEK_LABEL,
-      score: score || ""
-    }));
-
-    await fetch(SCRIPT_URL, { method: "POST", body: formData });
-    document.body.removeChild(sending);
-    alert(`Ótimo trabalho, ${s.name}! 🎉\nAtividade registrada e email enviado ao professor Douglas!`);
-  } catch(e) {
-    document.body.removeChild(sending);
-    alert(`Ótimo trabalho, ${s.name}! 🎉\nAtividade registrada no histórico!\nObservação: houve um problema no envio do email, avise o professor.`);
-  }
+// ── ENVIO ──────────────────────────────────────────────────
+async function onSent(sid,key,actName,result,score){
+  const s=STUDENTS.find(x=>x.id===sid),{ok,total,pct}=parseScore(score),isSuccess=total===0||pct===100;
+  await saveActivity(sid,WEEK_ID,key,result,score,isSuccess);updateTabDot(sid);
+  const att=getActAttempts(sid,WEEK_ID,key),attL=att>1?` (${att}ª TENTATIVA)`:"";
+  const subject=`[Gamificação Total] ${s.full} — ${actName}${attL} — ${isSuccess?"✓ Sucesso":"🔄 Pode melhorar"} — ${pct>0?pct+"%":"OK"}`;
+  const body=`Aluno: ${s.full}\nTurma: ${s.year}\nAtividade: ${actName}${attL}\nPontuação: ${score||"—"}\nAcertos: ${total>0?ok+"/"+total+" ("+pct+"%)":"Concluído"}\nResultado: ${isSuccess?"✓ Sucesso":"🔄 Pode melhorar"}\n\n${result}\n\nData: ${new Date().toLocaleString("pt-BR")}`;
+  const ov=document.createElement("div");ov.style.cssText="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;z-index:999;font-size:16px;color:#534AB7;font-weight:700;";ov.textContent="ENVIANDO PARA O PROFESSOR... ✉️";document.body.appendChild(ov);
+  try{const fd=new FormData();fd.append("payload",JSON.stringify({to:EMAIL,subject,body,studentName:s.full,activity:actName,week:WEEK_LABEL,score:score||"",isSuccess}));await fetch(SCRIPT_URL,{method:"POST",body:fd});}catch{}
+  document.body.removeChild(ov);
+  if(isSuccess){alert(`INCRÍVEL, ${s.name.toUpperCase()}! 🏆 VOCÊ ACERTOU TUDO EM "${actName}"!\nPARABÉNS! O PROFESSOR DOUGLAS JÁ RECEBEU SEU RESULTADO!`);}
+  else{const msg=pct>=70?`MUITO BEM, ${s.name.toUpperCase()}! ⭐ VOCÊ ACERTOU ${ok} DE ${total}! SE QUISER, TENTE DE NOVO!`:pct>=40?`PARABÉNS, ${s.name.toUpperCase()}! 🌟 VOCÊ ACERTOU ${ok} DE ${total}! O PROFESSOR DOUGLAS RECEBEU SUA RESPOSTA!`:`MUITO BEM, ${s.name.toUpperCase()}! 🎉 VOCÊ FEZ A ATIVIDADE! ACERTOU ${ok} DE ${total}. TENTE DE NOVO QUANDO QUISER!`;alert(`${msg}\n\n📬 SUA RESPOSTA FOI ENVIADA PARA O PROFESSOR DOUGLAS!`);}
   switchTab(sid);
 }
 
-// MEMORY
-function buildMemory(sid, cfg) {
-  const lg = cfg.lg ? "lg" : "";
-  const all = shuffle([...cfg.pairs.map((p,i) => ({id:i,val:p.a,type:"a"})), ...cfg.pairs.map((p,i) => ({id:i,val:p.b,type:"b"}))]);
-  window["mem_"+sid] = {cards:all,flipped:[],matched:0,locked:false,total:cfg.pairs.length};
-  const cols = cfg.pairs.length <= 4 ? 3 : 4;
-  return `<div class="score-bar"><span class="score-badge" id="ms-${sid}">Pares: 0/${cfg.pairs.length}</span><span class="status-txt" id="mt-${sid}">Vire as cartas!</span></div>
-  <div class="mem-grid mem-grid-${cols}" id="mg-${sid}">
-    ${all.map((c,i) => `<div class="mem-card ${lg}" id="mc-${sid}-${i}" onclick="flip('${sid}',${i})"><div class="back-face">?</div><div class="front-face">${c.val}</div></div>`).join("")}
-  </div>
+// ── ABRIR ATIVIDADE ────────────────────────────────────────
+function openAct(sid,key){
+  const s=STUDENTS.find(x=>x.id===sid),d=DATA[sid],act=d.acts.find(a=>a.key===key),isMJ=key.startsWith("mj_");
+  let html="";
+  const cfgMap={memory:d.memory,fillblank:d.fillblank,matching:d.matching,goal:d.goal,mj_memory:d.mj_memory,mj_fill:d.mj_fill,mj_match:d.mj_match,filo_wordsearch:d.filo_wordsearch,filo_crossword:d.filo_crossword,filo_matching:d.filo_matching,socio_wordsearch:d.socio_wordsearch,socio_crossword:d.socio_crossword,socio_matching:d.socio_matching};
+  if(key==="memory")html=buildMemory(sid,d.memory);
+  else if(key==="fillblank")html=buildFill(sid,d.fillblank,"fillblank");
+  else if(key==="matching")html=buildMatch(sid,d.matching,d.matching?.lg,"matching");
+  else if(key==="goal")html=buildGoal(sid,d.goal);
+  else if(key==="mj_memory")html=buildMJMemory(sid,d.mj_memory);
+  else if(key==="mj_fill")html=buildMJFill(sid,d.mj_fill);
+  else if(key==="mj_match")html=buildMatch(sid,d.mj_match,false,"mj_match");
+  else if(["filo_wordsearch","socio_wordsearch"].includes(key))html=buildWordSearch(sid,cfgMap[key],key);
+  else if(["filo_crossword","socio_crossword"].includes(key))html=buildCrossword(sid,cfgMap[key],key);
+  else if(["filo_matching","socio_matching"].includes(key))html=buildMatch(sid,cfgMap[key],false,key);
+  const wt=`<span class="week-tag" style="${isMJ?"border-color:#333;color:#aaa;background:#1a1a1a":""}">SEMANA ${WEEK_LABEL}</span>`;
+  document.getElementById("panel-"+sid).innerHTML=`<div class="game-area${isMJ?" mj-game":""}">
+    <div class="game-header">
+      <button class="back-btn" style="${isMJ?"background:#222;color:#fff;border-color:#444":""}" onclick="switchTab('${sid}')">← VOLTAR</button>
+      <span class="game-title" style="${isMJ?"color:#FFD700":""}">${act.icon} ${act.title}</span>${wt}
+    </div>
+    ${isMJ?`<div class="mj-how"><span>ℹ️</span><span>${HOWTO[act.how]}</span></div>`:`<div class="how-to"><span>ℹ️</span><span>${HOWTO[act.how]}</span></div>`}
+    ${html}</div>`;
+  setTimeout(()=>{
+    if(["matching","mj_match","filo_matching","socio_matching"].includes(key))initMatch(sid,key,cfgMap[key]);
+    if(["filo_wordsearch","socio_wordsearch"].includes(key))initWS(sid,key,cfgMap[key]);
+  },50);
+}
+
+// ── MEMÓRIA ────────────────────────────────────────────────
+function buildMemory(sid,cfg){
+  const lg=cfg.lg?"lg":"",all=shuffle([...cfg.pairs.map((p,i)=>({id:i,val:p.a,type:"a"})),...cfg.pairs.map((p,i)=>({id:i,val:p.b,type:"b"}))]);
+  window["mem_"+sid]={cards:all,flipped:[],matched:0,locked:false,total:cfg.pairs.length};
+  const cols=cfg.pairs.length<=4?3:4;
+  return`<div class="score-bar"><span class="score-badge" id="ms-${sid}">PARES: 0/${cfg.pairs.length}</span><span class="status-txt" id="mt-${sid}">VIRE AS CARTAS!</span></div>
+  <div class="mem-grid mem-grid-${cols}" id="mg-${sid}">${all.map((c,i)=>`<div class="mem-card ${lg}" id="mc-${sid}-${i}" onclick="flip('${sid}',${i})"><div class="back-face">?</div><div class="front-face">${c.val}</div></div>`).join("")}</div>
   <div id="msub-${sid}" style="display:none;" class="submit-area">
-    <div class="success-msg">Todos os pares encontrados! 🎉</div>
-    <button class="submit-btn" onclick="onSent('${sid}','memory','Jogo da Memória','Completou todos os ${cfg.pairs.length} pares!','${cfg.pairs.length}/${cfg.pairs.length}')">Enviar para o professor</button>
-    <button class="retry-btn" onclick="openAct('${sid}','memory')">Jogar de novo</button>
+    <div class="success-msg">TODOS OS PARES ENCONTRADOS! 🎉</div>
+    <button class="submit-btn" onclick="submitMemory('${sid}','memory',${cfg.pairs.length})">ENVIAR PARA O PROFESSOR</button>
+    <button class="retry-btn" onclick="openAct('${sid}','memory')">JOGAR DE NOVO</button>
   </div>`;
 }
+window.flip=function(sid,idx){
+  const st=window["mem_"+sid];if(st.locked)return;
+  const el=document.getElementById("mc-"+sid+"-"+idx);if(el.classList.contains("matched")||el.classList.contains("flipped"))return;
+  el.classList.add("flipped");st.flipped.push(idx);
+  if(st.flipped.length===2){st.locked=true;const[a,b]=st.flipped;const ca=st.cards[a],cb=st.cards[b];setTimeout(()=>{if(ca.id===cb.id&&ca.type!==cb.type){document.getElementById("mc-"+sid+"-"+a).classList.replace("flipped","matched");document.getElementById("mc-"+sid+"-"+b).classList.replace("flipped","matched");st.matched++;document.getElementById("ms-"+sid).textContent=`PARES: ${st.matched}/${st.total}`;if(st.matched===st.total){document.getElementById("mt-"+sid).textContent="INCRÍVEL!";document.getElementById("msub-"+sid).style.display="block";}}else{document.getElementById("mc-"+sid+"-"+a).classList.remove("flipped");document.getElementById("mc-"+sid+"-"+b).classList.remove("flipped");}st.flipped=[];st.locked=false;},900);}
+};
+window.submitMemory=function(sid,key,total){onSent(sid,key,"JOGO DA MEMÓRIA","COMPLETOU TODOS OS "+total+" PARES COM SUCESSO!",total+"/"+total);};
 
-function flip(sid, idx) {
-  const st = window["mem_"+sid]; if (st.locked) return;
-  const el = document.getElementById("mc-"+sid+"-"+idx);
-  if (el.classList.contains("matched") || el.classList.contains("flipped")) return;
-  el.classList.add("flipped"); st.flipped.push(idx);
-  if (st.flipped.length === 2) {
-    st.locked = true; const [a,b] = st.flipped; const ca = st.cards[a], cb = st.cards[b];
-    setTimeout(() => {
-      if (ca.id === cb.id && ca.type !== cb.type) {
-        document.getElementById("mc-"+sid+"-"+a).classList.replace("flipped","matched");
-        document.getElementById("mc-"+sid+"-"+b).classList.replace("flipped","matched");
-        st.matched++; document.getElementById("ms-"+sid).textContent = `Pares: ${st.matched}/${st.total}`;
-        if (st.matched === st.total) { document.getElementById("mt-"+sid).textContent = "Incrível!"; document.getElementById("msub-"+sid).style.display = "block"; }
-      } else {
-        document.getElementById("mc-"+sid+"-"+a).classList.remove("flipped");
-        document.getElementById("mc-"+sid+"-"+b).classList.remove("flipped");
-      }
-      st.flipped = []; st.locked = false;
-    }, 900);
-  }
+// ── MJ MEMÓRIA ─────────────────────────────────────────────
+function buildMJMemory(sid,cfg){
+  const all=shuffle([...cfg.pairs.map((p,i)=>({id:i,val:p.a,type:"a"})),...cfg.pairs.map((p,i)=>({id:i,val:p.b,type:"b"}))]);
+  window["mjm_"+sid]={cards:all,flipped:[],matched:0,locked:false,total:cfg.pairs.length};
+  return`<div style="margin-bottom:1rem;"><span class="mj-score-lbl" id="mjs-${sid}">PARES: 0/${cfg.pairs.length}</span><span style="margin-left:10px;font-size:13px;color:#aaa;font-weight:700;" id="mjt-${sid}">VIRE AS CARTAS!</span></div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:520px;margin:0 auto;" id="mjg-${sid}">${all.map((c,i)=>`<div class="mj-mem-card" id="mjc-${sid}-${i}" onclick="flipMJ('${sid}',${i})"><div class="back-face">🎵</div><div class="front-face">${c.val}</div></div>`).join("")}</div>
+  <div id="mjsub-${sid}" style="display:none;margin-top:1.5rem;padding-top:1rem;border-top:1px solid #333;"><div class="mj-success">TODOS OS PARES! SHOW! 🎤</div>
+    <button class="mj-submit" onclick="submitMemory('${sid}','mj_memory',${cfg.pairs.length})">ENVIAR PARA O PROFESSOR</button>
+    <button class="retry-btn" style="border-color:#FFD700;color:#FFD700;margin-left:10px;" onclick="openAct('${sid}','mj_memory')">JOGAR DE NOVO</button>
+  </div>`;
 }
+window.flipMJ=function(sid,idx){
+  const st=window["mjm_"+sid];if(st.locked)return;
+  const el=document.getElementById("mjc-"+sid+"-"+idx);if(el.classList.contains("matched")||el.classList.contains("flipped"))return;
+  el.classList.add("flipped");st.flipped.push(idx);
+  if(st.flipped.length===2){st.locked=true;const[a,b]=st.flipped;const ca=st.cards[a],cb=st.cards[b];setTimeout(()=>{if(ca.id===cb.id&&ca.type!==cb.type){document.getElementById("mjc-"+sid+"-"+a).classList.replace("flipped","matched");document.getElementById("mjc-"+sid+"-"+b).classList.replace("flipped","matched");st.matched++;document.getElementById("mjs-"+sid).textContent=`PARES: ${st.matched}/${st.total}`;if(st.matched===st.total){document.getElementById("mjt-"+sid).textContent="SHOW! 🎤";document.getElementById("mjsub-"+sid).style.display="block";}}else{document.getElementById("mjc-"+sid+"-"+a).classList.remove("flipped");document.getElementById("mjc-"+sid+"-"+b).classList.remove("flipped");}st.flipped=[];st.locked=false;},900);}
+};
 
-// FILL
-function buildFill(sid, cfg) {
-  const lg = cfg.lg ? "lg" : "";
-  const words = shuffle([...new Set(cfg.sentences.flatMap(s => s.options))]);
-  return `<div>${cfg.sentences.map((s,i) => `<div class="fill-sentence ${lg}">${s.text.replace("___", `<input class="blank-inp ${lg}" id="fi-${sid}-${i}" data-ans="${s.blank}" placeholder="___" autocomplete="off">`)}</div>`).join("")}</div>
-  <div class="word-bank"><span style="font-size:13px;color:#666;align-self:center;">Palavras:</span>
-    ${words.map(w => `<span class="word-chip ${lg}" onclick="useWord('${sid}',this,'${w}')">${w}</span>`).join("")}
+// ── LACUNAS ────────────────────────────────────────────────
+function buildFill(sid,cfg,key){
+  const lg=cfg.lg?"lg":"",k=key||"fillblank";
+  const words=shuffle([...new Set(cfg.sentences.flatMap(s=>s.options))]);
+  return`<div>${cfg.sentences.map((s,i)=>`<div class="fill-sentence ${lg}">${s.text.replace("___",`<input class="blank-inp ${lg}" id="fi-${sid}-${k}-${i}" placeholder="___" autocomplete="off">`)}</div>`).join("")}</div>
+  <div class="word-bank"><span style="font-size:14px;color:#666;font-weight:700;">PALAVRAS:</span>
+    ${words.map(w=>`<span class="word-chip ${lg}" onclick="useWord('${sid}','${k}',this,'${w.replace(/'/g,"\\'")}')">${w}</span>`).join("")}
   </div>
   <div class="submit-area">
-    <button class="submit-btn" onclick="checkFill('${sid}')">Verificar e enviar</button>
-    <button class="retry-btn" onclick="openAct('${sid}','fillblank')">Recomeçar</button>
+    <button class="submit-btn" onclick="checkFill('${sid}','${k}')">VERIFICAR E ENVIAR</button>
+    <button class="retry-btn" onclick="openAct('${sid}','${k}')">RECOMEÇAR</button>
   </div>`;
 }
-
-window.useWord = function(sid, chip, word) {
-  if (chip.classList.contains("used")) return;
-  const inputs = document.querySelectorAll(`[id^="fi-${sid}-"]`);
-  for (const inp of inputs) { if (!inp.value) { inp.value = word; chip.classList.add("used"); return; } }
-};
-
-window.checkFill = function(sid) {
-  const cfg = DATA[sid].fillblank; let ok = 0, res = [];
-  cfg.sentences.forEach((s,i) => {
-    const inp = document.getElementById(`fi-${sid}-${i}`);
-    const v = inp.value.trim().toLowerCase(), a = s.blank.toLowerCase();
-    const correct = v === a; inp.classList.add(correct ? "correct" : "wrong");
-    if (correct) ok++;
-    res.push(`"${s.text.replace("___","["+inp.value+"]")}" — ${correct ? "Correto" : "Errado (correto: "+s.blank+")"}`);
-  });
-  onSent(sid, "fillblank", "Preencha as Lacunas", `Acertos: ${ok}/${cfg.sentences.length}\n\nRespostas:\n${res.join("\n")}`, `${ok}/${cfg.sentences.length}`);
-};
-
-// MATCH
-function buildMatch(sid, cfg, lg) {
-  const lc = lg ? "lg" : "";
-  return `<div class="match-area">
-    <div class="match-col" id="ml-${sid}">${cfg.pairs.map((p,i) => `<div class="match-item ${lc}" id="mli-${sid}-${i}" onclick="selMatch('${sid}','l',${i})">${p.left}</div>`).join("")}</div>
-    <div class="match-col" id="mr-${sid}"></div>
-  </div>
-  <div id="mres-${sid}"></div>
-  <div class="submit-area" id="msub2-${sid}" style="display:none;">
-    <button class="submit-btn" onclick="submitMatch('${sid}')">Enviar para o professor</button>
-    <button class="retry-btn" onclick="openAct('${sid}','matching')">Tentar de novo</button>
-  </div>`;
-}
-
-window.initMatch = function(sid) {
-  const cfg = DATA[sid].matching; const lg = cfg.lg ? "lg" : "";
-  window["mat_"+sid] = {lsel:null,rsel:null,pairs:[],done:0};
-  const order = shuffle(cfg.pairs.map((_,i) => i));
-  document.getElementById("mr-"+sid).innerHTML = order.map(i => `<div class="match-item ${lg}" id="mri-${sid}-${i}" onclick="selMatch('${sid}','r',${i})">${cfg.pairs[i].right}</div>`).join("");
-};
-
-window.selMatch = function(sid, side, idx) {
-  const st = window["mat_"+sid]; const cfg = DATA[sid].matching;
-  const el = document.getElementById((side==="l"?"mli-":"mri-")+sid+"-"+idx);
-  if (el.classList.contains("matched-ok")) return;
-  if (side==="l") { if (st.lsel!==null) document.getElementById("mli-"+sid+"-"+st.lsel).classList.remove("selected"); st.lsel=idx; el.classList.add("selected"); }
-  else { if (st.rsel!==null) document.getElementById("mri-"+sid+"-"+st.rsel).classList.remove("selected"); st.rsel=idx; el.classList.add("selected"); }
-  if (st.lsel!==null && st.rsel!==null) {
-    const le = document.getElementById("mli-"+sid+"-"+st.lsel); const re = document.getElementById("mri-"+sid+"-"+st.rsel);
-    const ok = cfg.pairs[st.lsel].right === cfg.pairs[st.rsel].right;
-    le.classList.remove("selected"); re.classList.remove("selected");
-    if (ok) { le.classList.add("matched-ok"); re.classList.add("matched-ok"); st.done++; st.pairs.push({l:cfg.pairs[st.lsel].left,r:cfg.pairs[st.rsel].right,ok:true}); }
-    else { le.classList.add("matched-err"); re.classList.add("matched-err"); st.pairs.push({l:cfg.pairs[st.lsel].left,r:cfg.pairs[st.rsel].right,ok:false}); setTimeout(()=>{le.classList.remove("matched-err");re.classList.remove("matched-err");},900); }
-    st.lsel=null; st.rsel=null;
-    if (st.done === cfg.pairs.length) { document.getElementById("mres-"+sid).innerHTML='<div class="success-msg" style="margin-top:1rem;">Todos os pares ligados! 🎉</div>'; document.getElementById("msub2-"+sid).style.display="block"; }
-  }
-};
-
-window.submitMatch = function(sid) {
-  const st = window["mat_"+sid]; const cfg = DATA[sid].matching;
-  const ok = st.pairs.filter(p => p.ok).length;
-  onSent(sid, "matching", "Ligar Palavras", `Acertos: ${ok}/${cfg.pairs.length}\n\nRespostas:\n${st.pairs.map(p=>`${p.l} → ${p.r}: ${p.ok?"Correto":"Errado"}`).join("\n")}`, `${ok}/${cfg.pairs.length}`);
-};
-
-// GOAL
-function buildGoal(sid, cfg) {
-  const shuffledQ = shuffle(cfg.questions.map(q => ({...q, options:shuffle(q.options)})));
-  window["goal_"+sid] = {questions:shuffledQ,q:0,score:0,total:shuffledQ.length,answers:[]};
-  return `<div class="goal-board">
-    <div class="goal-score" id="gs-${sid}">0</div>
-    <div class="goal-label">GOLS MARCADOS</div>
-    <div class="goal-bar" id="gb-${sid}">${shuffledQ.map(()=>'<span class="goal-icon">⚪</span>').join("")}</div>
-  </div><div id="gq-${sid}">${renderGoalQ(sid,0)}</div>`;
-}
-
-function renderGoalQ(sid, qi) {
-  const st = window["goal_"+sid];
-  if (qi >= st.total) return `<div class="success-msg">Partida encerrada! Você marcou ${st.score} gols de ${st.total}! 🏆</div>
-    <div class="submit-area">
-      <button class="submit-btn" onclick="submitGoal('${sid}')">Enviar placar para o professor</button>
-      <button class="retry-btn" onclick="openAct('${sid}','goal')">Jogar de novo</button>
-    </div>`;
-  const q = st.questions[qi];
-  return `<div class="hint-box">Pergunta ${qi+1} de ${st.total}</div>
-  <p style="font-size:16px;font-weight:600;color:#222;margin-bottom:1rem;">${q.q}</p>
-  <div class="ans-grid">${q.options.map((o,i)=>`<button class="ans-btn" id="ab-${sid}-${qi}-${i}" onclick="answerGoal('${sid}',${qi},'${o.replace(/'/g,"\\'")}',this)">${o}</button>`).join("")}</div>`;
-}
-
-window.answerGoal = function(sid, qi, chosen, btn) {
-  const st = window["goal_"+sid]; const q = st.questions[qi]; const ok = chosen === q.correct;
-  document.querySelectorAll(`[id^="ab-${sid}-${qi}-"]`).forEach(b => { b.disabled=true; if(b.textContent===q.correct) b.classList.add("correct-ans"); });
-  if (!ok) btn.classList.add("wrong-ans");
-  if (ok) st.score++;
-  st.answers.push({q:q.q,chosen,correct:q.correct,ok});
-  document.getElementById("gs-"+sid).textContent = st.score;
-  const balls = document.getElementById("gb-"+sid).querySelectorAll(".goal-icon");
-  if (balls[qi]) balls[qi].textContent = ok ? "⚽" : "❌";
-  st.q = qi+1;
-  setTimeout(() => { document.getElementById("gq-"+sid).innerHTML = renderGoalQ(sid,qi+1); }, 1200);
-};
-
-window.submitGoal = function(sid) {
-  const st = window["goal_"+sid];
-  const res = st.answers.map(a=>`${a.q}\nResposta: ${a.chosen} — ${a.ok?"Correto":"Errado (correto: "+a.correct+")"}`).join("\n\n");
-  onSent(sid, "goal", "Jogo dos Gols", `Placar final: ${st.score}/${st.total} gols!\n\n${res}`, `${st.score}/${st.total}`);
-};
-
-// MJ MEMORY
-function buildMJMemory(sid, cfg) {
-  const all = shuffle([...cfg.pairs.map((p,i)=>({id:i,val:p.a,type:"a"})),...cfg.pairs.map((p,i)=>({id:i,val:p.b,type:"b"}))]);
-  window["mjm_"+sid] = {cards:all,flipped:[],matched:0,locked:false,total:cfg.pairs.length};
-  return `<div style="margin-bottom:1rem;"><span class="mj-score-lbl" id="mjs-${sid}">Pares: 0/${cfg.pairs.length}</span><span style="margin-left:10px;font-size:13px;color:#aaa;" id="mjt-${sid}">Vire as cartas!</span></div>
-  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:520px;margin:0 auto;" id="mjg-${sid}">
-    ${all.map((c,i)=>`<div class="mj-mem-card" id="mjc-${sid}-${i}" onclick="flipMJ('${sid}',${i})"><div class="back-face">🎵</div><div class="front-face">${c.val}</div></div>`).join("")}
-  </div>
-  <div id="mjsub-${sid}" style="display:none;margin-top:1.5rem;padding-top:1rem;border-top:1px solid #333;">
-    <div class="mj-success">Todos os pares! Show! 🎤</div>
-    <button class="mj-submit" onclick="onSent('${sid}','mj_memory','Jogo da Memória','Completou todos os ${cfg.pairs.length} pares!','${cfg.pairs.length}/${cfg.pairs.length}')">Enviar para o professor</button>
-    <button class="retry-btn" style="border-color:#FFD700;color:#FFD700;margin-left:10px;" onclick="openAct('${sid}','mj_memory')">Jogar de novo</button>
-  </div>`;
-}
-
-window.flipMJ = function(sid, idx) {
-  const st = window["mjm_"+sid]; if (st.locked) return;
-  const el = document.getElementById("mjc-"+sid+"-"+idx);
-  if (el.classList.contains("matched") || el.classList.contains("flipped")) return;
-  el.classList.add("flipped"); st.flipped.push(idx);
-  if (st.flipped.length === 2) {
-    st.locked=true; const[a,b]=st.flipped; const ca=st.cards[a],cb=st.cards[b];
-    setTimeout(()=>{
-      if(ca.id===cb.id&&ca.type!==cb.type){
-        document.getElementById("mjc-"+sid+"-"+a).classList.replace("flipped","matched");
-        document.getElementById("mjc-"+sid+"-"+b).classList.replace("flipped","matched");
-        st.matched++; document.getElementById("mjs-"+sid).textContent=`Pares: ${st.matched}/${st.total}`;
-        if(st.matched===st.total){document.getElementById("mjt-"+sid).textContent="Show! 🎤";document.getElementById("mjsub-"+sid).style.display="block";}
-      }else{document.getElementById("mjc-"+sid+"-"+a).classList.remove("flipped");document.getElementById("mjc-"+sid+"-"+b).classList.remove("flipped");}
-      st.flipped=[]; st.locked=false;
-    },900);
-  }
-};
-
-// MJ FILL
-function buildMJFill(sid, cfg) {
-  const words = shuffle([...new Set(cfg.sentences.flatMap(s=>s.options))]);
-  return `<div>${cfg.sentences.map((s,i)=>`<div class="mj-fill-sentence">${s.text.replace("___",`<input class="mj-blank" id="mjf-${sid}-${i}" data-ans="${s.blank}" placeholder="___" autocomplete="off">`)}</div>`).join("")}</div>
-  <div class="word-bank" style="margin:.75rem 0 1.25rem;"><span style="font-size:13px;color:#aaa;align-self:center;">Palavras:</span>
-    ${words.map(w=>`<span class="mj-chip" onclick="useMJWord('${sid}',this,'${w}')">${w}</span>`).join("")}
+function buildMJFill(sid,cfg){
+  const words=shuffle([...new Set(cfg.sentences.flatMap(s=>s.options))]);
+  return`<div>${cfg.sentences.map((s,i)=>`<div class="mj-fill-sentence">${s.text.replace("___",`<input class="mj-blank" id="fi-${sid}-mj_fill-${i}" placeholder="___" autocomplete="off">`)}</div>`).join("")}</div>
+  <div class="word-bank" style="margin:.75rem 0 1.25rem;"><span style="font-size:14px;color:#aaa;font-weight:700;">PALAVRAS:</span>
+    ${words.map(w=>`<span class="mj-chip" onclick="useWord('${sid}','mj_fill',this,'${w.replace(/'/g,"\\'")}')">${w}</span>`).join("")}
   </div>
   <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid #333;">
-    <button class="mj-submit" onclick="checkMJFill('${sid}')">Verificar e enviar</button>
-    <button class="retry-btn" style="border-color:#FFD700;color:#FFD700;margin-left:10px;" onclick="openAct('${sid}','mj_fill')">Recomeçar</button>
+    <button class="mj-submit" onclick="checkFill('${sid}','mj_fill')">VERIFICAR E ENVIAR</button>
+    <button class="retry-btn" style="border-color:#FFD700;color:#FFD700;margin-left:10px;" onclick="openAct('${sid}','mj_fill')">RECOMEÇAR</button>
   </div>`;
 }
-
-window.useMJWord = function(sid, chip, word) {
-  if (chip.classList.contains("used")) return;
-  const inputs = document.querySelectorAll(`[id^="mjf-${sid}-"]`);
-  for (const inp of inputs) { if (!inp.value) { inp.value=word; chip.classList.add("used"); return; } }
+window.useWord=function(sid,key,chip,word){
+  if(chip.classList.contains("used"))return;
+  const inputs=document.querySelectorAll(`[id^="fi-${sid}-${key}-"]`);
+  for(const inp of inputs){if(!inp.value){inp.value=word;chip.classList.add("used");return;}}
 };
-
-window.checkMJFill = function(sid) {
-  const cfg = DATA[sid].mj_fill; let ok=0,res=[];
+window.checkFill=function(sid,key){
+  const k=key||"fillblank";const cfg=DATA[sid][k==="fillblank"?"fillblank":k==="mj_fill"?"mj_fill":k];
+  let ok=0,res=[];
   cfg.sentences.forEach((s,i)=>{
-    const inp = document.getElementById(`mjf-${sid}-${i}`);
-    const v=inp.value.trim().toLowerCase(),a=s.blank.toLowerCase();
-    const correct=v===a; inp.classList.add(correct?"correct":"wrong");
-    if(correct)ok++;
-    res.push(`"${s.text.replace("___","["+inp.value+"]")}" — ${correct?"Correto":"Errado (correto: "+s.blank+")"}`);
+    const inp=document.getElementById(`fi-${sid}-${k}-${i}`);if(!inp)return;
+    const v=inp.value.trim().toUpperCase(),a=s.blank.toUpperCase(),correct=v===a;
+    inp.classList.remove("correct","wrong");inp.classList.add(correct?"correct":"wrong");
+    if(correct)ok++;res.push(`"${s.text.replace("___","["+inp.value+"]")}" — ${correct?"CORRETO":"ERRADO (CORRETO: "+s.blank+")"}`);
   });
-  onSent(sid,"mj_fill","Preencha as Lacunas",`Acertos: ${ok}/${cfg.sentences.length}\n\nRespostas:\n${res.join("\n")}`,`${ok}/${cfg.sentences.length}`);
+  const names={fillblank:"PREENCHA AS LACUNAS",mj_fill:"PREENCHA AS LACUNAS"};
+  onSent(sid,k,names[k]||"PREENCHA AS LACUNAS",`ACERTOS: ${ok}/${cfg.sentences.length}\n\n${res.join("\n")}`,`${ok}/${cfg.sentences.length}`);
 };
 
-// MJ MATCH
-function buildMJMatch(sid, cfg) {
-  return `<div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;max-width:560px;">
-    <div style="display:flex;flex-direction:column;gap:8px;" id="mjml-${sid}">${cfg.pairs.map((p,i)=>`<div class="mj-match" id="mjmli-${sid}-${i}" onclick="selMJMatch('${sid}','l',${i})">${p.left}</div>`).join("")}</div>
-    <div style="display:flex;flex-direction:column;gap:8px;" id="mjmr-${sid}"></div>
+// ── LIGAR ──────────────────────────────────────────────────
+function buildMatch(sid,cfg,lg,key){
+  const k=key||"matching",lc=lg?"lg":"",isMJ=k==="mj_match";
+  const IC=isMJ?"mj-match":"match-item "+lc;
+  const aWrap=isMJ?`style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;max-width:600px;"`:`class="match-area"`;
+  const cWrap=isMJ?`style="display:flex;flex-direction:column;gap:8px;"`:`class="match-col"`;
+  return`<div ${aWrap}>
+    <div ${cWrap} id="ml-${sid}-${k}">${cfg.pairs.map((p,i)=>`<div class="${IC}" id="mli-${sid}-${k}-${i}" onclick="selMatch('${sid}','l',${i},'${k}')">${p.left}</div>`).join("")}</div>
+    <div ${cWrap} id="mr-${sid}-${k}"></div>
   </div>
-  <div id="mjmres-${sid}"></div>
-  <div id="mjmsub-${sid}" style="display:none;margin-top:1.5rem;padding-top:1rem;border-top:1px solid #333;">
-    <button class="mj-submit" onclick="submitMJMatch('${sid}')">Enviar para o professor</button>
-    <button class="retry-btn" style="border-color:#FFD700;color:#FFD700;margin-left:10px;" onclick="openAct('${sid}','mj_match')">Tentar de novo</button>
+  <div id="mres-${sid}-${k}"></div>
+  <div id="msub-${sid}-${k}" style="display:none;" class="submit-area">
+    ${isMJ?`<button class="mj-submit" onclick="submitMatch('${sid}','${k}')">ENVIAR PARA O PROFESSOR</button><button class="retry-btn" style="border-color:#FFD700;color:#FFD700;margin-left:10px;" onclick="openAct('${sid}','${k}')">TENTAR DE NOVO</button>`:`<button class="submit-btn" onclick="submitMatch('${sid}','${k}')">ENVIAR PARA O PROFESSOR</button><button class="retry-btn" onclick="openAct('${sid}','${k}')">TENTAR DE NOVO</button>`}
   </div>`;
 }
-
-window.initMJMatch = function(sid) {
-  const cfg = DATA[sid].mj_match;
-  window["mjmat_"+sid] = {lsel:null,rsel:null,pairs:[],done:0};
-  const order = shuffle(cfg.pairs.map((_,i)=>i));
-  document.getElementById("mjmr-"+sid).innerHTML = order.map(i=>`<div class="mj-match" id="mjmri-${sid}-${i}" onclick="selMJMatch('${sid}','r',${i})">${cfg.pairs[i].right}</div>`).join("");
-};
-
-window.selMJMatch = function(sid, side, idx) {
-  const st = window["mjmat_"+sid]; const cfg = DATA[sid].mj_match;
-  const el = document.getElementById((side==="l"?"mjmli-":"mjmri-")+sid+"-"+idx);
-  if (el.classList.contains("matched-ok")) return;
-  if (side==="l"){if(st.lsel!==null)document.getElementById("mjmli-"+sid+"-"+st.lsel).classList.remove("selected");st.lsel=idx;el.classList.add("selected");}
-  else{if(st.rsel!==null)document.getElementById("mjmri-"+sid+"-"+st.rsel).classList.remove("selected");st.rsel=idx;el.classList.add("selected");}
-  if (st.lsel!==null && st.rsel!==null) {
-    const le=document.getElementById("mjmli-"+sid+"-"+st.lsel); const re=document.getElementById("mjmri-"+sid+"-"+st.rsel);
+function initMatch(sid,key,cfg){
+  const k=key||"matching",isMJ=k==="mj_match",lg=cfg?.lg?"lg":"";
+  window["mat_"+sid+"_"+k]={lsel:null,rsel:null,pairs:[],done:0,cfg};
+  const order=shuffle(cfg.pairs.map((_,i)=>i));
+  const IC=isMJ?"mj-match":"match-item "+lg;
+  document.getElementById("mr-"+sid+"-"+k).innerHTML=order.map(i=>`<div class="${IC}" id="mri-${sid}-${k}-${i}" onclick="selMatch('${sid}','r',${i},'${k}')">${cfg.pairs[i].right}</div>`).join("");
+}
+window.selMatch=function(sid,side,idx,key){
+  const k=key||"matching",st=window["mat_"+sid+"_"+k];if(!st)return;
+  const cfg=st.cfg,el=document.getElementById((side==="l"?"mli-":"mri-")+sid+"-"+k+"-"+idx);
+  if(el.classList.contains("matched-ok"))return;
+  if(side==="l"){if(st.lsel!==null){const p=document.getElementById("mli-"+sid+"-"+k+"-"+st.lsel);if(p)p.classList.remove("selected");}st.lsel=idx;el.classList.add("selected");}
+  else{if(st.rsel!==null){const p=document.getElementById("mri-"+sid+"-"+k+"-"+st.rsel);if(p)p.classList.remove("selected");}st.rsel=idx;el.classList.add("selected");}
+  if(st.lsel!==null&&st.rsel!==null){
+    const le=document.getElementById("mli-"+sid+"-"+k+"-"+st.lsel),re=document.getElementById("mri-"+sid+"-"+k+"-"+st.rsel);
     const ok=cfg.pairs[st.lsel].right===cfg.pairs[st.rsel].right;
-    le.classList.remove("selected"); re.classList.remove("selected");
+    le.classList.remove("selected");re.classList.remove("selected");
     if(ok){le.classList.add("matched-ok");re.classList.add("matched-ok");st.done++;st.pairs.push({l:cfg.pairs[st.lsel].left,r:cfg.pairs[st.rsel].right,ok:true});}
     else{le.classList.add("matched-err");re.classList.add("matched-err");st.pairs.push({l:cfg.pairs[st.lsel].left,r:cfg.pairs[st.rsel].right,ok:false});setTimeout(()=>{le.classList.remove("matched-err");re.classList.remove("matched-err");},900);}
-    st.lsel=null; st.rsel=null;
-    if(st.done===cfg.pairs.length){document.getElementById("mjmres-"+sid).innerHTML='<div class="mj-success" style="margin-top:1rem;">Show! Todos ligados! 🎤</div>';document.getElementById("mjmsub-"+sid).style.display="block";}
+    st.lsel=null;st.rsel=null;
+    if(st.done===cfg.pairs.length){const isMJ=k==="mj_match";document.getElementById("mres-"+sid+"-"+k).innerHTML=isMJ?'<div class="mj-success" style="margin-top:1rem;">SHOW! TODOS LIGADOS! 🎤</div>':'<div class="success-msg" style="margin-top:1rem;">TODOS OS PARES LIGADOS! 🎉</div>';document.getElementById("msub-"+sid+"-"+k).style.display="block";}
   }
 };
-
-window.submitMJMatch = function(sid) {
-  const st=window["mjmat_"+sid]; const cfg=DATA[sid].mj_match;
-  const ok=st.pairs.filter(p=>p.ok).length;
-  onSent(sid,"mj_match","Ligar Palavras",`Acertos: ${ok}/${cfg.pairs.length}\n\nRespostas:\n${st.pairs.map(p=>`${p.l} → ${p.r}: ${p.ok?"Correto":"Errado"}`).join("\n")}`,`${ok}/${cfg.pairs.length}`);
+window.submitMatch=function(sid,key){
+  const k=key||"matching",st=window["mat_"+sid+"_"+k],cfg=st.cfg,ok=st.pairs.filter(p=>p.ok).length;
+  const names={matching:"LIGAR PALAVRAS",mj_match:"LIGA AS IDEIAS",filo_matching:"FILOSOFIA — LIGAR CONCEITOS",socio_matching:"SOCIOLOGIA — LIGAR CONCEITOS"};
+  onSent(sid,k,names[k]||"LIGAR CONCEITOS",`ACERTOS: ${ok}/${cfg.pairs.length}\n\n${st.pairs.map(p=>`${p.l} → ${p.r}: ${p.ok?"CORRETO":"ERRADO"}`).join("\n")}`,`${ok}/${cfg.pairs.length}`);
 };
 
-// Expor funções globais necessárias
-window.openAct = openAct;
-window.switchTab = switchTab;
-window.showHistory = showHistory;
-window.flip = flip;
-window.onSent = onSent;
+// ── GOLS ───────────────────────────────────────────────────
+function buildGoal(sid,cfg){
+  const sq=shuffle(cfg.questions.map(q=>({...q,options:shuffle(q.options)})));
+  window["goal_"+sid]={questions:sq,q:0,score:0,total:sq.length,answers:[]};
+  return`<div class="goal-board"><div class="goal-score" id="gs-${sid}">0</div><div class="goal-label">GOLS MARCADOS</div><div class="goal-bar" id="gb-${sid}">${sq.map(()=>'<span class="goal-icon">⚪</span>').join("")}</div></div><div id="gq-${sid}">${renderGoalQ(sid,0)}</div>`;
+}
+function renderGoalQ(sid,qi){
+  const st=window["goal_"+sid];
+  if(qi>=st.total)return`<div class="success-msg">PARTIDA ENCERRADA! VOCÊ MARCOU ${st.score} GOLS DE ${st.total}! 🏆</div><div class="submit-area"><button class="submit-btn" onclick="submitGoal('${sid}')">ENVIAR PLACAR PARA O PROFESSOR</button><button class="retry-btn" onclick="openAct('${sid}','goal')">JOGAR DE NOVO</button></div>`;
+  const q=st.questions[qi];
+  return`<div class="hint-box">PERGUNTA ${qi+1} DE ${st.total}</div><p style="font-size:17px;font-weight:700;color:#222;margin-bottom:1rem;">${q.q}</p><div class="ans-grid">${q.options.map((o,i)=>`<button class="ans-btn" id="ab-${sid}-${qi}-${i}" onclick="answerGoal('${sid}',${qi},'${o.replace(/'/g,"\\'")}',this)">${o}</button>`).join("")}</div>`;
+}
+window.answerGoal=function(sid,qi,chosen,btn){
+  const st=window["goal_"+sid],q=st.questions[qi],ok=chosen===q.correct;
+  document.querySelectorAll(`[id^="ab-${sid}-${qi}-"]`).forEach(b=>{b.disabled=true;if(b.textContent===q.correct)b.classList.add("correct-ans");});
+  if(!ok)btn.classList.add("wrong-ans");if(ok)st.score++;
+  st.answers.push({q:q.q,chosen,correct:q.correct,ok});document.getElementById("gs-"+sid).textContent=st.score;
+  const balls=document.getElementById("gb-"+sid).querySelectorAll(".goal-icon");if(balls[qi])balls[qi].textContent=ok?"⚽":"❌";
+  st.q=qi+1;setTimeout(()=>{document.getElementById("gq-"+sid).innerHTML=renderGoalQ(sid,qi+1);},1200);
+};
+window.submitGoal=function(sid){
+  const st=window["goal_"+sid];
+  const res=st.answers.map(a=>`${a.q}\nRESPOSTA: ${a.chosen} — ${a.ok?"CORRETO":"ERRADO (CORRETO: "+a.correct+")"}`).join("\n\n");
+  onSent(sid,"goal","JOGO DOS GOLS",`PLACAR: ${st.score}/${st.total} GOLS!\n\n${res}`,`${st.score}/${st.total}`);
+};
 
+// ── CAÇA-PALAVRAS ──────────────────────────────────────────
+function buildWordSearch(sid,cfg,key){
+  const R=cfg.grid.length,C=cfg.grid[0].length;
+  let cells='';for(let r=0;r<R;r++)for(let c=0;c<C;c++)cells+=`<div class="ws-cell" id="wsc-${sid}-${key}-${r}-${c}" onclick="wsClick('${sid}','${key}',${r},${c})">${cfg.grid[r][c]}</div>`;
+  const wlist=cfg.words.map(w=>`<span class="ws-word" id="wsw-${sid}-${key}-${w}">${w}</span>`).join('');
+  return`<div class="score-bar"><span class="score-badge" id="wsscore-${sid}-${key}">ENCONTRADAS: 0/${cfg.words.length}</span><span class="status-txt" id="wsstat-${sid}-${key}">CLIQUE NA 1ª LETRA E DEPOIS NA ÚLTIMA!</span></div>
+  <div class="ws-words">${wlist}</div>
+  <div class="ws-wrap"><div class="ws-grid" style="grid-template-columns:repeat(${C},36px);">${cells}</div></div>
+  <div id="wssub-${sid}-${key}" style="display:none;" class="submit-area">
+    <div class="success-msg">TODAS AS PALAVRAS ENCONTRADAS! 🎉</div>
+    <button class="submit-btn" onclick="submitWS('${sid}','${key}')">ENVIAR PARA O PROFESSOR</button>
+    <button class="retry-btn" onclick="openAct('${sid}','${key}')">JOGAR DE NOVO</button>
+  </div>`;
+}
+function initWS(sid,key,cfg){window["ws_"+sid+"_"+key]={first:null,found:[],total:cfg.words.length,cfg};}
+window.wsClick=function(sid,key,r,c){
+  const st=window["ws_"+sid+"_"+key];if(!st)return;const cfg=st.cfg;
+  if(!st.first){st.first={r,c};document.getElementById(`wsc-${sid}-${key}-${r}-${c}`).classList.add("selecting");document.getElementById(`wsstat-${sid}-${key}`).textContent="AGORA CLIQUE NA ÚLTIMA LETRA!";return;}
+  const r1=st.first.r,c1=st.first.c;document.getElementById(`wsc-${sid}-${key}-${r1}-${c1}`).classList.remove("selecting");st.first=null;
+  document.getElementById(`wsstat-${sid}-${key}`).textContent="CLIQUE NA 1ª LETRA E DEPOIS NA ÚLTIMA!";
+  const dr=r===r1?0:(r>r1?1:-1),dc=c===c1?0:(c>c1?1:-1);
+  let sel="",cells=[];let cr=r1,cc=c1;
+  for(let i=0;i<20;i++){if(cr<0||cr>=cfg.grid.length||cc<0||cc>=cfg.grid[0].length)break;sel+=cfg.grid[cr][cc];cells.push({r:cr,c:cc});if(cr===r&&cc===c)break;cr+=dr;cc+=dc;}
+  const rev=sel.split("").reverse().join("");
+  const match=cfg.words.find(w=>w===sel||w===rev);
+  if(match&&!st.found.includes(match)){
+    st.found.push(match);cells.forEach(({r:cr2,c:cc2})=>document.getElementById(`wsc-${sid}-${key}-${cr2}-${cc2}`).classList.add("found"));
+    document.getElementById(`wsw-${sid}-${key}-${match}`).classList.add("found");document.getElementById(`wsscore-${sid}-${key}`).textContent=`ENCONTRADAS: ${st.found.length}/${st.total}`;
+    if(st.found.length===st.total){document.getElementById(`wsstat-${sid}-${key}`).textContent="INCRÍVEL! TODAS ENCONTRADAS! 🎉";document.getElementById(`wssub-${sid}-${key}`).style.display="block";}
+  }
+};
+window.submitWS=function(sid,key){
+  const st=window["ws_"+sid+"_"+key];
+  const names={filo_wordsearch:"FILOSOFIA — CAÇA-PALAVRAS",socio_wordsearch:"SOCIOLOGIA — CAÇA-PALAVRAS"};
+  onSent(sid,key,names[key]||"CAÇA-PALAVRAS",`PALAVRAS ENCONTRADAS: ${st.found.join(", ")} (${st.found.length}/${st.total})`,`${st.found.length}/${st.total}`);
+};
+
+// ── CRUZADINHA ─────────────────────────────────────────────
+function buildCrossword(sid,cfg,key){
+  const R=cfg.rows,C=cfg.cols;
+  const grid=Array.from({length:R},()=>Array(C).fill(null));
+  cfg.words.forEach(w=>{for(let i=0;i<w.word.length;i++){const r=w.dir==="H"?w.row:w.row+i,c=w.dir==="H"?w.col+i:w.col;if(r<0||r>=R||c<0||c>=C)return;if(!grid[r][c])grid[r][c]={num:null};if(i===0)grid[r][c].num=w.num;}});
+  let cells='';for(let r=0;r<R;r++)for(let c=0;c<C;c++){if(!grid[r][c]){cells+=`<div class="cw-cell black"></div>`;continue;}cells+=`<div class="cw-cell">${grid[r][c].num?`<span class="cw-num">${grid[r][c].num}</span>`:''}<input maxlength="1" id="cwi-${sid}-${key}-${r}-${c}" autocomplete="off" oninput="this.value=this.value.toUpperCase()"></div>`;}
+  const hC=cfg.words.filter(w=>w.dir==="H").map(w=>`<div class="cw-clue"><span>${w.num}.</span>${w.clue}</div>`).join('');
+  const vC=cfg.words.filter(w=>w.dir==="V").map(w=>`<div class="cw-clue"><span>${w.num}.</span>${w.clue}</div>`).join('');
+  return`<div class="cw-wrap"><div class="cw-grid" style="grid-template-columns:repeat(${C},38px);grid-template-rows:repeat(${R},38px);">${cells}</div></div>
+  <div class="cw-clues"><div class="cw-clue-group"><h4>➡️ HORIZONTAL</h4>${hC}</div><div class="cw-clue-group"><h4>⬇️ VERTICAL</h4>${vC}</div></div>
+  <div class="submit-area"><button class="submit-btn" onclick="checkCW('${sid}','${key}')">VERIFICAR E ENVIAR</button><button class="retry-btn" onclick="openAct('${sid}','${key}')">RECOMEÇAR</button></div>`;
+}
+window.checkCW=function(sid,key){
+  const cfg=DATA[sid][key];let ok=0,total=0,res=[];
+  cfg.words.forEach(w=>{let wOk=true;for(let i=0;i<w.word.length;i++){const r=w.dir==="H"?w.row:w.row+i,c=w.dir==="H"?w.col+i:w.col;const inp=document.getElementById(`cwi-${sid}-${key}-${r}-${c}`);if(!inp)continue;total++;const v=inp.value.trim().toUpperCase(),correct=v===w.word[i].toUpperCase();inp.classList.remove("correct","wrong");inp.classList.add(correct?"correct":"wrong");if(!correct)wOk=false;else ok++;}res.push(`${w.dir==="H"?"➡️":"⬇️"} ${w.num}. ${w.word}: ${wOk?"CORRETO ✓":"INCORRETO"}`);});
+  const names={filo_crossword:"FILOSOFIA — CRUZADINHA",socio_crossword:"SOCIOLOGIA — CRUZADINHA"};
+  onSent(sid,key,names[key]||"CRUZADINHA",`LETRAS CORRETAS: ${ok}/${total}\n\nPALAVRAS:\n${res.join("\n")}`,`${ok}/${total}`);
+};
+
+// ── GLOBAIS ────────────────────────────────────────────────
+window.openAct=openAct;window.switchTab=switchTab;window.showHistory=showHistory;
 buildTabs();
 </script>
 </body>
