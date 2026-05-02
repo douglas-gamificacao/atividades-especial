@@ -144,8 +144,81 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;ba
 .hangman-key.miss{background:#FCEBEB;border-color:#E24B4A;color:#A32D2D;}
 .hangman-hint{font-size:13px;color:#666;font-weight:600;margin-bottom:.75rem;text-transform:uppercase;}
 .hangman-lives{font-size:13px;font-weight:700;color:#E24B4A;margin-bottom:.5rem;}
-/* BOTÕES */
-.submit-area{margin-top:1.5rem;padding-top:1rem;border-top:1px solid #eee;}
+/* MISSÃO ESPACIAL */
+.space-mission{background:linear-gradient(135deg,#0d0d2b 0%,#1a1a4e 100%);border-radius:16px;padding:1.5rem;color:#fff;position:relative;overflow:hidden;}
+.space-stars{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:hidden;}
+.space-star{position:absolute;width:3px;height:3px;background:#fff;border-radius:50%;animation:twinkle 2s infinite alternate;}
+@keyframes twinkle{0%{opacity:.2;}100%{opacity:1;}}
+.space-score{font-size:13px;font-weight:700;color:#FFD700;margin-bottom:1rem;display:flex;align-items:center;gap:8px;}
+.space-planet{font-size:48px;text-align:center;margin:1rem 0;animation:float 3s ease-in-out infinite;}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+.space-q{font-size:16px;font-weight:700;color:#fff;margin-bottom:1rem;text-transform:uppercase;line-height:1.5;text-align:center;}
+.space-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem;}
+.space-opt{padding:12px;border-radius:10px;border:1.5px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;font-size:14px;font-weight:700;cursor:pointer;text-transform:uppercase;transition:all .15s;text-align:center;}
+.space-opt:hover:not(:disabled){border-color:#FFD700;background:rgba(255,215,0,.15);color:#FFD700;}
+.space-opt.correct{border-color:#39FF14;background:rgba(57,255,20,.15);color:#39FF14;animation:pulse-g .4s ease;}
+.space-opt.wrong{border-color:#FF4444;background:rgba(255,68,68,.15);color:#FF4444;}
+.space-progress{display:flex;gap:6px;justify-content:center;margin-bottom:1rem;}
+.space-prog-dot{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.2);transition:all .3s;}
+.space-prog-dot.hit{background:#39FF14;box-shadow:0 0 6px #39FF14;}
+.space-prog-dot.miss{background:#FF4444;}
+.space-reveal{background:rgba(255,215,0,.1);border:1px solid rgba(255,215,0,.3);border-radius:8px;padding:.75rem;text-align:center;color:#FFD700;font-weight:700;font-size:14px;margin-top:.5rem;text-transform:uppercase;}
+/* ARRASTAR SEQUÊNCIA */
+.seq-list{display:flex;flex-direction:column;gap:8px;margin-bottom:1rem;}
+.seq-item{display:flex;align-items:center;gap:12px;background:#f8f8ff;border:1.5px solid #AFA9EC;border-radius:10px;padding:.85rem 1rem;cursor:grab;user-select:none;transition:all .2s;}
+.seq-item:active{cursor:grabbing;transform:scale(1.02);box-shadow:0 4px 12px rgba(83,74,183,.2);}
+.seq-item.dragging{opacity:.4;border-style:dashed;}
+.seq-item.drag-over{border-color:#534AB7;background:#EEEDFE;}
+.seq-item.seq-correct{border-color:#1D9E75;background:#E1F5EE;}
+.seq-item.seq-wrong{border-color:#E24B4A;background:#FCEBEB;}
+.seq-handle{font-size:18px;color:#AFA9EC;flex-shrink:0;}
+.seq-num{width:28px;height:28px;border-radius:50%;background:#534AB7;color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.seq-num.correct{background:#1D9E75;}
+.seq-num.wrong{background:#E24B4A;}
+.seq-text{font-size:14px;font-weight:700;color:#222;text-transform:uppercase;flex:1;}
+.seq-lg .seq-text{font-size:17px;}
+/* DEBUG HISTÓRICO */
+.debug-item{background:#f8f8ff;border:1.5px solid #e0e0e0;border-radius:10px;padding:1rem 1.25rem;margin-bottom:.75rem;}
+.debug-sentence{font-size:16px;font-weight:700;color:#222;line-height:1.8;text-transform:uppercase;margin-bottom:.75rem;}
+.debug-error{color:#E24B4A;border-bottom:2px solid #E24B4A;cursor:pointer;padding:0 2px;transition:all .15s;}
+.debug-error:hover{background:#FCEBEB;border-radius:3px;}
+.debug-error.fixed{color:#1D9E75;border-bottom-color:#1D9E75;text-decoration:line-through;}
+.debug-opts{display:flex;flex-wrap:wrap;gap:8px;margin-top:.5rem;}
+.debug-opt{padding:8px 16px;border-radius:20px;border:1.5px solid #AFA9EC;background:#EEEDFE;color:#3C3489;font-size:14px;font-weight:700;cursor:pointer;text-transform:uppercase;transition:all .15s;}
+.debug-opt:hover{background:#534AB7;color:#fff;border-color:#534AB7;}
+.debug-opt.selected-ok{background:#E1F5EE;border-color:#1D9E75;color:#085041;}
+.debug-opt.selected-err{background:#FCEBEB;border-color:#E24B4A;color:#A32D2D;}
+.debug-feedback{font-size:13px;font-weight:700;margin-top:.5rem;padding:.5rem .75rem;border-radius:6px;text-transform:uppercase;}
+.debug-feedback.ok{background:#E1F5EE;color:#085041;}
+.debug-feedback.err{background:#FCEBEB;color:#A32D2D;}
+/* ARRASTAR E SOLTAR (Andressa) */
+.drag-bank{display:flex;flex-wrap:wrap;gap:8px;padding:1rem;background:#f8f8ff;border:1.5px solid #AFA9EC;border-radius:10px;margin-bottom:1rem;min-height:56px;}
+.drag-chip{padding:8px 16px;border-radius:20px;background:#EEEDFE;border:1.5px solid #534AB7;color:#3C3489;font-size:15px;font-weight:700;cursor:grab;user-select:none;text-transform:uppercase;transition:all .15s;}
+.drag-chip:active{cursor:grabbing;transform:scale(1.05);}
+.drag-chip.used{opacity:.3;cursor:default;}
+.drag-sentence{font-size:17px;font-weight:700;color:#1a1a2e;line-height:3;text-transform:uppercase;margin-bottom:.25rem;}
+.drag-drop{display:inline-block;min-width:140px;height:34px;border-bottom:3px solid #534AB7;vertical-align:middle;margin:0 4px;text-align:center;font-size:15px;font-weight:700;color:#534AB7;padding:0 8px;transition:all .2s;}
+.drag-drop.drag-over-slot{border-bottom-color:#FFD700;background:#FFFBF0;}
+.drag-drop.filled{color:#1D9E75;border-bottom-color:#1D9E75;}
+.drag-drop.wrong-fill{color:#E24B4A;border-bottom-color:#E24B4A;}
+/* MAPA INTERATIVO */
+.map-area{position:relative;background:#E8F4FD;border:2px solid #AFA9EC;border-radius:12px;overflow:hidden;margin-bottom:1rem;}
+.map-svg{width:100%;height:auto;display:block;}
+.map-polis{cursor:pointer;transition:all .2s;}
+.map-polis:hover circle{r:18;filter:drop-shadow(0 0 8px rgba(83,74,183,.5));}
+.map-polis.answered circle{fill:#1D9E75;}
+.map-polis.answered text{fill:#fff;}
+.map-question-box{background:#fff;border:1.5px solid #AFA9EC;border-radius:10px;padding:1rem;margin-bottom:1rem;}
+.map-q-title{font-size:12px;font-weight:700;color:#534AB7;text-transform:uppercase;margin-bottom:.5rem;}
+.map-q-text{font-size:15px;font-weight:700;color:#222;text-transform:uppercase;margin-bottom:.75rem;line-height:1.5;}
+.map-opts{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.map-opt{padding:10px;border-radius:8px;border:1.5px solid #ddd;background:#f5f5f5;font-size:14px;font-weight:700;cursor:pointer;text-transform:uppercase;transition:all .15s;text-align:center;}
+.map-opt:hover:not(:disabled){border-color:#534AB7;background:#EEEDFE;}
+.map-opt.correct{border-color:#1D9E75;background:#E1F5EE;color:#085041;}
+.map-opt.wrong{border-color:#E24B4A;background:#FCEBEB;color:#A32D2D;}
+.map-legend{display:flex;gap:8px;flex-wrap:wrap;padding:.5rem .75rem;background:#f5f5f5;border-top:1px solid #e0e0e0;}
+.map-leg-item{display:flex;align-items:center;gap:4px;font-size:11px;font-weight:700;color:#534AB7;text-transform:uppercase;}
+margin-top:1.5rem;padding-top:1rem;border-top:1px solid #eee;}
 .submit-btn{padding:12px 32px;border-radius:10px;background:#534AB7;color:#fff;border:none;font-size:15px;font-weight:700;cursor:pointer;transition:all .15s;box-shadow:0 2px 6px rgba(83,74,183,.3);text-transform:uppercase;}
 .submit-btn:hover{background:#3C3489;transform:translateY(-1px);}
 .retry-btn{padding:10px 28px;border-radius:8px;background:transparent;color:#534AB7;border:1px solid #534AB7;font-size:14px;font-weight:700;cursor:pointer;margin-left:10px;text-transform:uppercase;}
@@ -190,7 +263,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;ba
     <div style="width:60px;height:4px;background:linear-gradient(90deg,#534AB7,#1D9E75);border-radius:2px;margin:0 auto 1rem;"></div>
     <h1>ATIVIDADES ADAPTADAS</h1>
     <p>PROF. DOUGLAS SOUSA</p>
-    <span class="week-pill" id="current-week-pill">SEMANA DE 27 DE ABRIL A 01 DE MAIO DE 2026</span>
+    <span class="week-pill" id="current-week-pill">SEMANA DE 04 A 08 DE MAIO DE 2026</span>
   </div>
   <div class="tabs" id="tabs"></div>
   <div id="panels"></div>
@@ -207,9 +280,9 @@ const SCRIPT_URL="https://script.google.com/macros/s/AKfycbyR2mVdrQNuCe68p-saDuv
    SEMANAS — adicionar nova semana aqui todo início de semana
 ════════════════════════════════════════════════════════ */
 const WEEKS = [
-  { id:"semana_27_04_2026", label:"27 ABR — 01 MAI 2026", current:true  },
+  { id:"semana_04_05_2026", label:"04 — 08 MAI 2026",    current:true  },
+  { id:"semana_27_04_2026", label:"27 ABR — 01 MAI 2026", current:false },
   { id:"semana_20_04_2025", label:"20 — 24 ABR 2026",     current:false },
-  // ← NOVAS SEMANAS ENTRAM AQUI NO TOPO
 ];
 const CURRENT_WEEK = WEEKS.find(w=>w.current);
 
@@ -227,15 +300,21 @@ const STUDENTS=[
 ];
 
 const HOWTO={
-  reading:   "LEIA O TEXTO COM ATENÇÃO E RESPONDA ÀS PERGUNTAS. CLIQUE NA RESPOSTA CERTA!",
-  wordsearch:"CLIQUE NA PRIMEIRA LETRA DA PALAVRA E DEPOIS NA ÚLTIMA LETRA. ENCONTRE TODAS AS PALAVRAS!",
-  crossword: "ESCREVA AS LETRAS NAS CÉLULAS BRANCAS. USE AS DICAS HORIZONTAL E VERTICAL!",
-  truefalse: "LEIA CADA AFIRMAÇÃO E CLIQUE EM VERDADEIRO OU FALSO. DEPOIS ENVIE PARA O PROFESSOR!",
-  match:     "CLIQUE EM UM ITEM DA ESQUERDA, DEPOIS NO PAR CORRETO À DIREITA. ACERTOS FICAM EM VERDE!",
-  hangman:   "DESCUBRA A PALAVRA CLICANDO NAS LETRAS. VOCÊ TEM 6 CHANCES. BOA SORTE!",
-  memory:    "CLIQUE EM DUAS CARTAS PARA VIRAR. SE FOREM UM PAR, FICAM ABERTAS! ENCONTRE TODOS OS PARES.",
-  fill:      "CLIQUE NAS PALAVRAS DA LISTA PARA PREENCHER OS ESPAÇOS. DEPOIS CLIQUE EM VERIFICAR.",
-  goal:      "LEIA A PERGUNTA E CLIQUE NA RESPOSTA CERTA PARA MARCAR UM GOL! TENTE ACERTAR TODOS!",
+  reading:     "LEIA O TEXTO COM ATENÇÃO E RESPONDA ÀS PERGUNTAS. CLIQUE NA RESPOSTA CERTA!",
+  wordsearch:  "CLIQUE NA PRIMEIRA LETRA DA PALAVRA E DEPOIS NA ÚLTIMA LETRA. ENCONTRE TODAS AS PALAVRAS!",
+  crossword:   "ESCREVA AS LETRAS NAS CÉLULAS BRANCAS. USE AS DICAS HORIZONTAL E VERTICAL!",
+  truefalse:   "LEIA CADA AFIRMAÇÃO E CLIQUE EM VERDADEIRO OU FALSO. DEPOIS ENVIE PARA O PROFESSOR!",
+  match:       "CLIQUE EM UM ITEM DA ESQUERDA, DEPOIS NO PAR CORRETO À DIREITA. ACERTOS FICAM EM VERDE!",
+  hangman:     "DESCUBRA A PALAVRA CLICANDO NAS LETRAS. VOCÊ TEM 6 CHANCES. BOA SORTE!",
+  memory:      "CLIQUE EM DUAS CARTAS PARA VIRAR. SE FOREM UM PAR, FICAM ABERTAS! ENCONTRE TODOS OS PARES.",
+  fill:        "CLIQUE NAS PALAVRAS DA LISTA PARA PREENCHER OS ESPAÇOS. DEPOIS CLIQUE EM VERIFICAR.",
+  goal:        "LEIA A PERGUNTA E CLIQUE NA RESPOSTA CERTA PARA MARCAR UM GOL! TENTE ACERTAR TODOS!",
+  spacemission:"RESPONDA CADA PERGUNTA PARA DESBLOQUEAR O PLANETA! QUANTO MAIS ACERTAR, MAIS ESTRELAS VOCÊ GANHA!",
+  sequence:    "ARRASTE OS EVENTOS PARA COLOCÁ-LOS NA ORDEM CORRETA. SEGURE E SOLTE!",
+  debug:       "LEIA A FRASE, ENCONTRE A PALAVRA ERRADA (EM VERMELHO) E CLIQUE NELA PARA CORRIGI-LA!",
+  penalti:     "RESPONDA CERTO PARA MARCAR GOL! ERRE E O GOLEIRO DEFENDE. QUANTOS GOLS VOCÊ MARCA?",
+  mapgame:     "CLIQUE NAS CIDADES DO MAPA PARA APARECER UMA PERGUNTA. RESPONDA E MARQUE AS PÓLIS!",
+  dragdrop:    "ARRASTE AS PALAVRAS DO BANCO PARA O ESPAÇO CORRETO EM CADA FRASE!",
 };
 
 /* ════════════════════════════════════════════════════════
@@ -244,7 +323,358 @@ const HOWTO={
 ════════════════════════════════════════════════════════ */
 const ALL_DATA = {};
 
-/* ── SEMANA 27/04/2026 ─────────────────────────────── */
+/* ── SEMANA 04/05/2026 ─────────────────────────────── */
+ALL_DATA["semana_04_05_2026"] = {
+
+pierre:{
+  theme:"MONARQUIAS CENTRALIZADAS",
+  congrats:"MISSÃO ESPACIAL CONCLUÍDA, PIERRE! VOCÊ DOMINOU AS MONARQUIAS! 🚀🌟",
+  acts:[
+    {key:"spacemission", icon:"🚀",title:"MISSÃO ESPACIAL",      desc:"RESPONDA PARA DESBLOQUEAR OS PLANETAS!", badge:"DESAFIO",  how:"spacemission", disc:"hist"},
+    {key:"sequence",     icon:"📋",title:"ORDENA A SEQUÊNCIA",   desc:"ARRASTE OS EVENTOS NA ORDEM CORRETA",   badge:"LINHA DO TEMPO", how:"sequence", disc:"hist"},
+    {key:"wordsearch",   icon:"🔍",title:"CAÇA-PALAVRAS",        desc:"ENCONTRE AS PALAVRAS ESCONDIDAS",       badge:"HISTÓRIA",  how:"wordsearch",   disc:"hist"},
+  ],
+  spacemission:{
+    planet:"🪐", planetName:"SATURNO DO PODER REAL",
+    questions:[
+      {q:"COMO SE CHAMA O PODER TOTAL CONCENTRADO NAS MÃOS DO REI?",
+       opts:["PODER ABSOLUTO","PODER DEMOCRÁTICO","PODER POPULAR","PODER FEUDAL"], correct:"PODER ABSOLUTO"},
+      {q:"QUAL REI FRANCÊS FICOU FAMOSO POR DIZER 'O ESTADO SOU EU'?",
+       opts:["LUÍS XIV","LUÍS XVI","NAPOLEÃO","CARLOS MAGNO"], correct:"LUÍS XIV"},
+      {q:"O QUE ERA O MERCANTILISMO NA MONARQUIA CENTRALIZADA?",
+       opts:["SISTEMA ECONÔMICO QUE ENRIQUECIA O ESTADO","DISTRIBUIÇÃO DE TERRAS AO POVO","COMÉRCIO LIVRE SEM IMPOSTOS","SISTEMA DE TROCAS MEDIEVAIS"], correct:"SISTEMA ECONÔMICO QUE ENRIQUECIA O ESTADO"},
+      {q:"QUAL ERA O PAPEL DA NOBREZA NAS MONARQUIAS CENTRALIZADAS?",
+       opts:["APOIAVA O REI EM TROCA DE PRIVILÉGIOS","GOVERNAVA INDEPENDENTEMENTE","REPRESENTAVA O POVO","CONTROLAVA O COMÉRCIO"], correct:"APOIAVA O REI EM TROCA DE PRIVILÉGIOS"},
+      {q:"O QUE DIFERENCIA UMA MONARQUIA ABSOLUTISTA DE UMA CONSTITUCIONAL?",
+       opts:["NO ABSOLUTISMO O REI NÃO TEM LIMITES LEGAIS","SÃO IGUAIS","NA CONSTITUCIONAL O REI GOVERNA SOZINHO","O REI É ELEITO NA MONARQUIA ABSOLUTISTA"], correct:"NO ABSOLUTISMO O REI NÃO TEM LIMITES LEGAIS"},
+    ]
+  },
+  sequence:{
+    instruction:"COLOQUE OS EVENTOS NA ORDEM CRONOLÓGICA CORRETA:",
+    items:[
+      {id:1, text:"FEUDALISMO — PODER DESCENTRALIZADO ENTRE SENHORES",   order:1},
+      {id:2, text:"FORMAÇÃO DAS MONARQUIAS NACIONAIS (SÉC. XV)",         order:2},
+      {id:3, text:"MONARQUIA ABSOLUTISTA — REI COM PODER TOTAL",         order:3},
+      {id:4, text:"ILUMINISMO QUESTIONA O PODER ABSOLUTO DO REI",        order:4},
+      {id:5, text:"REVOLUÇÃO FRANCESA DERRUBA A MONARQUIA ABSOLUTISTA",  order:5},
+    ]
+  },
+  wordsearch:{
+    words:["ABSOLUTISMO","NOBREZA","MERCANTILISMO","SOBERANIA","CENTRALIZADO","IMPOSTO","VERSALHES"],
+    grid:[
+      ["A","B","S","O","L","U","T","I","S","M","O","X"],
+      ["N","O","B","R","E","Z","A","G","R","U","P","O"],
+      ["M","E","R","C","A","N","T","I","L","I","S","M"],
+      ["S","O","B","E","R","A","N","I","A","V","T","Y"],
+      ["C","E","N","T","R","A","L","I","Z","A","D","O"],
+      ["I","M","P","O","S","T","O","S","B","F","K","N"],
+      ["V","E","R","S","A","L","H","E","S","F","K","N"],
+      ["X","N","O","B","R","E","Z","A","I","L","O","S"],
+    ]
+  }
+},
+
+ruan:{
+  theme:"MONARQUIAS CENTRALIZADAS",
+  congrats:"PARABÉNS, RUAN! VOCÊ COMPLETOU TODAS AS ATIVIDADES! ⭐",
+  acts:[
+    {key:"spacemission", icon:"🚀",title:"MISSÃO ESPACIAL",     desc:"RESPONDA E DESBLOQUEIE OS PLANETAS!",  badge:"FÁCIL",      how:"spacemission", disc:"hist"},
+    {key:"sequence",     icon:"📋",title:"ORDENA A SEQUÊNCIA",  desc:"ARRASTE OS EVENTOS NA ORDEM CERTA",   badge:"CONCEITOS",  how:"sequence",     disc:"hist"},
+    {key:"wordsearch",   icon:"🔍",title:"CAÇA-PALAVRAS",       desc:"ENCONTRE AS PALAVRAS",                badge:"HISTÓRIA",   how:"wordsearch",   disc:"hist"},
+  ],
+  spacemission:{
+    lg:true,
+    planet:"🌍", planetName:"PLANETA DO REI",
+    questions:[
+      {q:"COMO SE CHAMA O GOVERNO DO REI COM TODO O PODER?",
+       opts:["ABSOLUTISMO","DEMOCRACIA","REPÚBLICA","FEUDALISMO"], correct:"ABSOLUTISMO"},
+      {q:"QUEM FICOU FAMOSO POR DIZER 'O ESTADO SOU EU'?",
+       opts:["LUÍS XIV","NAPOLEÃO","LUTERO","CALVINO"], correct:"LUÍS XIV"},
+      {q:"O QUE O REI CONTROLAVA NA MONARQUIA CENTRALIZADA?",
+       opts:["TUDO: EXÉRCITO, IMPOSTOS E LEIS","SÓ O EXÉRCITO","SÓ OS IMPOSTOS","NADA"], correct:"TUDO: EXÉRCITO, IMPOSTOS E LEIS"},
+    ]
+  },
+  sequence:{
+    lg:true,
+    instruction:"COLOQUE NA ORDEM CORRETA:",
+    items:[
+      {id:1, text:"FEUDALISMO — PODER DIVIDIDO",     order:1},
+      {id:2, text:"REI UNIFICA O PODER",             order:2},
+      {id:3, text:"REI TEM TODO O PODER",            order:3},
+      {id:4, text:"POVO QUESTIONA O REI",            order:4},
+    ]
+  },
+  wordsearch:{
+    words:["REI","PODER","NOBREZA","IMPOSTO","EXERCITO","ESTADO"],
+    grid:[
+      ["R","E","I","X","P","O","D","E","R","B","Q","Z"],
+      ["N","O","B","R","E","Z","A","G","S","O","I","P"],
+      ["I","M","P","O","S","T","O","G","R","U","P","O"],
+      ["E","S","T","A","D","O","S","O","C","I","A","L"],
+      ["E","X","E","R","C","I","T","O","B","F","K","N"],
+      ["M","O","D","E","R","N","O","M","I","T","O","R"],
+      ["X","N","O","B","R","E","Z","A","I","L","O","S"],
+      ["P","O","D","E","R","X","E","U","R","O","P","A"],
+    ]
+  }
+},
+
+/* MARCELO — perfil: alfabetização, aux, não infantilizar */
+marcelo:{
+  theme:"IDEAIS DA INDEPENDÊNCIA DA AMÉRICA ESPANHOLA",
+  congrats:"SHOW DE BOLA, MARCELO! VOCÊ ENCONTROU TODOS OS ERROS! 🎤",
+  acts:[
+    {key:"debug",      icon:"🐛",title:"ENCONTRE O ERRO!",  desc:"CLIQUE NA PALAVRA ERRADA E CORRIJA",    badge:"HISTÓRIA",  how:"debug",     disc:"hist"},
+    {key:"crossword",  icon:"✏️",title:"CRUZADINHA",        desc:"COMPLETE O CRUCIGRAMA",                 badge:"HISTÓRIA",  how:"crossword", disc:"hist"},
+    {key:"wordsearch", icon:"🔍",title:"CAÇA-PALAVRAS",     desc:"ENCONTRE AS PALAVRAS",                  badge:"HISTÓRIA",  how:"wordsearch",disc:"hist"},
+  ],
+  debug:{
+    items:[
+      {sentence:"BOLÍVAR QUERIA QUE A AMÉRICA FOSSE DOMINADA PELA ESPANHA.",
+       errorWord:"DOMINADA", correct:"LIVRE",
+       feedback:"BOLÍVAR QUERIA QUE A AMÉRICA FOSSE LIVRE, NÃO DOMINADA!"},
+      {sentence:"O POVO DA AMÉRICA LUTOU PELA TRISTEZA.",
+       errorWord:"TRISTEZA", correct:"LIBERDADE",
+       feedback:"O POVO LUTOU PELA LIBERDADE!"},
+      {sentence:"BOLÍVAR ERA O LÍDER DA ESCRAVIDÃO NA AMÉRICA.",
+       errorWord:"ESCRAVIDÃO", correct:"INDEPENDÊNCIA",
+       feedback:"BOLÍVAR ERA O LÍDER DA INDEPENDÊNCIA!"},
+    ]
+  },
+  crossword:{cols:9,rows:5,words:[
+    {word:"BOLIVAR",  dir:"H",row:0,col:0,num:1,clue:"LÍDER DA INDEPENDÊNCIA NA AMÉRICA"},
+    {word:"LIVRE",    dir:"V",row:0,col:4,num:2,clue:"O QUE O POVO QUERIA SER"},
+    {word:"POVO",     dir:"H",row:2,col:1,num:3,clue:"AS PESSOAS DO PAÍS"},
+    {word:"AMERICA",  dir:"H",row:4,col:0,num:4,clue:"CONTINENTE QUE QUERIA LIBERDADE"},
+  ]},
+  wordsearch:{
+    words:["BOLIVAR","LIVRE","POVO","AMERICA","LUTA","IDEAL"],
+    grid:[
+      ["B","O","L","I","V","A","R","X","B","Q","Z","W"],
+      ["L","I","V","R","E","D","A","D","E","F","A","T"],
+      ["P","O","V","O","L","I","V","R","E","U","P","O"],
+      ["A","M","E","R","I","C","A","I","N","I","A","L"],
+      ["L","U","T","A","S","O","C","I","A","L","J","F"],
+      ["I","D","E","A","L","O","C","I","A","L","J","F"],
+      ["A","M","E","R","I","C","A","D","U","R","K","H"],
+      ["B","O","L","I","V","A","R","C","L","T","U","R"],
+    ]
+  }
+},
+
+henrique:{
+  theme:"IDEAIS DA INDEPENDÊNCIA DA AMÉRICA ESPANHOLA",
+  congrats:"SISTEMA COMPLETO, HENRIQUE! TODOS OS BUGS HISTÓRICOS CORRIGIDOS! 💻",
+  acts:[
+    {key:"debug",      icon:"🐛",title:"DEBUG HISTÓRICO",    desc:"ENCONTRE E CORRIJA O ERRO NA FRASE",    badge:"ANÁLISE",   how:"debug",     disc:"hist"},
+    {key:"crossword",  icon:"✏️",title:"CRUZADINHA",         desc:"COMPLETE O CRUCIGRAMA",                 badge:"HISTÓRIA",  how:"crossword", disc:"hist"},
+    {key:"wordsearch", icon:"🔍",title:"CAÇA-PALAVRAS",      desc:"ENCONTRE AS PALAVRAS",                  badge:"HISTÓRIA",  how:"wordsearch",disc:"hist"},
+  ],
+  debug:{
+    items:[
+      {sentence:"O ILUMINISMO DEFENDIA QUE A RAZÃO DEVIA SER SUBSTITUÍDA PELA FÉ RELIGIOSA.",
+       errorWord:"SUBSTITUÍDA PELA FÉ RELIGIOSA",correct:"USADA PARA GUIAR A SOCIEDADE",
+       feedback:"O ILUMINISMO DEFENDIA EXATAMENTE O CONTRÁRIO: QUE A RAZÃO DEVIA GUIAR A SOCIEDADE, NÃO A FÉ!"},
+      {sentence:"AS ELITES CRIOULAS ERAM FILHOS DE AMERICANOS NASCIDOS NA ESPANHA.",
+       errorWord:"AMERICANOS NASCIDOS NA ESPANHA",correct:"ESPANHÓIS NASCIDOS NA AMÉRICA",
+       feedback:"CRIOULOS ERAM FILHOS DE ESPANHÓIS NASCIDOS NA AMÉRICA — NÃO O CONTRÁRIO!"},
+      {sentence:"A REVOLUÇÃO FRANCESA INSPIROU OS MOVIMENTOS DE ESCRAVIDÃO NAS AMÉRICAS.",
+       errorWord:"ESCRAVIDÃO",correct:"INDEPENDÊNCIA",
+       feedback:"A REVOLUÇÃO FRANCESA INSPIROU OS MOVIMENTOS DE INDEPENDÊNCIA, DEFENDENDO LIBERDADE E IGUALDADE!"},
+      {sentence:"SIMÓN BOLÍVAR FOI O PRINCIPAL LÍDER DA COLONIZAÇÃO DA AMÉRICA DO SUL.",
+       errorWord:"COLONIZAÇÃO",correct:"INDEPENDÊNCIA",
+       feedback:"BOLÍVAR FOI LÍDER DA INDEPENDÊNCIA — ELE LUTOU CONTRA A COLONIZAÇÃO ESPANHOLA!"},
+    ]
+  },
+  crossword:{cols:11,rows:7,words:[
+    {word:"ILUMINISMO", dir:"H",row:0,col:0,num:1,clue:"FILOSOFIA DA RAZÃO QUE INSPIROU AS INDEPENDÊNCIAS"},
+    {word:"METROPOLE",  dir:"V",row:0,col:5,num:2,clue:"PAÍS QUE DOMINAVA AS COLÔNIAS"},
+    {word:"CRIOULO",    dir:"H",row:2,col:1,num:3,clue:"DESCENDENTE DE ESPANHOL NASCIDO NA AMÉRICA"},
+    {word:"COMERCIO",   dir:"H",row:4,col:0,num:4,clue:"ATIVIDADE ECONÔMICA QUE AS ELITES QUERIAM CONTROLAR"},
+    {word:"BOLIVAR",    dir:"V",row:1,col:9,num:5,clue:"PRINCIPAL LÍDER LIBERTADOR"},
+    {word:"POLITICA",   dir:"H",row:6,col:1,num:6,clue:"PODER DE GOVERNAR O PRÓPRIO TERRITÓRIO"},
+  ]},
+  wordsearch:{
+    words:["ILUMINISMO","METROPOLE","CRIOULO","COMERCIO","BOLIVAR","POLITICA","AMERICA","COLONIA"],
+    grid:[
+      ["I","L","U","M","I","N","I","S","M","O","B","Q"],
+      ["M","E","T","R","O","P","O","L","E","F","A","T"],
+      ["C","R","I","O","U","L","O","G","R","U","P","O"],
+      ["C","O","M","E","R","C","I","O","I","A","L","W"],
+      ["B","O","L","I","V","A","R","W","P","K","J","F"],
+      ["P","O","L","I","T","I","C","A","N","O","R","M"],
+      ["A","M","E","R","I","C","A","D","U","R","K","H"],
+      ["C","O","L","O","N","I","A","C","L","T","U","R"],
+    ]
+  }
+},
+
+/* MAXMILIANO — pênalti do saber + cruzadinha + caça-palavras */
+maxmiliano:{
+  theme:"ANTECEDENTES DA REVOLUÇÃO RUSSA",
+  congrats:"CAMPEÃO! VOCÊ VENCEU O JOGO DA HISTÓRIA! 🏆⚽",
+  acts:[
+    {key:"penalti",    icon:"⚽",title:"PÊNALTI DO SABER",   desc:"ACERTE A RESPOSTA E MARQUE O GOL!",     badge:"COMPETIÇÃO", how:"penalti",   disc:"hist"},
+    {key:"crossword",  icon:"✏️",title:"CRUZADINHA",         desc:"COMPLETE O CRUCIGRAMA",                 badge:"HISTÓRIA",   how:"crossword", disc:"hist"},
+    {key:"wordsearch", icon:"🔍",title:"CAÇA-PALAVRAS",      desc:"ENCONTRE AS PALAVRAS",                  badge:"HISTÓRIA",   how:"wordsearch",disc:"hist"},
+  ],
+  penalti:{
+    questions:[
+      {q:"COMO SE CHAMAVA O REI DA RÚSSIA?",                             opts:["CZAR","PRESIDENTE","SULTÃO","FARAÓ"],                            correct:"CZAR"},
+      {q:"O QUE CAUSOU A REVOLUÇÃO RUSSA?",                              opts:["PROSPERIDADE","DESIGUALDADE E POBREZA","VITÓRIA NA GUERRA","PAZ"], correct:"DESIGUALDADE E POBREZA"},
+      {q:"COMO SE CHAMAVA A POLÍCIA SECRETA DO CZAR?",                   opts:["OCRANA","NKVD","CIA","INTERPOL"],                                correct:"OCRANA"},
+      {q:"EM QUE ANO COMEÇOU A REVOLUÇÃO RUSSA?",                        opts:["1905","1917","1939","1945"],                                     correct:"1917"},
+      {q:"QUAL GRUPO LIDEROU A REVOLUÇÃO RUSSA?",                        opts:["BOLCHEVIQUES","CZARISTAS","REPUBLICANOS","LIBERAIS"],            correct:"BOLCHEVIQUES"},
+    ]
+  },
+  crossword:{cols:10,rows:7,words:[
+    {word:"CZAR",        dir:"H",row:0,col:0,num:1,clue:"REI ABSOLUTO DA RÚSSIA"},
+    {word:"RUSSIA",      dir:"V",row:0,col:2,num:2,clue:"PAÍS DA REVOLUÇÃO"},
+    {word:"POBRE",       dir:"H",row:2,col:1,num:3,clue:"CONDIÇÃO DO POVO RUSSO"},
+    {word:"REVOLUCAO",   dir:"H",row:4,col:0,num:4,clue:"MUDANÇA RADICAL DE 1917"},
+    {word:"FABRICA",     dir:"V",row:2,col:8,num:5,clue:"LOCAL DE TRABALHO DO OPERÁRIO"},
+    {word:"OCRANA",      dir:"H",row:6,col:2,num:6,clue:"POLÍCIA SECRETA DO CZAR"},
+  ]},
+  wordsearch:{
+    words:["CZAR","RUSSIA","POBRE","REVOLUCAO","OCRANA","BOLCHEVIQUE","OPERARIO","DESIGUAL"],
+    grid:[
+      ["C","Z","A","R","X","B","Q","Z","W","R","U","S"],
+      ["R","U","S","S","I","A","L","G","S","O","I","P"],
+      ["P","O","B","R","E","X","L","G","R","U","P","O"],
+      ["R","E","V","O","L","U","C","A","O","I","A","L"],
+      ["O","C","R","A","N","A","W","P","K","J","F","M"],
+      ["B","O","L","C","H","E","V","I","Q","U","E","N"],
+      ["O","P","E","R","A","R","I","O","D","U","R","K"],
+      ["D","E","S","I","G","U","A","L","C","L","T","U"],
+    ]
+  }
+},
+
+arthur:{
+  theme:"HISTÓRIA: PÓLIS GREGAS | FILOSOFIA: ETARISMO E ESTEREÓTIPOS",
+  congrats:"INCRÍVEL, ARTHUR! VIAJOU PELA GRÉCIA E PELA FILOSOFIA! 🏛️🦉",
+  acts:[
+    {key:"mapgame",      icon:"🗺️",title:"MAPA INTERATIVO",      desc:"CLIQUE NAS PÓLIS E RESPONDA!",            badge:"HISTÓRIA",  how:"mapgame",   disc:"hist"},
+    {key:"crossword",    icon:"✏️",title:"CRUZADINHA",            desc:"COMPLETE O CRUCIGRAMA",                   badge:"HISTÓRIA",  how:"crossword", disc:"hist"},
+    {key:"wordsearch",   icon:"🔍",title:"CAÇA-PALAVRAS",         desc:"ENCONTRE AS PALAVRAS",                    badge:"HISTÓRIA",  how:"wordsearch",disc:"hist"},
+    {key:"filo_truefalse",icon:"🦉",title:"VERDADEIRO OU FALSO",  desc:"ANALISE AS AFIRMAÇÕES SOBRE ETARISMO",    badge:"FILOSOFIA", how:"truefalse", disc:"filo"},
+    {key:"filo_matching", icon:"🔗",title:"LIGA OS CONCEITOS",    desc:"CONECTE CADA IDEIA AO SIGNIFICADO",       badge:"FILOSOFIA", how:"match",     disc:"filo"},
+    {key:"filo_hangman",  icon:"🎯",title:"JOGO DA FORCA",        desc:"DESCUBRA A PALAVRA FILOSÓFICA",           badge:"FILOSOFIA", how:"hangman",   disc:"filo"},
+  ],
+  mapgame:{
+    polis:[
+      {id:"atenas",  name:"ATENAS",  emoji:"🏛️", x:52, y:60,
+       q:"ATENAS FOI FAMOSA POR CRIAR QUAL SISTEMA DE GOVERNO?",
+       opts:["DEMOCRACIA","MONARQUIA","OLIGARQUIA","DITADURA"], correct:"DEMOCRACIA"},
+      {id:"esparta", name:"ESPARTA", emoji:"⚔️", x:45, y:72,
+       q:"ESPARTA ERA CONHECIDA PRINCIPALMENTE POR QUÊ?",
+       opts:["PELA FILOSOFIA","PELO COMÉRCIO","PELA CULTURA MILITAR","PELA DEMOCRACIA"], correct:"PELA CULTURA MILITAR"},
+      {id:"corinto", name:"CORINTO", emoji:"⚓", x:48, y:62,
+       q:"CORINTO ERA FAMOSA POR SER UM IMPORTANTE CENTRO DE:",
+       opts:["GUERRA","COMÉRCIO MARÍTIMO","FILOSOFIA","ESCULTURA"], correct:"COMÉRCIO MARÍTIMO"},
+      {id:"olimpia", name:"OLÍMPIA", emoji:"🏅", x:40, y:65,
+       q:"O QUE ACONTECIA EM OLÍMPIA NA GRÉCIA ANTIGA?",
+       opts:["BATALHAS","JULGAMENTOS","JOGOS OLÍMPICOS","ELEIÇÕES"], correct:"JOGOS OLÍMPICOS"},
+    ]
+  },
+  crossword:{cols:11,rows:7,words:[
+    {word:"DEMOCRACIA",  dir:"H",row:0,col:0,num:1,clue:"SISTEMA DE GOVERNO CRIADO EM ATENAS"},
+    {word:"POLIS",       dir:"V",row:0,col:6,num:2,clue:"CIDADE-ESTADO GREGA"},
+    {word:"ATENAS",      dir:"H",row:2,col:1,num:3,clue:"CIDADE DA DEMOCRACIA E DA FILOSOFIA"},
+    {word:"ESPARTA",     dir:"H",row:4,col:0,num:4,clue:"CIDADE-ESTADO GUERREIRA"},
+    {word:"OLIMPIADAS",  dir:"V",row:1,col:9,num:5,clue:"JOGOS CRIADOS PELOS GREGOS"},
+    {word:"CORINTO",     dir:"H",row:6,col:2,num:6,clue:"PÓLIS FAMOSA PELO COMÉRCIO MARÍTIMO"},
+  ]},
+  wordsearch:{
+    words:["DEMOCRACIA","POLIS","ATENAS","ESPARTA","OLIMPIADAS","CORINTO","GRECIA","CIDADAO"],
+    grid:[
+      ["D","E","M","O","C","R","A","C","I","A","B","Q"],
+      ["P","O","L","I","S","X","L","G","S","O","I","P"],
+      ["A","T","E","N","A","S","L","G","R","U","P","O"],
+      ["E","S","P","A","R","T","A","V","T","Y","J","W"],
+      ["O","L","I","M","P","I","A","D","A","S","K","N"],
+      ["C","O","R","I","N","T","O","F","I","A","K","N"],
+      ["G","R","E","C","I","A","Z","M","I","T","O","R"],
+      ["C","I","D","A","D","A","O","I","L","O","S","H"],
+    ]
+  },
+  filo_truefalse:{items:[
+    {text:"ESTEREÓTIPOS GERACIONAIS SÃO IDEIAS FIXAS E GENERALIZADAS SOBRE UMA FAIXA ETÁRIA.",correct:true},
+    {text:"DIZER QUE 'TODO JOVEM É IRRESPONSÁVEL' É UM EXEMPLO DE ESTEREÓTIPO GERACIONAL.",correct:true},
+    {text:"O ETARISMO SÓ PREJUDICA OS JOVENS, NUNCA OS IDOSOS.",correct:false},
+    {text:"RESPEITAR AS DIFERENÇAS ENTRE GERAÇÕES É UM VALOR ÉTICO IMPORTANTE.",correct:true},
+    {text:"OS ESTEREÓTIPOS GERACIONAIS NÃO CAUSAM NENHUM DANO ÀS PESSOAS.",correct:false},
+  ]},
+  filo_matching:{pairs:[
+    {left:"ESTEREÓTIPO",       right:"IDEIA FIXA SOBRE UM GRUPO DE PESSOAS"},
+    {left:"ETARISMO",          right:"PRECONCEITO POR CAUSA DA IDADE"},
+    {left:"GERAÇÃO",           right:"GRUPO DE PESSOAS QUE VIVEU NA MESMA ÉPOCA"},
+    {left:"PRECONCEITO",       right:"JULGAMENTO SEM CONHECER A PESSOA"},
+    {left:"DIVERSIDADE",       right:"DIFERENÇAS ENTRE AS PESSOAS QUE ENRIQUECEM A SOCIEDADE"},
+  ]},
+  filo_hangman:{words:[
+    {word:"ESTEREOTIPO", hint:"IDEIA FIXA E GENERALIZADA SOBRE UM GRUPO"},
+    {word:"ETARISMO",    hint:"PRECONCEITO POR CAUSA DA IDADE"},
+    {word:"GERACAO",     hint:"GRUPO QUE VIVEU NA MESMA ÉPOCA"},
+  ]}
+},
+
+andressa:{
+  theme:"HISTÓRIA: FIM DO TRÁFICO E ABOLIÇÃO GRADUAL | SOCIOLOGIA: ESTRATIFICAÇÃO SOCIAL",
+  congrats:"PARABÉNS, ANDRESSA! VOCÊ COMPLETOU MAIS UMA SEMANA INCRÍVEL! 👑📚",
+  acts:[
+    {key:"dragdrop",       icon:"🖱️",title:"ARRASTA E SOLTA",       desc:"ARRASTE AS PALAVRAS PARA OS ESPAÇOS",     badge:"HISTÓRIA",   how:"dragdrop",  disc:"hist"},
+    {key:"truefalse",      icon:"✅",title:"VERDADEIRO OU FALSO",    desc:"ANALISE CADA AFIRMAÇÃO",                  badge:"HISTÓRIA",   how:"truefalse", disc:"hist"},
+    {key:"hangman",        icon:"🎯",title:"JOGO DA FORCA",          desc:"DESCUBRA A PALAVRA HISTÓRICA",            badge:"HISTÓRIA",   how:"hangman",   disc:"hist"},
+    {key:"socio_truefalse",icon:"📚",title:"VERDADEIRO OU FALSO",    desc:"ANALISE AS AFIRMAÇÕES DE SOCIOLOGIA",     badge:"SOCIOLOGIA", how:"truefalse", disc:"socio"},
+    {key:"socio_matching", icon:"🔗",title:"LIGA OS CONCEITOS",      desc:"CONECTE CADA IDEIA AO SIGNIFICADO",       badge:"SOCIOLOGIA", how:"match",     disc:"socio"},
+    {key:"socio_hangman",  icon:"🎯",title:"JOGO DA FORCA",          desc:"DESCUBRA A PALAVRA SOCIOLÓGICA",          badge:"SOCIOLOGIA", how:"hangman",   disc:"socio"},
+  ],
+  dragdrop:{
+    sentences:[
+      {text:"A LEI ___ DE 1850 PROIBIU O TRÁFICO DE ESCRAVIZADOS PARA O BRASIL.",
+       blank:"EUSÉBIO DE QUEIRÓS", options:["EUSÉBIO DE QUEIRÓS","ÁUREA","DO VENTRE LIVRE","DOS SEXAGENÁRIOS"]},
+      {text:"A LEI DE ___ DE 1850 IMPEDIU QUE ESCRAVIZADOS LIBERTOS TIVESSEM ACESSO A TERRAS.",
+       blank:"TERRAS", options:["TERRAS","LIBERDADE","VENTRE LIVRE","IMIGRAÇÃO"]},
+      {text:"A LEI DO VENTRE LIVRE LIBERTOU OS ___ DE ESCRAVIZADAS.",
+       blank:"FILHOS", options:["FILHOS","PAIS","IRMÃOS","NETOS"]},
+      {text:"A LEI ÁUREA FOI ASSINADA EM ___ ABOLINDO TODA A ESCRAVIDÃO.",
+       blank:"1888", options:["1888","1871","1850","1889"]},
+    ]
+  },
+  truefalse:{items:[
+    {text:"A LEI ÁUREA DE 1888 FOI O ÚNICO PASSO PARA ABOLIR A ESCRAVIDÃO NO BRASIL.",correct:false},
+    {text:"A LEI DE TERRAS DE 1850 DIFICULTOU O ACESSO DOS LIBERTOS À TERRA.",correct:true},
+    {text:"O FIM DO TRÁFICO EM 1850 SIGNIFICOU O FIM IMEDIATO DA ESCRAVIDÃO.",correct:false},
+    {text:"A ABOLIÇÃO GRADUAL MOSTROU QUE O BRASIL NÃO QUERIA ACABAR COM A ESCRAVIDÃO DE REPENTE.",correct:true},
+  ]},
+  hangman:{words:[
+    {word:"ABOLIÇÃO",  hint:"FIM DA ESCRAVIDÃO NO BRASIL"},
+    {word:"TRAFICO",   hint:"COMÉRCIO ILEGAL DE PESSOAS ESCRAVIZADAS"},
+    {word:"LIBERDADE", hint:"DIREITO QUE OS ESCRAVIZADOS BUSCAVAM"},
+  ]},
+  socio_truefalse:{items:[
+    {text:"ESTRATIFICAÇÃO SOCIAL SIGNIFICA QUE AS PESSOAS SÃO DIVIDIDAS EM GRUPOS DIFERENTES NA SOCIEDADE.",correct:true},
+    {text:"CLASSE SOCIAL É DETERMINADA APENAS PELA INTELIGÊNCIA DAS PESSOAS.",correct:false},
+    {text:"A DESIGUALDADE SOCIAL É UM PROBLEMA CONSTRUÍDO PELA PRÓPRIA SOCIEDADE.",correct:true},
+    {text:"EXCLUSÃO SOCIAL SIGNIFICA QUE ALGUMAS PESSOAS SÃO IMPEDIDAS DE PARTICIPAR DA SOCIEDADE.",correct:true},
+    {text:"TODAS AS SOCIEDADES DO MUNDO TÊM A MESMA ESTRATIFICAÇÃO SOCIAL.",correct:false},
+  ]},
+  socio_matching:{pairs:[
+    {left:"ESTRATIFICAÇÃO",  right:"DIVISÃO DA SOCIEDADE EM GRUPOS"},
+    {left:"CLASSE SOCIAL",   right:"GRUPO COM CONDIÇÕES ECONÔMICAS PARECIDAS"},
+    {left:"EXCLUSÃO SOCIAL", right:"QUANDO ALGUÉM É IMPEDIDO DE PARTICIPAR"},
+    {left:"DESIGUALDADE",    right:"DIFERENÇA INJUSTA ENTRE AS PESSOAS"},
+    {left:"MARGINALIZAÇÃO",  right:"QUANDO UM GRUPO É DEIXADO À MARGEM DA SOCIEDADE"},
+  ]},
+  socio_hangman:{words:[
+    {word:"ESTRATIFICACAO", hint:"DIVISÃO DA SOCIEDADE EM CAMADAS"},
+    {word:"DESIGUALDADE",   hint:"DIFERENÇA INJUSTA ENTRE AS PESSOAS"},
+    {word:"EXCLUSAO",       hint:"QUANDO ALGUÉM É DEIXADO DE FORA"},
+  ]}
+}
+
+}; // fim semana_04_05_2026
 ALL_DATA["semana_27_04_2026"] = {
 
 pierre:{
@@ -1037,7 +1467,7 @@ function openAct(sid,key,wid){
   let html="";
   // roteamento por tipo de atividade
   const type=act.how;
-  if(type==="reading")       html=buildReading(sid,wid,d.reading);
+  if(type==="reading")        html=buildReading(sid,wid,d.reading);
   else if(type==="crossword"){const cfg=d[key]||d.crossword;html=buildCrossword(sid,cfg,wid+"_"+key);}
   else if(type==="wordsearch"){const cfg=d[key]||d.wordsearch;html=buildWordSearch(sid,cfg,wid+"_"+key);}
   else if(type==="truefalse") html=buildTrueFalse(sid,d[key],wid+"_"+key);
@@ -1046,6 +1476,12 @@ function openAct(sid,key,wid){
   else if(type==="memory")    html=buildMemory(sid,d[key]||d.memory,wid+"_"+key);
   else if(type==="fill")      html=buildFill(sid,d[key]||d.fillblank,wid+"_"+key);
   else if(type==="goal")      html=buildGoal(sid,d.goal,wid);
+  else if(type==="spacemission") html=buildSpaceMission(sid,d.spacemission,wid+"_"+key);
+  else if(type==="sequence")     html=buildSequence(sid,d.sequence,wid+"_"+key);
+  else if(type==="debug")        html=buildDebug(sid,d.debug,wid+"_"+key);
+  else if(type==="penalti")      html=buildPenalti(sid,d.penalti,wid+"_"+key);
+  else if(type==="mapgame")      html=buildMapGame(sid,d.mapgame,wid+"_"+key);
+  else if(type==="dragdrop")     html=buildDragDrop(sid,d[key]||d.dragdrop,wid+"_"+key);
   const wInfo=WEEKS.find(w=>w.id===wid);
   const wt=`<span class="week-tag">SEMANA ${wInfo?.label||wid}</span>`;
   document.getElementById("panel-"+sid).innerHTML=`<div class="game-area">
@@ -1444,6 +1880,389 @@ window.submitGoal=function(sid,wid){
   const st=window["goal_"+sid+"_"+wid];
   const res=st.answers.map(a=>`${a.q}\nRESPOSTA: ${a.chosen} — ${a.ok?"CORRETO":"ERRADO (CORRETO: "+a.correct+")"}`).join("\n\n");
   onSent(sid,wid,"goal","JOGO DOS GOLS",`PLACAR: ${st.score}/${st.total} GOLS!\n\n${res}`,`${st.score}/${st.total}`);
+};
+
+/* ════════════════════════════════════════════════════════
+   🚀 MISSÃO ESPACIAL
+════════════════════════════════════════════════════════ */
+function buildSpaceMission(sid,cfg,key){
+  const wid=key.replace(/_spacemission$/,'');
+  const stars=Array.from({length:20},(_,i)=>`<div class="space-star" style="left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${Math.random()*2}s;"></div>`).join('');
+  window["sm_"+sid+"_"+key]={q:0,score:0,total:cfg.questions.length,answers:[],wid,cfg};
+  return`<div class="space-mission" id="smarea-${sid}-${key}">
+    <div class="space-stars">${stars}</div>
+    ${renderSpaceQ(sid,key,0)}
+  </div>`;
+}
+function renderSpaceQ(sid,key,qi){
+  const st=window["sm_"+sid+"_"+key];const cfg=st.cfg;
+  const prog=cfg.questions.map((_,i)=>`<div class="space-prog-dot${i<qi?(st.answers[i]?.ok?' hit':' miss'):''}"></div>`).join('');
+  if(qi>=cfg.questions.length){
+    const pct=Math.round(st.score/cfg.questions.length*100);
+    return`<div style="text-align:center;position:relative;z-index:1;">
+      <div class="space-planet" style="font-size:72px;">${cfg.planet}</div>
+      <div style="font-size:20px;font-weight:700;color:#FFD700;margin-bottom:.5rem;text-transform:uppercase;">MISSÃO CONCLUÍDA! 🎉</div>
+      <div style="font-size:14px;color:#aaa;margin-bottom:1rem;text-transform:uppercase;">${cfg.planetName} DESBLOQUEADO!</div>
+      <div style="font-size:32px;font-weight:700;color:#39FF14;">${st.score}/${cfg.questions.length} — ${pct}%</div>
+      <div class="space-progress" style="margin:1rem 0;">${prog}</div>
+      <button class="submit-btn" style="background:#FFD700;color:#111;margin-top:1rem;" onclick="submitSpaceMission('${sid}','${key}')">ENVIAR PARA O PROFESSOR</button>
+      <button class="retry-btn" style="border-color:#FFD700;color:#FFD700;margin-left:10px;" onclick="openAct('${sid}','spacemission','${st.wid}')">JOGAR DE NOVO</button>
+    </div>`;
+  }
+  const q=cfg.questions[qi];
+  const lg=cfg.lg?'font-size:19px;':'';
+  const optsHtml=shuffle([...q.opts]).map((o,i)=>`<button class="space-opt" style="${lg}" id="smo-${sid}-${key}-${qi}-${i}" onclick="answerSpace('${sid}','${key}',${qi},'${o.replace(/'/g,"\\'")}','${q.correct.replace(/'/g,"\\'")}',this)">${o}</button>`).join('');
+  return`<div style="position:relative;z-index:1;">
+    <div class="space-score">🚀 MISSÃO ${qi+1}/${cfg.questions.length} &nbsp;⭐ PONTOS: ${st.score}</div>
+    <div class="space-progress">${prog}</div>
+    <div class="space-planet">${cfg.planet}</div>
+    <div class="space-q" style="${lg}">${q.q}</div>
+    <div class="space-opts">${optsHtml}</div>
+  </div>`;
+}
+window.answerSpace=function(sid,key,qi,chosen,correct,btn){
+  const st=window["sm_"+sid+"_"+key];if(st.answers[qi])return;
+  const ok=chosen===correct;st.answers[qi]={chosen,correct,ok};if(ok)st.score++;
+  document.querySelectorAll(`[id^="smo-${sid}-${key}-${qi}-"]`).forEach(b=>{b.disabled=true;if(b.textContent.trim()===correct)b.classList.add("correct");else if(b===btn)b.classList.add("wrong");});
+  if(ok){
+    setTimeout(()=>{document.getElementById("smarea-"+sid+"-"+key).innerHTML=renderSpaceQ(sid,key,qi+1);},1000);
+  } else {
+    const reveal=document.createElement("div");reveal.className="space-reveal";
+    reveal.textContent=`✓ RESPOSTA CERTA: ${correct}`;
+    btn.parentElement.after(reveal);
+    setTimeout(()=>{document.getElementById("smarea-"+sid+"-"+key).innerHTML=renderSpaceQ(sid,key,qi+1);},1800);
+  }
+};
+window.submitSpaceMission=function(sid,key){
+  const st=window["sm_"+sid+"_"+key];
+  const res=st.answers.map((a,i)=>`Q${i+1}: ${a.chosen} — ${a.ok?"CORRETO":"ERRADO (CORRETO: "+a.correct+")"}`).join("\n");
+  onSent(sid,st.wid,"spacemission","MISSÃO ESPACIAL",`PONTUAÇÃO: ${st.score}/${st.total}\n\n${res}`,`${st.score}/${st.total}`);
+};
+
+/* ════════════════════════════════════════════════════════
+   📋 ARRASTAR SEQUÊNCIA
+════════════════════════════════════════════════════════ */
+function buildSequence(sid,cfg,key){
+  const wid=key.replace(/_sequence$/,'');
+  const shuffled=shuffle([...cfg.items]);
+  window["seq_"+sid+"_"+key]={items:shuffled,correct:cfg.items,wid,checked:false};
+  const lgCls=cfg.lg?"seq-lg":"";
+  const listHTML=shuffled.map((item,i)=>`
+    <div class="seq-item ${lgCls}" id="seqi-${sid}-${key}-${i}" draggable="true"
+      ondragstart="seqDragStart(event,'${sid}','${key}',${i})"
+      ondragover="seqDragOver(event,'${sid}','${key}',${i})"
+      ondrop="seqDrop(event,'${sid}','${key}',${i})"
+      ondragleave="seqDragLeave(event,'${sid}','${key}',${i})">
+      <span class="seq-handle">☰</span>
+      <span class="seq-num" id="seqn-${sid}-${key}-${i}">${i+1}</span>
+      <span class="seq-text">${item.text}</span>
+    </div>`).join('');
+  return`<p style="font-size:14px;font-weight:700;color:#534AB7;margin-bottom:1rem;text-transform:uppercase;">📋 ${cfg.instruction}</p>
+  <div class="seq-list" id="seqlist-${sid}-${key}">${listHTML}</div>
+  <div id="seqres-${sid}-${key}"></div>
+  <div class="submit-area">
+    <button class="submit-btn" onclick="checkSequence('${sid}','${key}')">VERIFICAR E ENVIAR</button>
+    <button class="retry-btn" onclick="openAct('${sid}','sequence','${wid}')">RECOMEÇAR</button>
+  </div>`;
+}
+window._seqDrag={};
+window.seqDragStart=function(e,sid,key,idx){window._seqDrag={sid,key,idx};e.currentTarget.classList.add("dragging");};
+window.seqDragOver=function(e,sid,key,idx){e.preventDefault();document.getElementById("seqi-"+sid+"-"+key+"-"+idx).classList.add("drag-over");};
+window.seqDragLeave=function(e,sid,key,idx){document.getElementById("seqi-"+sid+"-"+key+"-"+idx).classList.remove("drag-over");};
+window.seqDrop=function(e,sid,key,toIdx){
+  e.preventDefault();
+  const{idx:fromIdx}=window._seqDrag;if(fromIdx===toIdx)return;
+  const st=window["seq_"+sid+"_"+key];
+  [st.items[fromIdx],st.items[toIdx]]=[st.items[toIdx],st.items[fromIdx]];
+  const list=document.getElementById("seqlist-"+sid+"-"+key);
+  const fromEl=document.getElementById("seqi-"+sid+"-"+key+"-"+fromIdx);
+  const toEl=document.getElementById("seqi-"+sid+"-"+key+"-"+toIdx);
+  fromEl.classList.remove("dragging");toEl.classList.remove("drag-over");
+  // re-render textos sem recriar elementos
+  fromEl.querySelector(".seq-text").textContent=st.items[fromIdx].text;
+  toEl.querySelector(".seq-text").textContent=st.items[toIdx].text;
+};
+window.checkSequence=function(sid,key){
+  const st=window["seq_"+sid+"_"+key];
+  let ok=0;
+  st.items.forEach((item,i)=>{
+    const el=document.getElementById("seqi-"+sid+"-"+key+"-"+i);
+    const numEl=document.getElementById("seqn-"+sid+"-"+key+"-"+i);
+    const correct=st.correct.findIndex(c=>c.id===item.id)===i;
+    el.classList.remove("seq-correct","seq-wrong");
+    el.classList.add(correct?"seq-correct":"seq-wrong");
+    numEl.classList.remove("correct","wrong");
+    numEl.classList.add(correct?"correct":"wrong");
+    if(correct)ok++;
+  });
+  const msg=ok===st.items.length?"SEQUÊNCIA PERFEITA! 🎉":`VOCÊ ACERTOU ${ok} DE ${st.items.length} POSIÇÕES!`;
+  document.getElementById("seqres-"+sid+"-"+key).innerHTML=`<div class="${ok===st.items.length?'success-msg':'hint-box'}" style="margin-bottom:1rem;">${msg}</div>`;
+  const res=st.items.map((item,i)=>`${i+1}. ${item.text} — ${st.correct.findIndex(c=>c.id===item.id)===i?"CORRETO":"ERRADO"}`).join("\n");
+  onSent(sid,st.wid,"sequence","ORDENA A SEQUÊNCIA",`ACERTOS: ${ok}/${st.items.length}\n\n${res}`,`${ok}/${st.items.length}`);
+};
+
+/* ════════════════════════════════════════════════════════
+   🐛 DEBUG HISTÓRICO
+════════════════════════════════════════════════════════ */
+function buildDebug(sid,cfg,key){
+  const wid=key.replace(/_debug$/,'');
+  window["dbg_"+sid+"_"+key]={answers:{},total:cfg.items.length,wid};
+  const items=cfg.items.map((item,i)=>{
+    // destacar a palavra errada na frase
+    const highlighted=item.sentence.replace(
+      item.errorWord,
+      `<span class="debug-error" id="derr-${sid}-${key}-${i}" onclick="clickDebugError('${sid}','${key}',${i})">${item.errorWord}</span>`
+    );
+    const opts=[item.correct, ...shuffle(cfg.items.filter((_,j)=>j!==i).map(x=>x.correct))].slice(0,3);
+    const shuffledOpts=shuffle(opts);
+    return`<div class="debug-item" id="dbgi-${sid}-${key}-${i}">
+      <div style="font-size:11px;font-weight:700;color:#E24B4A;margin-bottom:.4rem;text-transform:uppercase;">🐛 ENCONTRE E CORRIJA O ERRO — CLIQUE NA PALAVRA VERMELHA:</div>
+      <div class="debug-sentence">${highlighted}</div>
+      <div class="debug-opts" id="dbopts-${sid}-${key}-${i}" style="display:none;">
+        ${shuffledOpts.map(o=>`<button class="debug-opt" onclick="answerDebug('${sid}','${key}',${i},'${o.replace(/'/g,"\\'")}','${item.correct.replace(/'/g,"\\'")}',this)">${o}</button>`).join('')}
+      </div>
+      <div class="debug-feedback" id="dbfb-${sid}-${key}-${i}" style="display:none;"></div>
+    </div>`;
+  }).join('');
+  return`<div class="score-bar"><span class="score-badge" id="dbgscore-${sid}-${key}">CORRIGIDOS: 0/${cfg.items.length}</span></div>
+  ${items}
+  <div id="dbgsub-${sid}-${key}" style="display:none;" class="submit-area">
+    <div class="success-msg" id="dbgmsg-${sid}-${key}"></div>
+    <button class="submit-btn" onclick="submitDebug('${sid}','${key}')">ENVIAR PARA O PROFESSOR</button>
+    <button class="retry-btn" onclick="openAct('${sid}','debug','${wid}')">TENTAR DE NOVO</button>
+  </div>`;
+}
+window.clickDebugError=function(sid,key,idx){
+  document.getElementById("dbopts-"+sid+"-"+key+"-"+idx).style.display="flex";
+};
+window.answerDebug=function(sid,key,idx,chosen,correct,btn){
+  const st=window["dbg_"+sid+"_"+key];if(st.answers[idx]!==undefined)return;
+  const ok=chosen===correct;st.answers[idx]={chosen,correct,ok};
+  const opts=document.querySelectorAll(`#dbopts-${sid}-${key}-${idx} .debug-opt`);
+  opts.forEach(b=>{b.disabled=true;if(b.textContent===correct)b.classList.add("selected-ok");else if(b===btn)b.classList.add("selected-err");});
+  const fb=document.getElementById("dbfb-"+sid+"-"+key+"-"+idx);
+  const cfg=ALL_DATA[st.wid]?.[sid]?.debug;
+  fb.style.display="block";fb.className="debug-feedback "+(ok?"ok":"err");
+  fb.textContent=ok?`✓ CORRETO! A PALAVRA CERTA É: ${correct}`:(cfg?.items[idx]?.feedback||`✗ ERRADO. A PALAVRA CERTA ERA: ${correct}`);
+  if(ok) document.getElementById("derr-"+sid+"-"+key+"-"+idx)?.classList.add("fixed");
+  const done=Object.keys(st.answers).length;
+  document.getElementById("dbgscore-"+sid+"-"+key).textContent=`CORRIGIDOS: ${done}/${st.total}`;
+  if(done===st.total){
+    const okCount=Object.values(st.answers).filter(a=>a.ok).length;
+    document.getElementById("dbgmsg-"+sid+"-"+key).textContent=`VOCÊ CORRIGIU ${okCount} DE ${st.total} ERROS!`;
+    document.getElementById("dbgsub-"+sid+"-"+key).style.display="block";
+  }
+};
+window.submitDebug=function(sid,key){
+  const st=window["dbg_"+sid+"_"+key];
+  const cfg=ALL_DATA[st.wid]?.[sid]?.debug;if(!cfg)return;
+  const ok=Object.values(st.answers).filter(a=>a.ok).length;
+  const res=cfg.items.map((item,i)=>{const a=st.answers[i]||{};return`"${item.sentence}" — ESCOLHEU: ${a.chosen||"—"} — ${a.ok?"CORRETO":"ERRADO (CORRETO: "+item.correct+")"}`}).join("\n");
+  onSent(sid,st.wid,"debug","DEBUG HISTÓRICO",`ERROS CORRIGIDOS: ${ok}/${st.total}\n\n${res}`,`${ok}/${st.total}`);
+};
+
+/* ════════════════════════════════════════════════════════
+   ⚽ PÊNALTI DO SABER
+════════════════════════════════════════════════════════ */
+function buildPenalti(sid,cfg,key){
+  const wid=key.replace(/_penalti$/,'');
+  const sq=shuffle(cfg.questions.map(q=>({...q,opts:shuffle(q.opts)})));
+  window["pen_"+sid+"_"+key]={questions:sq,q:0,score:0,total:sq.length,answers:[],wid};
+  return`<div id="penarea-${sid}-${key}">${renderPenalti(sid,key,0)}</div>`;
+}
+function renderPenalti(sid,key,qi){
+  const st=window["pen_"+sid+"_"+key];
+  if(qi>=st.total){
+    const stars=st.score>=st.total?'🌟🌟🌟':st.score>=st.total*.6?'🌟🌟':'🌟';
+    return`<div style="background:linear-gradient(135deg,#0F6E56,#085041);border-radius:16px;padding:1.5rem;text-align:center;color:#fff;">
+      <div style="font-size:56px;margin-bottom:.5rem;">🏆</div>
+      <div style="font-size:22px;font-weight:700;margin-bottom:.5rem;text-transform:uppercase;">JOGO ENCERRADO!</div>
+      <div style="font-size:42px;font-weight:700;color:#39FF14;">${st.score}/${st.total}</div>
+      <div style="font-size:24px;margin:.5rem 0;">${stars}</div>
+      <div style="font-size:13px;opacity:.8;margin-bottom:1.5rem;text-transform:uppercase;">${st.score===st.total?'GOLEIRO BATIDO! PERFEITO!':st.score>=st.total*.6?'BOA PARTIDA!':'CONTINUE TREINANDO!'}</div>
+      <button class="submit-btn" style="background:#FFD700;color:#111;" onclick="submitPenalti('${sid}','${key}')">ENVIAR PLACAR</button>
+      <button class="retry-btn" style="border-color:#fff;color:#fff;margin-left:10px;" onclick="openAct('${sid}','penalti','${st.wid}')">JOGAR DE NOVO</button>
+    </div>`;
+  }
+  const q=st.questions[qi];
+  const goalBar=st.answers.map(a=>`<span style="font-size:18px;">${a.ok?'⚽':'❌'}</span>`).join('');
+  return`<div style="background:#0F6E56;border-radius:12px;padding:1rem;margin-bottom:1rem;text-align:center;color:#fff;">
+    <div style="font-size:42px;font-weight:700;">${st.score}</div>
+    <div style="font-size:12px;opacity:.8;font-weight:700;text-transform:uppercase;">GOLS MARCADOS</div>
+    <div style="display:flex;gap:6px;justify-content:center;margin-top:6px;min-height:24px;">${goalBar}</div>
+  </div>
+  <div style="background:#f8f8ff;border:1.5px solid #AFA9EC;border-radius:10px;padding:1rem;margin-bottom:1rem;">
+    <div style="font-size:12px;font-weight:700;color:#534AB7;text-transform:uppercase;margin-bottom:.5rem;">⚽ COBRANÇA ${qi+1} DE ${st.total}</div>
+    <div style="font-size:16px;font-weight:700;color:#222;text-transform:uppercase;line-height:1.5;">${q.q}</div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;" id="penopts-${sid}-${key}-${qi}">
+    ${q.opts.map((o,i)=>`<button style="padding:12px;border-radius:10px;border:1.5px solid #AFA9EC;background:#EEEDFE;color:#3C3489;font-size:14px;font-weight:700;cursor:pointer;text-transform:uppercase;transition:all .15s;" id="peno-${sid}-${key}-${qi}-${i}" onclick="answerPenalti('${sid}','${key}',${qi},'${o.replace(/'/g,"\\'")}','${q.correct.replace(/'/g,"\\'")}',this)">${o}</button>`).join('')}
+  </div>`;
+}
+window.answerPenalti=function(sid,key,qi,chosen,correct,btn){
+  const st=window["pen_"+sid+"_"+key];if(st.answers[qi])return;
+  const ok=chosen===correct;st.answers[qi]={chosen,correct,ok};if(ok)st.score++;
+  document.querySelectorAll(`#penopts-${sid}-${key}-${qi} button`).forEach(b=>{
+    b.disabled=true;
+    if(b.textContent.trim()===correct){b.style.background="#E1F5EE";b.style.borderColor="#1D9E75";b.style.color="#085041";}
+    else if(b===btn&&!ok){b.style.background="#FCEBEB";b.style.borderColor="#E24B4A";b.style.color="#A32D2D";}
+  });
+  // animação de gol ou defesa
+  const anim=document.createElement("div");
+  anim.style.cssText="text-align:center;font-size:48px;padding:.5rem;animation:pulse-g .4s ease;";
+  anim.textContent=ok?"⚽ GOL!":"🧤 DEFENDIDO!";
+  document.getElementById("penopts-"+sid+"-"+key+"-"+qi).after(anim);
+  setTimeout(()=>{document.getElementById("penarea-"+sid+"-"+key).innerHTML=renderPenalti(sid,key,qi+1);},1400);
+};
+window.submitPenalti=function(sid,key){
+  const st=window["pen_"+sid+"_"+key];
+  const res=st.answers.map((a,i)=>`Q${i+1}: ${a.chosen} — ${a.ok?"GOL! ⚽":"DEFENDIDO ❌ (CORRETO: "+a.correct+")"}`).join("\n");
+  onSent(sid,st.wid,"penalti","PÊNALTI DO SABER",`PLACAR: ${st.score}/${st.total} GOLS\n\n${res}`,`${st.score}/${st.total}`);
+};
+
+/* ════════════════════════════════════════════════════════
+   🗺️ MAPA INTERATIVO
+════════════════════════════════════════════════════════ */
+function buildMapGame(sid,cfg,key){
+  const wid=key.replace(/_mapgame$/,'');
+  window["map_"+sid+"_"+key]={answered:{},total:cfg.polis.length,score:0,wid,current:null};
+  // SVG simples da Grécia com marcadores das pólis
+  const markers=cfg.polis.map(p=>`
+    <g class="map-polis" id="mpol-${sid}-${key}-${p.id}" onclick="clickPolis('${sid}','${key}','${p.id}')">
+      <circle cx="${p.x}%" cy="${p.y}%" r="15" fill="#534AB7" stroke="#fff" stroke-width="2"/>
+      <text x="${p.x}%" y="${p.y}%" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#fff">${p.emoji}</text>
+    </g>`).join('');
+  const legend=cfg.polis.map(p=>`<span class="map-leg-item">${p.emoji} ${p.name}</span>`).join('');
+  const mapHTML=`<div class="map-area">
+    <svg class="map-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <rect width="100" height="100" fill="#B8D4E8"/>
+      <!-- costa simplificada da Grécia -->
+      <path d="M30,20 Q40,15 55,18 Q65,20 70,30 Q72,40 68,50 Q60,58 55,65 Q50,75 48,82 Q45,88 43,85 Q41,80 38,72 Q32,60 28,50 Q25,40 28,30 Z" fill="#C8A96E" stroke="#999" stroke-width=".5"/>
+      <!-- Peloponeso -->
+      <path d="M40,60 Q45,58 50,62 Q52,70 50,78 Q47,82 44,78 Q40,72 40,65 Z" fill="#C8A96E" stroke="#999" stroke-width=".5"/>
+      ${markers}
+    </svg>
+    <div class="map-legend">${legend}</div>
+  </div>
+  <div id="mapq-${sid}-${key}">
+    <div style="background:#EEEDFE;border-radius:10px;padding:1rem;text-align:center;font-size:14px;font-weight:700;color:#534AB7;text-transform:uppercase;">
+      🗺️ CLIQUE EM UMA PÓLIS NO MAPA PARA RESPONDER A PERGUNTA!
+    </div>
+  </div>
+  <div class="score-bar" style="margin-top:1rem;">
+    <span class="score-badge" id="mapscore-${sid}-${key}">RESPONDIDAS: 0/${cfg.polis.length}</span>
+  </div>
+  <div id="mapsub-${sid}-${key}" style="display:none;" class="submit-area">
+    <div class="success-msg">TODAS AS PÓLIS RESPONDIDAS! 🎉</div>
+    <button class="submit-btn" onclick="submitMapGame('${sid}','${key}')">ENVIAR PARA O PROFESSOR</button>
+    <button class="retry-btn" onclick="openAct('${sid}','mapgame','${wid}')">JOGAR DE NOVO</button>
+  </div>`;
+  return mapHTML;
+}
+window.clickPolis=function(sid,key,polisId){
+  const st=window["map_"+sid+"_"+key];if(st.answered[polisId])return;
+  const cfg=ALL_DATA[st.wid]?.[sid]?.mapgame;if(!cfg)return;
+  const polis=cfg.polis.find(p=>p.id===polisId);if(!polis)return;
+  st.current=polisId;
+  const opts=shuffle([...polis.opts]).map((o,i)=>`<button class="map-opt" id="mapo-${sid}-${key}-${i}" onclick="answerMap('${sid}','${key}','${polisId}','${o.replace(/'/g,"\\'")}','${polis.correct.replace(/'/g,"\\'")}',this)">${o}</button>`).join('');
+  document.getElementById("mapq-"+sid+"-"+key).innerHTML=`<div class="map-question-box">
+    <div class="map-q-title">${polis.emoji} ${polis.name}</div>
+    <div class="map-q-text">${polis.q}</div>
+    <div class="map-opts">${opts}</div>
+  </div>`;
+};
+window.answerMap=function(sid,key,polisId,chosen,correct,btn){
+  const st=window["map_"+sid+"_"+key];if(st.answered[polisId])return;
+  const ok=chosen===correct;st.answered[polisId]={chosen,correct,ok};if(ok)st.score++;
+  document.querySelectorAll(`#mapq-${sid}-${key} .map-opt`).forEach(b=>{
+    b.disabled=true;
+    if(b.textContent.trim()===correct)b.classList.add("correct");
+    else if(b===btn)b.classList.add("wrong");
+  });
+  if(ok){
+    const el=document.getElementById("mpol-"+sid+"-"+key+"-"+polisId);
+    if(el){el.classList.add("answered");el.querySelector("circle").setAttribute("fill","#1D9E75");}
+  }
+  const done=Object.keys(st.answered).length;
+  document.getElementById("mapscore-"+sid+"-"+key).textContent=`RESPONDIDAS: ${done}/${st.total}`;
+  if(done===st.total){
+    document.getElementById("mapsub-"+sid+"-"+key).style.display="block";
+  } else {
+    setTimeout(()=>{
+      document.getElementById("mapq-"+sid+"-"+key).innerHTML=`<div style="background:#EEEDFE;border-radius:10px;padding:1rem;text-align:center;font-size:14px;font-weight:700;color:#534AB7;text-transform:uppercase;">🗺️ CLIQUE EM OUTRA PÓLIS!</div>`;
+    },1200);
+  }
+};
+window.submitMapGame=function(sid,key){
+  const st=window["map_"+sid+"_"+key];
+  const cfg=ALL_DATA[st.wid]?.[sid]?.mapgame;
+  const res=cfg.polis.map(p=>{const a=st.answered[p.id]||{};return`${p.name}: ${a.chosen||"—"} — ${a.ok?"CORRETO":"ERRADO (CORRETO: "+p.correct+")"}`}).join("\n");
+  onSent(sid,st.wid,"mapgame","MAPA INTERATIVO",`ACERTOS: ${st.score}/${st.total}\n\n${res}`,`${st.score}/${st.total}`);
+};
+
+/* ════════════════════════════════════════════════════════
+   🖱️ ARRASTAR E SOLTAR (Andressa)
+════════════════════════════════════════════════════════ */
+function buildDragDrop(sid,cfg,key){
+  const wid=key.replace(/_dragdrop$/,'');
+  window["dd_"+sid+"_"+key]={filled:{},total:cfg.sentences.length,wid};
+  // banco de palavras embaralhado
+  const allOpts=shuffle([...new Set(cfg.sentences.flatMap(s=>s.options))]);
+  const bank=allOpts.map(o=>`<div class="drag-chip" id="ddc-${sid}-${key}-${o.replace(/\s/g,'_')}" draggable="true"
+    ondragstart="ddDragStart(event,'${sid}','${key}','${o.replace(/'/g,"\\'")}')">  ${o}</div>`).join('');
+  const sentences=cfg.sentences.map((s,i)=>{
+    const parts=s.text.split("___");
+    return`<div class="drag-sentence">${parts[0]}<div class="drag-drop" id="ddslot-${sid}-${key}-${i}"
+      ondragover="ddDragOver(event,'${sid}','${key}',${i})"
+      ondragleave="ddDragLeave(event,'${sid}','${key}',${i})"
+      ondrop="ddDrop(event,'${sid}','${key}',${i},'${s.blank.replace(/'/g,"\\'")}')">
+    </div>${parts[1]||''}</div>`;
+  }).join('');
+  return`<p style="font-size:14px;font-weight:700;color:#534AB7;margin-bottom:.75rem;text-transform:uppercase;">📦 BANCO DE PALAVRAS — ARRASTE PARA O ESPAÇO CORRETO:</p>
+  <div class="drag-bank" id="ddbank-${sid}-${key}">${bank}</div>
+  <div>${sentences}</div>
+  <div id="ddres-${sid}-${key}"></div>
+  <div class="submit-area">
+    <button class="submit-btn" onclick="checkDragDrop('${sid}','${key}')">VERIFICAR E ENVIAR</button>
+    <button class="retry-btn" onclick="openAct('${sid}','dragdrop','${wid}')">RECOMEÇAR</button>
+  </div>`;
+}
+window._ddDrag={};
+window.ddDragStart=function(e,sid,key,word){window._ddDrag={sid,key,word};};
+window.ddDragOver=function(e,sid,key,idx){e.preventDefault();document.getElementById("ddslot-"+sid+"-"+key+"-"+idx).classList.add("drag-over-slot");};
+window.ddDragLeave=function(e,sid,key,idx){document.getElementById("ddslot-"+sid+"-"+key+"-"+idx).classList.remove("drag-over-slot");};
+window.ddDrop=function(e,sid,key,idx,blank){
+  e.preventDefault();
+  const{word}=window._ddDrag;
+  const slot=document.getElementById("ddslot-"+sid+"-"+key+"-"+idx);
+  slot.classList.remove("drag-over-slot");
+  // devolve palavra anterior ao banco se havia
+  const st=window["dd_"+sid+"_"+key];
+  if(st.filled[idx]){
+    const prev=st.filled[idx];
+    const prevChip=document.getElementById("ddc-"+sid+"-"+key+"-"+prev.replace(/\s/g,'_'));
+    if(prevChip)prevChip.classList.remove("used");
+  }
+  st.filled[idx]={word,blank};
+  slot.textContent=word;slot.classList.add("filled");slot.classList.remove("wrong-fill");
+  const chip=document.getElementById("ddc-"+sid+"-"+key+"-"+word.replace(/\s/g,'_'));
+  if(chip)chip.classList.add("used");
+};
+window.checkDragDrop=function(sid,key){
+  const st=window["dd_"+sid+"_"+key];
+  const cfg=ALL_DATA[st.wid]?.[sid]?.dragdrop||ALL_DATA[st.wid]?.[sid]?.truefalse;
+  const ddcfg=ALL_DATA[st.wid]?.[sid]?.dragdrop;if(!ddcfg)return;
+  let ok=0;
+  ddcfg.sentences.forEach((s,i)=>{
+    const slot=document.getElementById("ddslot-"+sid+"-"+key+"-"+i);
+    const filled=st.filled[i];
+    const correct=filled?.word?.trim().toUpperCase()===s.blank.toUpperCase();
+    slot.classList.remove("filled","wrong-fill");
+    slot.classList.add(correct?"filled":"wrong-fill");
+    if(correct)ok++;
+  });
+  const res=ddcfg.sentences.map((s,i)=>`"${s.text.replace("___","["+( st.filled[i]?.word||"—")+"]")}" — ${(st.filled[i]?.word||"").trim().toUpperCase()===s.blank.toUpperCase()?"CORRETO":"ERRADO (CORRETO: "+s.blank+")"}`).join("\n");
+  onSent(sid,st.wid,"dragdrop","ARRASTA E SOLTA",`ACERTOS: ${ok}/${ddcfg.sentences.length}\n\n${res}`,`${ok}/${ddcfg.sentences.length}`);
 };
 
 /* ════════════════════════════════════════════════════════
